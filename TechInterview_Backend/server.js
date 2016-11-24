@@ -1,15 +1,8 @@
 var http = require('http');
 var express = require('express');
 var app = express();
-var formidable = require('formidable');
-var util = require('util');
-var fs = require('fs');
-var Regex = require('regex');
 var cookieParser = require('cookie-parser')
-var sql = require('mssql');
 var session = require('client-sessions');
-var validator = require('validator');
-
 var mysql = require('mysql');
 
 var connectionpool = mysql.createPool({
