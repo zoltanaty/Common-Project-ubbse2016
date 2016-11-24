@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TechInterview</string>
+    <string name="complete_profile">Complete_profile</string>
+    <string name="candidate_name">Candidate name</string>
+    <string name="email">Email</string>
+    <string name="spinner">Position</string>
+    <string name="done">Done</string>
+</resources>
