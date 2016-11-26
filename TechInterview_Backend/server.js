@@ -9,7 +9,7 @@ var connectionpool = mysql.createPool({
 	connectionLimit : 10,
 	host : 'localhost',
 	user : 'root',
-	password: 'qweasd',
+	password: '',
 	database: 'techinterview'
 });
 

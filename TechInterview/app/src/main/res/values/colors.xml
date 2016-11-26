@@ -4,8 +4,9 @@
     <color name="background">#339999</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="white">#ffffff</color>
+    <color name="white">#FFFFFF</color>
     <color name="textcolor">#212121</color>
     <color name="hintcolor">#339999</color>
-    <color name="done">#bfbfbf</color>
+
 </resources>
+
