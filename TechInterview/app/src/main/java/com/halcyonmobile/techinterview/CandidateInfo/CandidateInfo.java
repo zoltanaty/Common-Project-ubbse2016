@@ -1,5 +1,6 @@
 package com.halcyonmobile.techinterview.CandidateInfo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -8,26 +9,40 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.halcyonmobile.techinterview.CandidateInfo.Validator.MyTextWatcher;
+import com.halcyonmobile.techinterview.CandidateInfo.Validator.Validator;
 import com.halcyonmobile.techinterview.R;
 
 import static com.halcyonmobile.techinterview.CandidateInfo.ServerConnection.DatabaseConnection.details;
-import static com.halcyonmobile.techinterview.CandidateInfo.Validator.Validator.validateEmail;
-import static com.halcyonmobile.techinterview.CandidateInfo.Validator.Validator.validateName;
 
 public class CandidateInfo extends AppCompatActivity {
 
 
-    public static EditText inputName, inputEmail;
-    public static TextInputLayout inputLayoutName, inputLayoutEmail;
-    public static Button btnDone;
+    private static EditText inputName;
+    private static EditText inputEmail;
+    private static TextInputLayout inputLayoutName;
+    private static TextInputLayout inputLayoutEmail;
+    private static Button btnDone;
     public static String NAME;
     public static String EMAIL;
-    public Spinner spinner ;
-    public TextView txt;
+    private Spinner spinner ;
+
+    @org.jetbrains.annotations.Contract(pure = true)
+    public static EditText inputName() {
+        return inputName;
+    }
+    public static EditText inputEmail() {
+        return inputEmail;
+    }
+    public static TextInputLayout inputLayoutName() {
+        return inputLayoutName;
+    }
+    public static TextInputLayout inputLayoutEmail() {
+        return inputLayoutEmail;
+    }
+    public static Button btnDone() {
+        return btnDone;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,34 +56,17 @@ public class CandidateInfo extends AppCompatActivity {
         inputEmail = (EditText) findViewById(R.id.input_email);
         btnDone = (Button) findViewById(R.id.btn_signup);
         btnDone.setEnabled(false);
-        txt= (TextView) findViewById(R.id.textView2);
         spinner=(Spinner) findViewById(R.id.spinner);
         spinner();
-
-        inputName.addTextChangedListener(new MyTextWatcher(inputName));
-        inputEmail.addTextChangedListener(new MyTextWatcher(inputEmail));
-        inputName.setOnFocusChangeListener(new View.OnFocusChangeListener(){
-
-            public void onFocusChange( View v, boolean hasFocus ) {
-                inputLayoutName.setHintEnabled(false);
-            }
-
-        } );
-        inputEmail.setOnFocusChangeListener( new View.OnFocusChangeListener() {
-
-            public void onFocusChange( View v, boolean hasFocus ) {
-                inputLayoutEmail.setHintEnabled(false);
-
-            }
-
-        } );
-
-        btnDone.setOnClickListener(new View.OnClickListener() {
+        Validator.listener ();
+        btnDone().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitForm();
+                Intent mainIntent = new Intent(CandidateInfo.this,Welcome.class);
+                CandidateInfo.this.startActivity(mainIntent);
             }
         });
+
 
     }
 
@@ -77,14 +75,6 @@ public class CandidateInfo extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(CandidateInfo.this, android.R.layout.simple_spinner_item, details );
         spinner.setAdapter(adapter);
     }
-    private void submitForm() {
-        if (!validateName()) {
-            return;
-        }
 
-        if (!validateEmail()) {
-            return;
-        }
-        Toast.makeText(getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
-    }
+
 }

@@ -18,9 +18,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class DatabaseConnection {
-     public static String [] details = new String[1];
+    public static String [] details = new String[1];
 
-     private List<Positions> peopleData;
+    private List<Positions> peopleData;
 
     public DatabaseConnection() {
         peopleData = null;
@@ -62,13 +62,10 @@ public class DatabaseConnection {
         } catch (Exception e) {
             Log.d("onResponse", "There is an error");
             e.printStackTrace();
-
-
         }
     }
-
     public static void resp (){
-       new DatabaseConnection();
+        new DatabaseConnection();
 
     }
 }

@@ -6,10 +6,7 @@ import android.view.View;
 
 import com.halcyonmobile.techinterview.R;
 
-import static com.halcyonmobile.techinterview.CandidateInfo.Validator.Validator.validateEmail;
-import static com.halcyonmobile.techinterview.CandidateInfo.Validator.Validator.validateName;
-
-public class MyTextWatcher implements TextWatcher {
+public class MyTextWatcher extends Validator  implements TextWatcher {
 
     private View view;
 

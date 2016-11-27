@@ -17,7 +17,8 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".CandidateInfo.Splash"
+        <activity
+            android:name=".CandidateInfo.Splash"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -26,6 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CandidateInfo.Welcome"></activity>
     </application>
 
 </manifest>
