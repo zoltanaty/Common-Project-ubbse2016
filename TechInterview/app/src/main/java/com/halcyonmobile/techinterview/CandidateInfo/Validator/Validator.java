@@ -6,7 +6,9 @@ import android.view.View;
 import com.halcyonmobile.techinterview.CandidateInfo.CandidateInfo;
 
 public class Validator extends CandidateInfo {
+    // TODO CR: [High] This should be a helper class that must not be instantiated (don't extend an Activity). [PPeter]
 
+    // TODO CR: [High] Pass important values as parameters instead of relying on global variables. [PPeter]
     public static boolean validateName() {
         if (inputName().getText().toString().trim().isEmpty()) {
             inputLayoutName().setError(NAME);
@@ -47,6 +49,7 @@ public class Validator extends CandidateInfo {
     }
 
 
+    // TODO CR: [High] This method should belong to the Activity while the others don't. [PPeter]
     public static void listener(){
         inputName().addTextChangedListener(new MyTextWatcher(inputName()));
         inputEmail().addTextChangedListener(new MyTextWatcher(inputEmail()));

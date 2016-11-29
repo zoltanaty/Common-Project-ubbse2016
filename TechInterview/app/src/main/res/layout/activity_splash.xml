@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TODO CR [High] This layout can be simplified to a FrameLayout container with a TextView (use the drawableTop attribute and set the layout_gravity to "center"). [PPeter]-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"

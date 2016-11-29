@@ -21,6 +21,7 @@ public class Splash extends Activity {
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
                 Intent mainIntent = new Intent(Splash.this,CandidateInfo.class);
+                // TODO CR: [Medium] Set flags for the Intent using .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK) for the same effect. [PPeter]
                 Splash.this.startActivity(mainIntent);
                 Splash.this.finish();
             }
