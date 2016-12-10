@@ -1,11 +1,11 @@
-package com.halcyonmobile.techinterview.CandidateInfo;
+package com.halcyonmobile.techinterview.src.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.halcyonmobile.techinterview.R;
 
-public class Welcome extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

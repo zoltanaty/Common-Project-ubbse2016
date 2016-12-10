@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">TechInterview</string>
     <string name="complete_profile">Complete profile</string>
-    <string name="candidate_name">Candidate name</string>
-    <string name="email">Email</string>
-    <string name="spinner">Position</string>
-    <string name="done">Done</string>
-    <string name="err_msg_email">Email address is invalid!</string>
-    <string name="err_msg_name">Name is invalid!</string>
+    <string name="candidateinfoactivity.candidate_name">Candidate Name</string>
+    <string name="candidateinfoactivity.candidate_email">Candidate Email</string>
+    <string name="candidateinfoactivity.spinner">Position</string>
+    <string name="candidateinfoactivity.done">Done</string>
+    <string name="candidateinfoactivity.err_msg_email">Email address is invalid!</string>
+    <string name="candidateinfoactivity.err_msg_name">Name is invalid!</string>
     <string name="splash">Tech Interview Questionnaire</string>
     <string name="selfie">TAKE A SELFIE</string>
     <string name="welcometext">Motivation can take you far, but it can take you even further if you first find your vision. Your vision will motivate and guide you on your journey to success and personal fullfillment.\nTo develop your vision, you must look inside yourself. Vision comes from within, from the spirit or subconscious, whatever you choose to call it.</string>

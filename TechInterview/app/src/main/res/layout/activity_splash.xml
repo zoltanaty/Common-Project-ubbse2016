@@ -7,7 +7,7 @@
     android:layout_width="768dp"
     android:layout_height="1028dp"
     android:background="@color/background"
-    tools:context="com.halcyonmobile.techinterview.CandidateInfo.Splash"
+    tools:context="com.halcyonmobile.techinterview.src.SplashActivity"
     >
 
     <ImageView

@@ -1,4 +1,4 @@
-package com.halcyonmobile.techinterview.CandidateInfo.ServerConnection.model;
+package com.halcyonmobile.techinterview.src.networking.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,11 +6,10 @@ import com.google.gson.annotations.SerializedName;
  * Created by Szilard on 11/26/2016.
  */
 
-// TODO CR: [Medium] Consider renaming this class to Position. [PPeter]
-public class Positions {
-    @SerializedName("idposition")
+public class Position {
+    @SerializedName("id")
     private String id;
-    @SerializedName("positionname")
+    @SerializedName("name")
     private String name;
 
     public String getId() {

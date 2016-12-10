@@ -7,7 +7,7 @@
     android:layout_width="768dp"
     android:layout_height="1024dp"
     android:background="@color/background"
-    tools:context="com.halcyonmobile.techinterview.CandidateInfo.Welcome">
+    tools:context="com.halcyonmobile.techinterview.src.WelcomeActivity">
 
     <android.support.v7.widget.CardView
         android:layout_width="624dp"
