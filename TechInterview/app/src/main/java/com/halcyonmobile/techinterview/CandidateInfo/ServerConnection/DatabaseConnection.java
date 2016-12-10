@@ -1,7 +1,5 @@
 package com.halcyonmobile.techinterview.CandidateInfo.ServerConnection;
 
-import android.util.Log;
-
 import com.halcyonmobile.techinterview.CandidateInfo.ServerConnection.model.Positions;
 import com.halcyonmobile.techinterview.CandidateInfo.ServerConnection.service.APIService;
 
@@ -24,6 +22,7 @@ public class DatabaseConnection {
 
     public DatabaseConnection() {
         peopleData = null;
+        details[0]="";
         getPositions();
 
     }
@@ -31,7 +30,7 @@ public class DatabaseConnection {
     public  void getPositions() {
         try {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.117:8888/").
+                    .baseUrl("http://192.168.1.107:8888/").
                             addConverterFactory(GsonConverterFactory.create())
                     .build();
             APIService service = retrofit.create(APIService.class);
@@ -46,22 +45,21 @@ public class DatabaseConnection {
                         String name = peopleData.get(i).getName();
                         details[i] = name + "\n";
                     }
-
                     //txt.setText(details[1]);
-
-
                 }
 
                 public void onFailure(Call<List<Positions>> call, Throwable t) {
-                    int onFailure = Log.d("onFailure", t.toString());
 
+                    details[0]="Sikertelen";
                 }
 
 
             });
         } catch (Exception e) {
-            Log.d("onResponse", "There is an error");
-            e.printStackTrace();
+            details[0]="Sikertelen1";
+            //Log.d("onResponse", "There is an error");
+           // e.printStackTrace();
+
         }
     }
     public static void resp (){
