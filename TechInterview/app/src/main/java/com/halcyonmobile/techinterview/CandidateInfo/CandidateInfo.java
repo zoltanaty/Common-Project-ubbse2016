@@ -15,18 +15,22 @@ import com.halcyonmobile.techinterview.R;
 
 import static com.halcyonmobile.techinterview.CandidateInfo.ServerConnection.DatabaseConnection.details;
 
+// TODO CR: [Medium] Consider renaming this class to CandidateInfoActivity. [PPeter]
 public class CandidateInfo extends AppCompatActivity {
 
 
+    // TODO CR: [High] Never use static modifier for Context-related fields. [PPeter]
     private static EditText inputName;
     private static EditText inputEmail;
     private static TextInputLayout inputLayoutName;
     private static TextInputLayout inputLayoutEmail;
     private static Button btnDone;
+    // TODO CR: [Medium] Don't use all-caps names for fields that aren't constants. [PPeter]
     public static String NAME;
     public static String EMAIL;
     private Spinner spinner ;
 
+    // TODO CR: [Medium] Remove useless annotation (and methods). [PPeter]
     @org.jetbrains.annotations.Contract(pure = true)
     public static EditText inputName() {
         return inputName;
@@ -55,6 +59,7 @@ public class CandidateInfo extends AppCompatActivity {
         inputName = (EditText) findViewById(R.id.input_name);
         inputEmail = (EditText) findViewById(R.id.input_email);
         btnDone = (Button) findViewById(R.id.btn_signup);
+        // TODO CR: [Medium] Setting the enabled state can be done from the XML as well. [PPeter]
         btnDone.setEnabled(false);
         spinner=(Spinner) findViewById(R.id.spinner);
         spinner();
@@ -72,6 +77,7 @@ public class CandidateInfo extends AppCompatActivity {
 
     private void spinner(){
         ArrayAdapter<String> adapter;
+        // TODO CR: [Medium] No need to specify the type. [PPeter]
         adapter = new ArrayAdapter<String>(CandidateInfo.this, android.R.layout.simple_spinner_item, details );
         spinner.setAdapter(adapter);
     }

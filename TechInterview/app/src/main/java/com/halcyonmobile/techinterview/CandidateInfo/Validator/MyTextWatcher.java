@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.halcyonmobile.techinterview.R;
 
+// TODO CR: [High] Only extend Activities if you intend to use the children as Activities. [PPeter]
 public class MyTextWatcher extends Validator  implements TextWatcher {
 
     private View view;

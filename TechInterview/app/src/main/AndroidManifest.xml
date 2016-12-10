@@ -9,6 +9,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/NoActionBar">
+        <!-- TODO CR [Medium] Set the windowSoftInputMode attribute to better support the soft keyboard. [PPeter]-->
+        <!-- TODO CR [Medium] Remove useless intent-filter. [PPeter]-->
+
         <activity
             android:name=".CandidateInfo.CandidateInfo"
             android:screenOrientation="portrait"
