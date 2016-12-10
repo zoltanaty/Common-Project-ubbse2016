@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO CR [High] This layout can be simplified to a FrameLayout container with a TextView (use the drawableTop attribute and set the layout_gravity to "center"). [PPeter]-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_splash"
+    android:layout_width="768dp"
+    android:layout_height="1028dp"
+    android:background="@color/background"
+    tools:context="com.halcyonmobile.techinterview.CandidateInfo.Splash"
+    >
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="234dp"
+        app:srcCompat="@drawable/group_3"
+        android:layout_marginStart="284dp"
+        android:layout_marginTop="395dp"
+        android:id="@+id/imageView3"
+        android:background="@drawable/group_3" />
+
+    <TextView
+        android:text="@string/splash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="229dp"
+        android:layout_marginTop="653dp"
+        android:id="@+id/textView"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"/>
+</RelativeLayout>
