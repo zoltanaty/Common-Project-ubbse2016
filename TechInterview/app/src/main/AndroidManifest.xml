@@ -11,17 +11,11 @@
         android:theme="@style/AppTheme">
 
         <!-- TODO CR [Medium] Set the windowSoftInputMode attribute to better support the soft keyboard. [PPeter]-->
-        <!-- TODO CR [Medium] Remove useless intent-filter. [PPeter]-->
 
         <activity
             android:name=".src.activities.CandidateInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-
         </activity>
 
         <activity
@@ -33,7 +27,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <activity

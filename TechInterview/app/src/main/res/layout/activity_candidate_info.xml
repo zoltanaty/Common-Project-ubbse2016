@@ -25,7 +25,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="204dp"
         android:layout_marginTop="308dp"
-        android:background="@color/white"
+        android:background="@android:color/white"
         android:shadowDx="0"
         android:shadowDy="2"
         tools:cardCornerRadius="2dp">
@@ -40,7 +40,7 @@
             android:layout_marginTop="24dp"
             android:text="@string/complete_profile"
             android:textAlignment="textStart"
-            android:textColor="@color/textcolor"
+            android:textColor="@color/textColor"
             android:textSize="20sp"
             android:typeface="normal" />
 
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/hintcolor"
+                android:textColor="@color/hintColor"
                 android:textSize="16sp" />
 
         </android.support.design.widget.TextInputLayout>
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:textAlignment="viewStart"
-                android:textColor="@color/hintcolor"
+                android:textColor="@color/hintColor"
                 android:textSize="16sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -102,7 +102,7 @@
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="192dp"
-            android:contentDescription="@string/candidateinfoactivity.spinner"
+            android:contentDescription="@string/candidate_info_activity.spinner"
             app:srcCompat="@drawable/ic_domain" />
 
         <!-- TODO CR [Medium] Double-check the paddings of the spinner items. [PPeter]-->
@@ -114,9 +114,9 @@
             android:layout_marginStart="72dp"
             android:layout_marginTop="192dp"
             android:longClickable="false"
-            android:text="@string/candidateinfoactivity.spinner"
+            android:text="@string/candidate_info_activity.spinner"
             android:textAlignment="textStart"
-            android:textColor="@color/textcolor"
+            android:textColor="@color/textColor"
             android:textSize="16sp" />
 
         <!-- TODO CR [Medium] Consider using the default flat button style: @style/Widget.AppCompat.Button.Borderless [PPeter]-->
@@ -129,11 +129,11 @@
             android:layout_height="19dp"
             android:layout_marginStart="285dp"
             android:layout_marginTop="249dp"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:enabled="false"
             android:letterSpacing="0.15"
             android:shadowRadius="2"
-            android:text="@string/candidateinfoactivity.done"
+            android:text="@string/candidate_info_activity.done"
             android:textAlignment="textStart"
             android:textSize="16sp"
             android:clickable="false"/>

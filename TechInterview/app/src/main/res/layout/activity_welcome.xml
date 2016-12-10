@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="289dp"
             android:layout_marginStart="297dp"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:textColor="@color/background"
             android:id="@+id/button" />
     </android.support.v7.widget.CardView>

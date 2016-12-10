@@ -52,8 +52,8 @@ public class CandidateInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_candidate_info);
 
-        errorMsgName = getString(R.string.candidateinfoactivity_err_msg_name);
-        errorMsgEmail = getString(R.string.candidateinfoactivity_err_msg_email);
+        errorMsgName = getString(R.string.candidate_info_activity_err_msg_name);
+        errorMsgEmail = getString(R.string.candidate_info_activity_err_msg_email);
 
         fieldName = (EditText) findViewById(R.id.input_name);
         fieldEmail = (EditText) findViewById(R.id.input_email);
@@ -117,7 +117,7 @@ public class CandidateInfoActivity extends AppCompatActivity {
                     nameLayout.setErrorEnabled(false);
                 }else{
                     if(charSequence.length() > 0) {
-                        nameLayout.setError(getString(R.string.candidateinfoactivity_err_msg_name));
+                        nameLayout.setError(getString(R.string.candidate_info_activity_candidate_name));
                     }else{
                         nameLayout.setErrorEnabled(false);
                     }
@@ -144,7 +144,7 @@ public class CandidateInfoActivity extends AppCompatActivity {
                     emailLayout.setErrorEnabled(false);
                 }else{
                     if(charSequence.length() > 0) {
-                        emailLayout.setError(getString(R.string.candidateinfoactivity_err_msg_email));
+                        emailLayout.setError(getString(R.string.candidate_info_activity_candidate_email));
                     }else{
                         emailLayout.setErrorEnabled(false);
                     }
