@@ -1,60 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- TODO CR [High] Set the background color from the theme, it's better for the performance. [PPeter]-->
+<?xml version="1.0" encoding="utf-8"?><!-- TODO CR [High] Set the background color from the theme, it's better for the performance. [PPeter]-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_welcome"
-    android:layout_width="768dp"
-    android:layout_height="1024dp"
-    android:background="@color/background"
-    tools:context="com.halcyonmobile.techinterview.src.WelcomeActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="624dp"
         android:layout_height="332dp"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="500dp"
-        android:id="@+id/cardView" >
+        android:layout_marginTop="500dp">
 
         <TextView
-            android:text="TextView"
-            android:textSize="24sp"
-            android:fontFamily="sans-serif-medium"
+            android:id="@+id/welcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:layout_marginStart="24dp"
-            android:id="@+id/textView3" />
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/welcome_activity.welcome"
+            android:textSize="24sp" />
 
         <TextView
-            android:text="@string/welcometext"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif"
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
-            android:layout_marginStart="24dp"
             android:layout_marginBottom="68dp"
             android:layout_marginEnd="24dp"
-            android:id="@+id/textView4" />
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="68dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/welcome_activity.text"
+            android:textSize="20sp" />
 
         <Button
-            android:text="@string/selfie"
+            android:id="@+id/button"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="289dp"
             android:layout_marginStart="297dp"
+            android:layout_marginTop="289dp"
             android:background="@android:color/white"
+            android:text="@string/welcome_activity.selfie"
             android:textColor="@color/background"
-            android:id="@+id/button" />
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="436dp"
+            android:layout_marginTop="289dp"
+            android:background="@android:color/white"
+            android:text="@string/welcome_activity.start"
+            android:textColor="@color/background"
+            android:textSize="@dimen/button_text_size" />
     </android.support.v7.widget.CardView>
 
     <ImageView
+        android:id="@+id/imageView5"
         android:layout_width="260dp"
         android:layout_height="260dp"
-        app:srcCompat="@drawable/placeholder_rocket_2"
-        android:layout_marginTop="195dp"
         android:layout_marginStart="245dp"
-        android:id="@+id/imageView5"
-        />
+        android:layout_marginTop="195dp"
+        app:srcCompat="@drawable/placeholder_rocket_2" />
 </RelativeLayout>

@@ -9,4 +9,9 @@
         <item name="android:textColor">@color/text_color</item>
     </style>
 
+    <style name="spinnerStyle" parent="">
+        <item name="android:paddingTop">15sp</item>
+        <item name="android:paddingBottom">15sp</item>
+    </style>
+
 </resources>

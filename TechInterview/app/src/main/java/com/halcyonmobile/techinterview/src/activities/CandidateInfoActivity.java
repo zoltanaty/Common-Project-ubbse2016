@@ -21,6 +21,7 @@ import com.halcyonmobile.techinterview.src.networking.model.Position;
 import com.halcyonmobile.techinterview.src.utils.Validator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -67,31 +68,41 @@ public class CandidateInfoActivity extends AppCompatActivity {
 
         fillSpinner();
         setUpListeners();
-        // Validator.listener ();
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mainIntent = new Intent(CandidateInfoActivity.this, WelcomeActivity.class);
-                CandidateInfoActivity.this.startActivity(mainIntent);
+                Intent intent = new Intent(CandidateInfoActivity.this, WelcomeActivity.class);
+                intent.putExtra("candidateName", fieldName.getText().toString());
+
+                Intent emailIntent = new Intent(CandidateInfoActivity.this, WelcomeActivity.class);
+                intent.putExtra("candidateEmail", fieldEmail.getText().toString());
+
+                Position selectedPosition = (Position)spinner.getSelectedItem();
+                String selectedPositionId = selectedPosition.getId().toString();
+
+                Intent positionIntent = new Intent(CandidateInfoActivity.this, WelcomeActivity.class);
+                intent.putExtra("selectedPositionId", selectedPositionId);
+
+                CandidateInfoActivity.this.startActivity(intent);
             }
         });
     }
 
     private void fillSpinner() {
-        final List<Position> positionList;
         ConnectionImpl connection = new ConnectionImpl();
-        positionList = connection.getPositionList(new Callback<List<Position>>() {
+        connection.getPositionList(new Callback<List<Position>>() {
 
             @Override
             public void onResponse(Call<List<Position>> call, Response<List<Position>> response) {
-                List<String> positionNames = new ArrayList<>();
+                List<Position> positionList = new ArrayList<Position>();
+
                 for (Position position : response.body()) {
-                    positionNames.add(position.getName());
+                    positionList.add(new Position(position.getId(), position.getName()));
                 }
 
-                ArrayAdapter<String> adapter;
-                adapter = new ArrayAdapter<String>(CandidateInfoActivity.this, android.R.layout.simple_spinner_item, positionNames);
+                ArrayAdapter<Position> adapter;
+                adapter = new ArrayAdapter<Position>(CandidateInfoActivity.this, android.R.layout.simple_spinner_item, positionList);
                 spinner.setAdapter(adapter);
             }
 
@@ -113,12 +124,12 @@ public class CandidateInfoActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(Validator.isValidName(charSequence.toString())){
+                if (Validator.isValidName(charSequence.toString())) {
                     nameLayout.setErrorEnabled(false);
-                }else{
-                    if(charSequence.length() > 0) {
+                } else {
+                    if (charSequence.length() > 0) {
                         nameLayout.setError(getString(R.string.candidate_info_activity_candidate_name));
-                    }else{
+                    } else {
                         nameLayout.setErrorEnabled(false);
                     }
                 }
@@ -140,12 +151,12 @@ public class CandidateInfoActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(Validator.isValidEmail(charSequence.toString())){
+                if (Validator.isValidEmail(charSequence.toString())) {
                     emailLayout.setErrorEnabled(false);
-                }else{
-                    if(charSequence.length() > 0) {
+                } else {
+                    if (charSequence.length() > 0) {
                         emailLayout.setError(getString(R.string.candidate_info_activity_candidate_email));
-                    }else{
+                    } else {
                         emailLayout.setErrorEnabled(false);
                     }
                 }
@@ -161,9 +172,9 @@ public class CandidateInfoActivity extends AppCompatActivity {
 
         fieldName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onFocusChange( View v, boolean hasFocus ) {
+            public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    fieldName .setHint("");
+                    fieldName.setHint("");
                 } else {
                     fieldName.setHint("Candidate Name");
                 }
@@ -174,7 +185,7 @@ public class CandidateInfoActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (hasFocus) {
-                    fieldEmail .setHint("");
+                    fieldEmail.setHint("");
                 } else {
                     fieldEmail.setHint("Candidate Email");
                 }
@@ -182,12 +193,11 @@ public class CandidateInfoActivity extends AppCompatActivity {
         });
     }
 
-    private void setEnabledOrDisabledDoneButton(){
-        if(Validator.isValidName(fieldName.getText().toString()) && Validator.isValidEmail(fieldEmail.getText().toString())){
+    private void setEnabledOrDisabledDoneButton() {
+        if (Validator.isValidName(fieldName.getText().toString()) && Validator.isValidEmail(fieldEmail.getText().toString())) {
             btnDone.setEnabled(true);
-        }else{
+        } else {
             btnDone.setEnabled(false);
         }
     }
-
 }

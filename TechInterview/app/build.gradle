@@ -36,4 +36,6 @@ dependencies {
 
 
     compile 'org.jetbrains:annotations-java5:15.0'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile 'com.android.support:gridlayout-v7:25.0.1'
 }
