@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_questionare"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context="com.halcyonmobile.techinterview.src.activities.QuestionareActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/background" />
 
-    <!--<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />-->
     <android.support.v7.widget.CardView
         android:layout_width="624dp"
         android:layout_height="360dp"
@@ -50,5 +38,4 @@
         </ScrollView>
 
     </android.support.v7.widget.CardView>
-
-</RelativeLayout>
+</ScrollView>

@@ -12,4 +12,5 @@
     <string name="welcome_activity.start">START QUESTIONAIRE</string>
     <string name="welcome_activity.welcome">Welcome, </string>
     <string name="welcome_activity.text">Motivation can take you far, but it can take you even further if you first find your vision. Your vision will motivate and guide you on your journey to success and personal fullfillment.\nTo develop your vision, you must look inside yourself. Vision comes from within, from the spirit or subconscious, whatever you choose to call it.</string>
+    <string name="title_template_step">Title</string>
 </resources>
