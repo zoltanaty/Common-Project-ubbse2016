@@ -10,28 +10,29 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.halcyonmobile.techinterview.R;
+import com.halcyonmobile.techinterview.src.networking.model.Answer;
 import com.halcyonmobile.techinterview.src.networking.model.dto.QuestionCardDTO;
 
 
 public class FragmentCheckboxes extends Fragment {
     private FragmentActivity mContext;
     private TextView textViewTitle;
-    private EditText editTextAnswer;
-    private SwipeRefreshLayout swipe;
+    private LinearLayout layoutCheckBoxes;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_fragment_text_simple,container,false);
+        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_fragment_checkboxes,container,false);
 
         textViewTitle = (TextView) rootView.findViewById(R.id.textview_q_title);
-        editTextAnswer=(EditText) rootView.findViewById(R.id.editText_answer);
-
-
+        layoutCheckBoxes=(LinearLayout) rootView.findViewById(R.id.linearLayout_checkboxes);
 
         return rootView;
     }
@@ -44,5 +45,12 @@ public class FragmentCheckboxes extends Fragment {
         QuestionCardDTO questionCard = (QuestionCardDTO) getArguments().getSerializable("data");
 
         textViewTitle.setText(questionCard.getQuestion().getQuestion());
+        for (Answer answer : questionCard.getAnswers()){
+            CheckBox cb = new CheckBox(mContext);
+            cb.setText(answer.getAnswer());
+            cb.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            layoutCheckBoxes.addView(cb);
+            //radioButtons.add(rb);*/
+        }
     }
 }
