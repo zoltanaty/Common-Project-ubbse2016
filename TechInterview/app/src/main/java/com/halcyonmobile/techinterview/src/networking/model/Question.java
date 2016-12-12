@@ -2,11 +2,13 @@ package com.halcyonmobile.techinterview.src.networking.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by zmate on 12/12/2016.
  */
 
-public class Question {
+public class Question implements Serializable {
 
     @SerializedName("id")
     private int id;

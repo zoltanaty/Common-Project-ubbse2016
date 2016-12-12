@@ -5,13 +5,14 @@ import com.halcyonmobile.techinterview.src.networking.model.Answer;
 import com.halcyonmobile.techinterview.src.networking.model.Question;
 import com.halcyonmobile.techinterview.src.networking.model.QuestionType;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by zmate on 12/12/2016.
  */
 
-public class QuestionCardDTO {
+public class QuestionCardDTO implements Serializable{
 
     @SerializedName("question")
     private Question question;

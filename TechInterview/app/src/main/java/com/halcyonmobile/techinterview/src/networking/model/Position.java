@@ -2,11 +2,13 @@ package com.halcyonmobile.techinterview.src.networking.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Szilard on 11/26/2016.
  */
 
-public class Position {
+public class Position implements Serializable {
     @SerializedName("id")
     private Integer id;
     @SerializedName("name")
