@@ -28,4 +28,12 @@ public class QuestionType {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "QuestionType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

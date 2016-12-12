@@ -48,4 +48,14 @@ public class Question {
     public void setId_position(int id_position) {
         this.id_position = id_position;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", question='" + question + '\'' +
+                ", id_questionType=" + id_questionType +
+                ", id_position=" + id_position +
+                '}';
+    }
 }

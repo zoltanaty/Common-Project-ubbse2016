@@ -71,19 +71,13 @@ public class CandidateInfoActivity extends AppCompatActivity {
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Position selectedPosition = (Position) spinner.getSelectedItem();
+                String selectedPositionId = selectedPosition.getId().toString();
 
                 Intent intent = new Intent(CandidateInfoActivity.this, WelcomeActivity.class);
                 // TODO CR: [Low] If you using constant values (eg. candidateName) in multiple places, consider to save them into a constant, and use that instance everywhere[Gelli]
                 intent.putExtra("candidateName", fieldName.getText().toString());
-
-                // TODO CR: [Low] You don't need new intents if you already declared one.The emailIntent and the positionIntent are useless[Gelli]
-                Intent emailIntent = new Intent(CandidateInfoActivity.this, WelcomeActivity.class);
                 intent.putExtra("candidateEmail", fieldEmail.getText().toString());
-
-                Position selectedPosition = (Position) spinner.getSelectedItem();
-                String selectedPositionId = selectedPosition.getId().toString();
-
-                Intent positionIntent = new Intent(CandidateInfoActivity.this, WelcomeActivity.class);
                 intent.putExtra("selectedPositionId", selectedPositionId);
 
                 CandidateInfoActivity.this.startActivity(intent);

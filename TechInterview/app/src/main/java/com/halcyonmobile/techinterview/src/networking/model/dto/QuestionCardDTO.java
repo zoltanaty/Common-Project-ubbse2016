@@ -43,4 +43,13 @@ public class QuestionCardDTO {
     public void setQuestionType(QuestionType questionType) {
         this.questionType = questionType;
     }
+
+    @Override
+    public String toString() {
+        return "QuestionCardDTO{" +
+                "question=" + question +
+                ", answers=" + answers +
+                ", questionType=" + questionType +
+                '}';
+    }
 }
