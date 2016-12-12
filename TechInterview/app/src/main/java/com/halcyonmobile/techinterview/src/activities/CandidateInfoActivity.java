@@ -102,7 +102,7 @@ public class CandidateInfoActivity extends AppCompatActivity {
                 }
 
                 ArrayAdapter<Position> adapter;
-                adapter = new ArrayAdapter<Position>(CandidateInfoActivity.this, android.R.layout.simple_spinner_item, positionList);
+                adapter = new ArrayAdapter<Position>(CandidateInfoActivity.this, R.layout.spinner_row, positionList);
                 spinner.setAdapter(adapter);
             }
 
