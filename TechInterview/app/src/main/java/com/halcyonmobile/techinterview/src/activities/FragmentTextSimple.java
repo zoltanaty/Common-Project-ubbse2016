@@ -21,18 +21,18 @@ public class FragmentTextSimple extends Fragment {
     private FragmentActivity mContext;
     private TextView textViewTitle;
     private EditText editTextAnswer;
-    private SwipeRefreshLayout swipe;
+    private TextView questionviewText;
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_fragment_text_simple,container,false);
+        ViewGroup mainView = (ViewGroup)inflater.inflate(R.layout.activity_questionare,container,false);
 
         textViewTitle = (TextView) rootView.findViewById(R.id.textview_q_title);
         editTextAnswer=(EditText) rootView.findViewById(R.id.editText_answer);
-
-
-
+        questionviewText=(TextView) mainView.findViewById(R.id.textViewQuestions);
         return rootView;
     }
 
@@ -42,7 +42,9 @@ public class FragmentTextSimple extends Fragment {
 
         mContext = getActivity();
         QuestionCardDTO questionCard = (QuestionCardDTO) getArguments().getSerializable("data");
+        //questionviewText.setText(questionCard.getQuestion().getId());
 
-        textViewTitle.setText(questionCard.getQuestion().getQuestion());
+        textViewTitle.setText("#" + + questionCard.getQuestion().getId()+ " " + questionCard.getQuestion().getQuestion());
+
     }
 }

@@ -1,11 +1,13 @@
 package com.halcyonmobile.techinterview.src.activities;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.halcyonmobile.techinterview.R;
 import com.halcyonmobile.techinterview.src.networking.connection.ConnectionImpl;
@@ -26,6 +28,10 @@ import static com.halcyonmobile.techinterview.R.id.spinner;
 public class QuestionareActivity extends FragmentActivity {
 
     private ViewPager mPager;
+    private TextView timerEditText;
+
+    private int actualQuestion = 0;
+    private int allQuestions = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,22 @@ public class QuestionareActivity extends FragmentActivity {
         String selectedPositionId =  getIntent().getStringExtra("selectedPositionId");
         System.out.println("Selected Position Id: " + selectedPositionId);
         getQuestionCardList(Integer.parseInt(selectedPositionId));
+
+        timerEditText = (TextView) findViewById(R.id.textViewTimer);
+
+        new CountDownTimer(1800000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                int seconds = (int) ((millisUntilFinished / 1000) % 60);
+                int minutes = (int) ((millisUntilFinished / 1000) / 60);
+                timerEditText.setText(minutes + ":" + seconds);
+            }
+
+            public void onFinish() {
+                timerEditText.setText("00:00");
+            }
+
+        }.start();
     }
 
     private void getQuestionCardList(Integer selectedPositionId) {
@@ -44,7 +66,11 @@ public class QuestionareActivity extends FragmentActivity {
             @Override
             public void onResponse(Call<List<QuestionCardDTO>> call, Response<List<QuestionCardDTO>> response) {
                 List<QuestionCardDTO> cardList = response.body();
-                System.out.println(cardList);
+
+                int orderNumber = 1;
+                for(QuestionCardDTO questionCardDTO : cardList){
+                    questionCardDTO.getQuestion().setId(orderNumber++);
+                }
 
                 List<Fragment> fragmentList = processQuestionCardDTO(cardList);
                 mPager = (ViewPager) findViewById(R.id.viewpager);
@@ -62,23 +88,31 @@ public class QuestionareActivity extends FragmentActivity {
     private List<Fragment> processQuestionCardDTO(List<QuestionCardDTO> cardList){
         List<Fragment> fragmentList = new ArrayList<Fragment>();
 
+        allQuestions = cardList.size();
+
         for(QuestionCardDTO card : cardList){
             if(card.getQuestionType().getName().equals("checkbox")){
+                actualQuestion++;
                 FragmentCheckboxes frag = new FragmentCheckboxes();
                 Bundle xBundle = new Bundle();
                 xBundle.putSerializable("data", card);
+                xBundle.putSerializable("orderNumber", actualQuestion);
                 frag.setArguments(xBundle);
                 fragmentList.add(frag);
             }else if(card.getQuestionType().getName().equals("radiobutton")){
+                actualQuestion++;
                 FragmentRadioboxes frag = new FragmentRadioboxes();
                 Bundle xBundle = new Bundle();
                 xBundle.putSerializable("data", card);
+                xBundle.putSerializable("orderNumber", actualQuestion);
                 frag.setArguments(xBundle);
                 fragmentList.add(frag);
             }else if(card.getQuestionType().getName().equals("textfield")){
+                actualQuestion++;
                 FragmentTextSimple frag = new FragmentTextSimple();
                 Bundle xBundle = new Bundle();
                 xBundle.putSerializable("data", card);
+                xBundle.putSerializable("orderNumber", actualQuestion);
                 frag.setArguments(xBundle);
                 fragmentList.add(frag);
             }

@@ -1,12 +1,14 @@
 package com.halcyonmobile.techinterview.src.activities;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,10 +49,14 @@ public class FragmentRadioboxes extends Fragment {
         mContext = getActivity();
         QuestionCardDTO questionCard = (QuestionCardDTO) getArguments().getSerializable("data");
 
-        textViewTitle.setText(questionCard.getQuestion().getQuestion());
+        textViewTitle.setText("#" + + questionCard.getQuestion().getId()+ " " + questionCard.getQuestion().getQuestion());
         for (Answer answer : questionCard.getAnswers()){
             RadioButton rb = new RadioButton(mContext);
             rb.setText(answer.getAnswer());
+            rb.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+            rb.setTypeface(Typeface.SANS_SERIF);
+            rb.setTextColor(getResources().getColor(R.color.answerTextColor));
+            rb.setPadding(24,12,0,12);
             rb.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             radioGroup.addView(rb);
             //radioButtons.add(rb);*/
