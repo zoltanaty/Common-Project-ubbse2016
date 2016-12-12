@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.halcyonmobile.techinterview.R;
 
 public class WelcomeActivity extends AppCompatActivity {
-
+    // TODO CR: [Low] Always take care of lint warnings.This variables can be converted to local variables[Gelli]
     private TextView welcomeText;
     private Button btnstartQuestionar;
 

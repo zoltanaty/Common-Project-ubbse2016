@@ -2,7 +2,6 @@ package com.halcyonmobile.techinterview.src.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -15,13 +14,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.halcyonmobile.techinterview.R;
-import com.halcyonmobile.techinterview.src.networking.IConnection;
 import com.halcyonmobile.techinterview.src.networking.connection.ConnectionImpl;
 import com.halcyonmobile.techinterview.src.networking.model.Position;
 import com.halcyonmobile.techinterview.src.utils.Validator;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -40,6 +37,7 @@ public class CandidateInfoActivity extends AppCompatActivity {
     public String errorMsgName;
     public String errorMsgEmail;
 
+    // TODO CR: [Low] Remove unused methods [Gelli]
     public EditText getFieldName() {
         return fieldName;
     }
@@ -63,6 +61,7 @@ public class CandidateInfoActivity extends AppCompatActivity {
         btnDone = (Button) findViewById(R.id.btn_signup);
         spinner = (Spinner) findViewById(R.id.spinner);
 
+        // TODO CR: [Low]As a general rule, always set the properties from xml if possible. You can set the hint from xml to the EditText[Gelli]
         fieldName.setHint("Candidate Name");
         fieldEmail.setHint("Candidate Email");
 
@@ -72,13 +71,16 @@ public class CandidateInfoActivity extends AppCompatActivity {
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(CandidateInfoActivity.this, WelcomeActivity.class);
+                // TODO CR: [Low] If you using constant values (eg. candidateName) in multiple places, consider to save them into a constant, and use that instance everywhere[Gelli]
                 intent.putExtra("candidateName", fieldName.getText().toString());
 
+                // TODO CR: [Low] You don't need new intents if you already declared one.The emailIntent and the positionIntent are useless[Gelli]
                 Intent emailIntent = new Intent(CandidateInfoActivity.this, WelcomeActivity.class);
                 intent.putExtra("candidateEmail", fieldEmail.getText().toString());
 
-                Position selectedPosition = (Position)spinner.getSelectedItem();
+                Position selectedPosition = (Position) spinner.getSelectedItem();
                 String selectedPositionId = selectedPosition.getId().toString();
 
                 Intent positionIntent = new Intent(CandidateInfoActivity.this, WelcomeActivity.class);
