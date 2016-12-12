@@ -31,7 +31,7 @@ public class ConnectionImpl implements IConnection {
 
                         .connectTimeout(10, TimeUnit.SECONDS)
                         .readTimeout(30, TimeUnit.SECONDS).build())
-                .baseUrl("http://192.168.96.55:8080/")
+                .baseUrl("http://192.168.43.240:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IConnection service = retrofit.create(IConnection.class);
