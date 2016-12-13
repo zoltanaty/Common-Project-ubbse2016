@@ -1,4 +1,5 @@
 <resources>
+    <!-- TODO CR [Medium] Use underline for naming convention[Gelli] -->
     <string name="app_name">Tech Interview</string>
     <string name="splash_activity.splash">Tech Interview Questionnaire</string>
     <string name="candidate_info_activity.complete_profile">Complete Profile</string>

@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
 
+        <!-- TODO CR [Medium] Remove screenOrientation[PPeter] -->
         <activity
             android:name=".src.activities.CandidateInfoActivity"
             android:screenOrientation="portrait"

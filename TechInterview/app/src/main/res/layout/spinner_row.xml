@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TODO CR [Medium] Add padding to this view, and remove the fix height from the layout_height attribute [Gelli] -->
+<!-- TODO CR [Medium] Add tools attribute to help other devs understand your UI[Gelli] -->
+<!-- TODO CR [Medium] Extract text size to dimension[Gelli] -->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cust_spinner_row"
     android:minWidth="246dp"
