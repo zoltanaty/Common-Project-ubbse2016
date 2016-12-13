@@ -6,16 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.halcyonmobile.techinterview.R;
 import com.halcyonmobile.techinterview.src.networking.connection.ConnectionImpl;
-import com.halcyonmobile.techinterview.src.networking.model.Position;
+import com.halcyonmobile.techinterview.src.networking.model.Answer;
 import com.halcyonmobile.techinterview.src.networking.model.dto.QuestionCardDTO;
 import com.halcyonmobile.techinterview.src.utils.FragmentAdapter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.halcyonmobile.techinterview.R.id.spinner;
-
-public class QuestionareActivity extends FragmentActivity {
+public class QuestionareActivity extends FragmentActivity implements FragmentRadioboxes.ActivityCallbacks {
 
     private ViewPager mPager;
     private TextView timerEditText;
@@ -119,5 +115,10 @@ public class QuestionareActivity extends FragmentActivity {
         }
 
         return fragmentList;
+    }
+
+    @Override
+    public void onQuestionAnswered(Answer answer) {
+        // TODO Complete implementation! Process the provided answer.
     }
 }
