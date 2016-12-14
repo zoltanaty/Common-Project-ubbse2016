@@ -35,7 +35,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
         setContentView(R.layout.activity_questionare);
 
         String selectedPositionId =  getIntent().getStringExtra("selectedPositionId");
-        System.out.println("Selected Position Id: " + selectedPositionId);
+       // System.out.println("Selected Position Id: " + selectedPositionId);
         getQuestionCardList(Integer.parseInt(selectedPositionId));
 
         timerEditText = (TextView) findViewById(R.id.textViewTimer);
@@ -69,7 +69,10 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
                 }
 
                 List<Fragment> fragmentList = processQuestionCardDTO(cardList);
+
                 mPager = (ViewPager) findViewById(R.id.viewpager);
+                mPager.setClipToPadding(false);
+                mPager.setPageMargin(36);
                 FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList);
                 mPager.setAdapter(fragmentAdapter);
             }
@@ -83,7 +86,6 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
 
     private List<Fragment> processQuestionCardDTO(List<QuestionCardDTO> cardList){
         List<Fragment> fragmentList = new ArrayList<Fragment>();
-
         allQuestions = cardList.size();
 
         for(QuestionCardDTO card : cardList){

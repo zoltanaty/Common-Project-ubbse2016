@@ -58,11 +58,11 @@ public class FragmentRadioboxes extends Fragment {
         }
 
         // Updating the activity on answer selected
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        /*radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 activityCallbacks.onQuestionAnswered(questionCard.getAnswers().get(i));
             }
-        });
+        });*/
     }
 }

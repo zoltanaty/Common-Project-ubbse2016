@@ -18,7 +18,9 @@ public class FragmentAdapter extends FragmentPagerAdapter{
         super(fm);
         this.fragmentList = fragmentList;
     }
-
+    public float getPageWidth (int position) {
+        return 0.92f;
+    }
     @Override
     public Fragment getItem(int position) {
        return this.fragmentList.get(position);

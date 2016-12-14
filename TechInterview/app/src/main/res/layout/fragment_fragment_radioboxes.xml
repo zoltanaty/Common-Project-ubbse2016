@@ -4,46 +4,52 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/scrollviewQuestion"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="128dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:paddingTop="24dp">
+        android:layout_height="360dp"
+        android:padding="64dp"
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/textview_q_title"
-            style="?android:textAppearanceMedium"
+        android:background="@color/background">
+
+        <ScrollView
+            android:id="@+id/scrollviewQuestion"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="#333"
-            android:textSize="24sp"
-            android:gravity="center"
-            android:layout_gravity="center"/>
+            android:layout_height="128dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="24dp">
 
-    </ScrollView>
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/textview_q_title"
+                style="?android:textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:textColor="#333"
+                android:textSize="24sp" />
 
-    <ScrollView
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2">
+        </ScrollView>
 
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
+        <ScrollView
+            android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:orientation="vertical">
+            android:layout_height="300dp"
+            android:layout_weight="2">
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="104dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="vertical">
 
-        </RadioGroup>
+            </RadioGroup>
 
-    </ScrollView>
-
+        </ScrollView>
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>
