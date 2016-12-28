@@ -1,0 +1,62 @@
+body {
+	background-color: #339999;
+}
+
+ul.topnav {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+ul.topnav li {float: right;}
+
+ul.topnav li a {
+	display: inline-block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	trnsition: 0.3s;
+	font-size: 17px;
+}
+
+.buttons {
+	display: inline-block;
+	padding-bottom: 5%;
+}
+
+#main {
+	background: url(./images/clipboard.png) no-repeat 50%;
+	background-size: 100%;
+	padding-top: 10%;
+	padding-bottom: 22%;
+	margin-left: 5%;
+	margin-right: 5%;
+	
+	box-shadow: 10px 10px 100px lightblue;
+	text-align: center;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+h5 {
+	margin: 0;
+	padding: 0;
+}
+
+#admin {
+	color: red;
+}
+
+#manager {
+	color: green;
+}
+
+#form-buttons {
+	align: center;
+}
