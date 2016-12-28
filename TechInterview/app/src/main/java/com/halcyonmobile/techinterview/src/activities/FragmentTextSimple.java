@@ -41,7 +41,7 @@ public class FragmentTextSimple extends Fragment {
         mContext = getActivity();
         QuestionCardDTO questionCard = (QuestionCardDTO) getArguments().getSerializable("data");
     System.out.println(questionCard);
-        textViewTitle.setText("#" + + questionCard.getQuestion().getId()+ " " + questionCard.getQuestion().getQuestion());
+        textViewTitle.setText(questionCard.getQuestion().getQuestion());
 
     }
 }

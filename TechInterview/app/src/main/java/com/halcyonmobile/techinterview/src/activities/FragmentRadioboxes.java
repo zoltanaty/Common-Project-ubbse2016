@@ -4,10 +4,14 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.util.TypedValue;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,10 +26,12 @@ public class FragmentRadioboxes extends Fragment {
     private FragmentActivity mContext;
     private TextView textViewTitle;
     private RadioGroup radioGroup;
+    private View fragmentView;
     private ActivityCallbacks activityCallbacks;
 
     interface ActivityCallbacks {
         void onQuestionAnswered(Answer answer);
+        // void onFragmentTouch(int cardNumber);
     }
 
     @Override
@@ -34,6 +40,7 @@ public class FragmentRadioboxes extends Fragment {
 
         textViewTitle = (TextView) rootView.findViewById(R.id.textview_q_title);
         radioGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
+        fragmentView = rootView;
 
         return rootView;
     }
@@ -43,9 +50,10 @@ public class FragmentRadioboxes extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         mContext = getActivity();
+        activityCallbacks = (ActivityCallbacks) getActivity();
         final QuestionCardDTO questionCard = (QuestionCardDTO) getArguments().getSerializable("data");
 
-        textViewTitle.setText("#" + +questionCard.getQuestion().getId() + " " + questionCard.getQuestion().getQuestion());
+        textViewTitle.setText(questionCard.getQuestion().getQuestion());
         for (Answer answer : questionCard.getAnswers()) {
             RadioButton rb = new RadioButton(mContext);
             rb.setText(answer.getAnswer());
@@ -58,11 +66,15 @@ public class FragmentRadioboxes extends Fragment {
         }
 
         // Updating the activity on answer selected
-        /*radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                activityCallbacks.onQuestionAnswered(questionCard.getAnswers().get(i));
+                if((i % 4) == 0){
+                    activityCallbacks.onQuestionAnswered(questionCard.getAnswers().get(3));
+                }else{
+                    activityCallbacks.onQuestionAnswered(questionCard.getAnswers().get((i % 4) - 1));
+                }
             }
-        });*/
+        });
     }
 }

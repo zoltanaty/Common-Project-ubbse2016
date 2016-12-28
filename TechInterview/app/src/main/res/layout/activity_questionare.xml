@@ -3,6 +3,7 @@
 <!-- TODO CR [Medium] Extract text size, margins and paddings to dimension [Blenesi Attila] -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_questionare"
     android:layout_width="match_parent"
@@ -16,19 +17,49 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:paddingLeft="20dp"
+        android:text="Unanswered"
         android:textColor="@color/timerTextColor"
-        android:textSize="20sp"
-        tools:text="Unanswered" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
+        android:textSize="20sp" />
+    <!--
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_below="@id/unanswered_text"
+            android:layout_marginBottom="72dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            />-->
+    <android.support.v7.widget.GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/unanswered_text"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:paddingLeft="20dp"
+        app:columnCount="13">
+
+       <!-- <Button
+            android:id="@+id/button1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button_done"
+            android:fontFamily="sans-serif-medium"
+            android:text="1"
+            android:textColor="@color/background"
+            android:textSize="16sp"
+           />-->
+
+
+
+    </android.support.v7.widget.GridLayout>
 
     <FrameLayout
         android:id="@+id/container"
@@ -105,11 +136,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/container"
-        android:layout_below="@id/recycler"
+        android:layout_below="@id/gridLayout"
         android:elevation="@dimen/questionar_activity.card"
+        android:paddingStart="46dp"
         android:visibility="visible"
-        tools:background="@color/colorPrimaryDark"
-        android:paddingStart="46dp">
+        tools:background="@color/colorPrimaryDark">
 
 
     </android.support.v4.view.ViewPager>

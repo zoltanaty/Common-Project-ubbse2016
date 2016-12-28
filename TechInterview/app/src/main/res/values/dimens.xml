@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="button_text_size">16dp</dimen>
     <dimen name="questionar_activity.card">16dp</dimen>
+    <dimen name="unansweredbtn">32dp</dimen>
+
 </resources>

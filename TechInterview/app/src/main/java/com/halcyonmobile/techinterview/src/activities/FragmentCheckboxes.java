@@ -46,7 +46,7 @@ public class FragmentCheckboxes extends Fragment {
         mContext = getActivity();
         QuestionCardDTO questionCard = (QuestionCardDTO) getArguments().getSerializable("data");
 
-        textViewTitle.setText("#" + + questionCard.getQuestion().getId()+ " " + questionCard.getQuestion().getQuestion());
+        textViewTitle.setText(questionCard.getQuestion().getQuestion());
         for (Answer answer : questionCard.getAnswers()){
             CheckBox cb = new CheckBox(mContext);
             cb.setText(answer.getAnswer());
