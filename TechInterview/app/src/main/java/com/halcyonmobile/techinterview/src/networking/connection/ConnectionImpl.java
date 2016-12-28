@@ -25,14 +25,20 @@ import retrofit2.http.Path;
 
 public class ConnectionImpl implements IConnection {
 
+    private static final String IPV4 = "192.168.1.105";
+    private static final String BASEURL = "http://" + IPV4 + ":8080/";
+
     @Override
     public Call<List<Position>> getPositions() {
+
+        System.out.println(BASEURL);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .client(new OkHttpClient.Builder()
 
                         .connectTimeout(10, TimeUnit.SECONDS)
                         .readTimeout(30, TimeUnit.SECONDS).build())
-                .baseUrl("http://192.168.100.3:8080/")
+                .baseUrl(BASEURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IConnection service = retrofit.create(IConnection.class);
@@ -51,7 +57,7 @@ public class ConnectionImpl implements IConnection {
 
                         .connectTimeout(10, TimeUnit.SECONDS)
                         .readTimeout(30, TimeUnit.SECONDS).build())
-                .baseUrl("http://192.168.100.3:8080/")
+                .baseUrl(BASEURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IConnection service = retrofit.create(IConnection.class);
