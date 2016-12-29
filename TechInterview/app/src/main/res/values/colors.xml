@@ -2,7 +2,6 @@
 <resources>
     <color name="colorPrimary">#339999</color>
     <color name="colorPrimaryDark">#267272</color>
-    <color name="background">#339999</color>
     <color name="colorAccent">#212121</color>
     <color name="textColor">#212121</color>
     <!-- TODO CR [Medium] You can refer to colors as reference (<color name="hintColor">@color/colorPrimary</color>[Gelli] -->

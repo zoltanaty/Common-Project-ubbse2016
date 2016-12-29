@@ -4,23 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.halcyonmobile.techinterview.R;
-import com.halcyonmobile.techinterview.src.networking.connection.ConnectionImpl;
-import com.halcyonmobile.techinterview.src.networking.model.Position;
-import com.halcyonmobile.techinterview.src.networking.model.dto.QuestionCardDTO;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -31,9 +19,9 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
+        TextView welcomeText = (TextView) findViewById(R.id.welcome_text);
         welcomeText.setText(welcomeText.getText() + " " + getIntent().getStringExtra("candidateName"));
-        Button btnTakeSelfie = (Button) findViewById(R.id.takesSelfie);
+        Button btnTakeSelfie = (Button) findViewById(R.id.selfie);
         btnTakeSelfie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 }
             }
         });
-        Button btnstartQuestionar = (Button) findViewById(R.id.startQuestionar);
+        Button btnstartQuestionar = (Button) findViewById(R.id.start_questionnaire);
         btnstartQuestionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

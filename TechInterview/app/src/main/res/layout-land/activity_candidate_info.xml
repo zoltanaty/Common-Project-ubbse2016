@@ -7,7 +7,7 @@
     android:id="@+id/activity_candidate_info"
     android:layout_width="768dp"
     android:layout_height="1024dp"
-    android:background="@color/background"
+    android:background="@color/colorPrimary"
     android:layout_marginStart="0dp"
     android:layout_marginTop="0dp"
     android:orientation="vertical"

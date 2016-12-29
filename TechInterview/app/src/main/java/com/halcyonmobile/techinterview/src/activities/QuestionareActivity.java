@@ -1,22 +1,15 @@
 package com.halcyonmobile.techinterview.src.activities;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.ActionBarOverlayLayout;
 import android.support.v7.widget.GridLayout;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,8 +25,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static java.security.AccessController.getContext;
 
 public class QuestionareActivity extends FragmentActivity implements FragmentRadioboxes.ActivityCallbacks {
 
@@ -79,7 +70,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
             btn.setBackground(getDrawable(R.drawable.button_done));
             btn.setLayoutParams(params);
             btn.setTextSize(12);
-            btn.setTextColor(getResources().getColor(R.color.background));
+            btn.setTextColor(getResources().getColor(R.color.colorPrimary));
             layout.addView(btn);
             btn.setVisibility(Button.INVISIBLE);
             unansweredButtonList.add(btn);

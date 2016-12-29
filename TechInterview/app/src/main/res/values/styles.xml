@@ -9,9 +9,10 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!-- Default color of the text in your views  -->
         <item name="android:textColorPrimary">@color/textColor</item>
-    </style>
-    <!-- Base application theme. -->
+        <!-- Window background-->
+        <item name="android:windowBackground">@color/colorPrimary</item>
 
+    </style>
 
     <style name="buttonStyle">
         <item name="android:textColor">@color/text_color</item>

@@ -8,7 +8,7 @@
     android:id="@+id/activity_questionare"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/colorPrimary"
     tools:context="com.halcyonmobile.techinterview.src.activities.QuestionareActivity">
 
     <TextView
@@ -44,19 +44,18 @@
         android:paddingLeft="20dp"
         app:columnCount="13">
 
-       <!-- <Button
-            android:id="@+id/button1"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/button_done"
-            android:fontFamily="sans-serif-medium"
-            android:text="1"
-            android:textColor="@color/background"
-            android:textSize="16sp"
-           />-->
-
+        <!-- <Button
+             android:id="@+id/button1"
+             android:layout_width="32dp"
+             android:layout_height="32dp"
+             android:layout_marginBottom="16dp"
+             android:layout_marginRight="20dp"
+             android:background="@drawable/button_done"
+             android:fontFamily="sans-serif-medium"
+             android:text="1"
+             android:textColor="@color/background"
+             android:textSize="16sp"
+            />-->
 
 
     </android.support.v7.widget.GridLayout>
@@ -125,7 +124,7 @@
             android:background="@drawable/button_done"
             android:fontFamily="sans-serif-medium"
             android:text="@string/Questionare_activity.done"
-            android:textColor="@color/background"
+            android:textColor="@color/colorPrimary"
             android:textSize="36sp"
             android:visibility="invisible"
             tools:visibility="visible" />

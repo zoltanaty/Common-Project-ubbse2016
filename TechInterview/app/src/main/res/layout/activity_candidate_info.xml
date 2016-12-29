@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:background="@color/background"
+    android:background="@color/colorPrimary"
     android:textAlignment="textStart">
 
     <!-- TODO CR [High] Consider using wrap_content with paddings for a more dynamic implementation. [PPeter]-->
