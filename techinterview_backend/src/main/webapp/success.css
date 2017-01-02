@@ -60,3 +60,109 @@ h5 {
 #form-buttons {
 	align: center;
 }
+
+table {
+	width: 80%;
+	margin: 10px auto 20px auto;
+}
+
+table th {
+	background-color: #333;
+	color: #ffffff;
+	cursor: default;
+}
+
+table.list {
+	width: 60%;
+	margin: auto;
+}
+
+table.list tr:nth-child(even) {
+	background-color: #7eb7ff;
+	color: #000000;
+}
+
+table.list tr:nth-child(odd) {
+	background-color: #24b7ff;
+	color: #000000;
+}
+
+table.list tr:hover {
+	background-color: #555;
+	color: #ffffff;
+	cursor: pointer;
+}
+
+table.list th {
+	background-color: #333;
+	color: #ffffff;
+	cursor: default;
+}
+
+.wrong {
+	background-color: #f44336; /* Red */
+    color: white;
+}
+
+.correct {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 80%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 85%){
+  .box{
+    width: 80%;
+  }
+  .popup{
+    width: 80%;
+  }
+}
