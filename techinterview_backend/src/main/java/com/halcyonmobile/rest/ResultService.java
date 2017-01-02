@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -22,6 +23,20 @@ public class ResultService {
 		
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		Query query = em.createQuery("FROM Result");
+		
+	    @SuppressWarnings("unchecked")
+		List<Result> resultList = (List<Result>) query.getResultList();
+	    return resultList;
+	}
+	
+	@GET
+	@Path("/{id_user}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Result> findByUserId(@PathParam("id_user") Integer id_user) {
+		
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		Query query = em.createQuery("FROM Result r WHERE r.id_user = :id_user");
+		query.setParameter("id_user", id_user);
 		
 	    @SuppressWarnings("unchecked")
 		List<Result> resultList = (List<Result>) query.getResultList();
