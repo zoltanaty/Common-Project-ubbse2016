@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page import="com.halcyonmobile.model.Position,com.halcyonmobile.rest.PositionService,java.util.List"  language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -60,10 +60,22 @@
 				
 	<%
 				} else {
+				
+				PositionService positionService = new PositionService();
+				List<Position> positions = positionService.findAll();
 	%>
 	
 				<form class="buttons" method="GET" action="results.do">
-				<input type="submit" value="Results">
+				<select name="position">
+	<%
+				for(int i=0; i<positions.size(); i++) {
+	%>
+				<option value="<%= positions.get(i).getId() %>"><%= positions.get(i).getName() %></option>
+	<%
+				}
+	%>
+				</select>
+				<input type="submit" value="Show results">
 				</form>
 			</div>
 	<%
