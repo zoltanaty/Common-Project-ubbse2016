@@ -1,6 +1,5 @@
 package com.halcyonmobile.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,7 +10,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.halcyonmobile.model.Result;
-import com.halcyonmobile.model.User;
 import com.halcyonmobile.persistence.Entitymanager;
 
 @Path("/result")
