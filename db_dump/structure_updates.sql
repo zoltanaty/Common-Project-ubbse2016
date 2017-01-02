@@ -1,0 +1,1 @@
+ALTER TABLE `result` ADD `thinking_time` INT NOT NULL AFTER `date`;
