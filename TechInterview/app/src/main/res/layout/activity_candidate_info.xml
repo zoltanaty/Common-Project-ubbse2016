@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TODO CR: Don't set a background for the layout, set it from the theme instead. [Peter] -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_candidate_info"
@@ -40,6 +41,8 @@
             android:layout_marginTop="70dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
+
+            <!-- TODO CR: When working with icons, use a single vector drawable instead of 5 PNG files. [Peter] -->
 
             <EditText
                 android:id="@+id/input_name"

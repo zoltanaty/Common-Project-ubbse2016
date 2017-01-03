@@ -28,6 +28,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    //TODO CR: If there is no camera application on the device, you shouldn't even display the button. [Peter]
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 
                 }
