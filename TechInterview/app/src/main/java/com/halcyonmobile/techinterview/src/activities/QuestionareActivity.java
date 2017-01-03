@@ -34,11 +34,13 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
     private Button doneButton;
     private RecyclerView recyclerView;
 
+    //TODO CR: Integers default to 0, no need to specify this. [Peter]
     private int actualQuestion = 0;
     private int allQuestions = 0;
 
     private List<Button> unansweredButtonList;
     private List<Boolean> isAnsweredList;
+    //TODO CR: Come up with a naming convention to separate Views from other variables, right now this is somewhat confusing. [Peter]
     private int actualQuestionNr;
 
     @Override
@@ -47,6 +49,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
         setContentView(R.layout.activity_questionare);
 
         String selectedPositionId = getIntent().getStringExtra("selectedPositionId");
+        //TODO CR: The screen should not be displayed until all the data is downloaded. I see no reason why you shouldn't move this request to a previous activity. [Peter]
         getQuestionCardList(Integer.parseInt(selectedPositionId));
 
         timerEditText = (TextView) findViewById(R.id.textViewTimer);
@@ -57,6 +60,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
         unansweredButtonList = new ArrayList<>();
         isAnsweredList = new ArrayList<>();
 
+        //TODO CR: Avoid dynamically creating Views whenever possible. In this case you should use a RecyclerView with a GridLayoutManager. [Peter]
         GridLayout layout = (GridLayout) findViewById(R.id.gridLayout);
         LinearLayout.LayoutParams params =new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(0,0,dpToPx(15),dpToPx(15));
@@ -65,6 +69,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
 
         for (int j = 1; j < 40; j++) {
             Button btn = new Button(getBaseContext());
+            //TODO CR: There are nicer ways to convert integers to Strings. [Peter]
             btn.setText(j + "");
             btn.setId(j + 1);
             btn.setBackground(getDrawable(R.drawable.button_done));
@@ -118,6 +123,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
                 FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList);
                 mPager.setAdapter(fragmentAdapter);
 
+                //TODO CR: Consider writing a default implementation to avoid overriding unneeded methods. [Peter]
                 mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
                     @Override
@@ -133,6 +139,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
 
                         Button actualButton = unansweredButtonList.get(i);
 
+                        //TODO CR: Don't ignore Lint warnings. [Peter]
                         if(isAnsweredList.get(i) == false){
                             actualButton.setVisibility(Button.VISIBLE);
                         }
@@ -154,6 +161,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
 
             @Override
             public void onFailure(Call<List<QuestionCardDTO>> call, Throwable t) {
+                //TODO CR: Always give the user feedback on the UI if something goes wrong. [Peter]
                 int onFailure = Log.e("Failed to QuestionCards", t.toString());
             }
         }, selectedPositionId);

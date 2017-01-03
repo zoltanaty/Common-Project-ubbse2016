@@ -18,6 +18,7 @@ import com.halcyonmobile.techinterview.src.networking.model.dto.QuestionCardDTO;
 
 
 public class FragmentTextSimple extends Fragment {
+    //TODO CR: Remove unused variables. [Peter]
     private FragmentActivity mContext;
     private TextView textViewTitle;
     private EditText editTextAnswer;
