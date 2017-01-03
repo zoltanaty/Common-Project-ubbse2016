@@ -34,6 +34,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
     private Button doneButton;
     private RecyclerView recyclerView;
 
+    //TODO CR: Integers default to 0, no need to specify this. [Peter]
     private int actualQuestion = 0;
     private int allQuestions = 0;
 

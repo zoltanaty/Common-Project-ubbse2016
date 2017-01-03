@@ -21,7 +21,8 @@ import com.halcyonmobile.techinterview.R;
 import com.halcyonmobile.techinterview.src.networking.model.Answer;
 import com.halcyonmobile.techinterview.src.networking.model.dto.QuestionCardDTO;
 
-
+//TODO CR: Most of the TODO-s from the FragmentCheckboxes class applies here as well. You should consider creating a common parent for these Fragments to avoid code duplication.
+//TODO CR: The communication with the parent Activity for instance should be abstract enough for both classes to use it in the same way. [Peter]
 public class FragmentRadioboxes extends Fragment {
     private FragmentActivity mContext;
     private TextView textViewTitle;
@@ -69,6 +70,7 @@ public class FragmentRadioboxes extends Fragment {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                //TODO CR: This definitely is an overcomplication. What's wrong with get(i-1)? [Peter]
                 if((i % 4) == 0){
                     activityCallbacks.onQuestionAnswered(questionCard.getAnswers().get(3));
                 }else{

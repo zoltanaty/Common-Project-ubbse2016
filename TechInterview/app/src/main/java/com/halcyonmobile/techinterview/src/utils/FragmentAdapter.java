@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by zmate on 12/12/2016.
  */
-
+//TODO CR: This class does not belong to the utils package, an Adapter is part of the UI. Also, consider renaming it to something more meaningful (like QuestionsPagerAdapter). [Peter]
 public class FragmentAdapter extends FragmentPagerAdapter{
     private final List<Fragment> fragmentList;
 
@@ -28,6 +28,7 @@ public class FragmentAdapter extends FragmentPagerAdapter{
 
     @Override
     public int getCount() {
+        //TODO CR: There is no need to specify "this" if there are no potential conflicts. [Peter]
         return this.fragmentList.size();
     }
 }

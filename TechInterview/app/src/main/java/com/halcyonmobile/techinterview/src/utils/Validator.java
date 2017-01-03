@@ -1,5 +1,6 @@
 package com.halcyonmobile.techinterview.src.utils;
 
+//TODO CR: Consider renaming this class to ValidatorUtils and making it abstract (or write a private constructor). [Peter]
 public class Validator{
 
     public static boolean isValidEmail(String email){
@@ -7,7 +8,7 @@ public class Validator{
     }
 
     public static boolean isValidName(String name){
+        //TODO CR: This method could be improved. It might be a better idea to trim the string and then check for the number of whitespaces. [Peter]
         return ((name != null )&& (!name.equals("")) && (name.length() > 3));
     }
-
 }

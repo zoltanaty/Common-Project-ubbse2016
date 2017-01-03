@@ -23,6 +23,7 @@ import retrofit2.http.Path;
  * Created by Szilard on 11/25/2016.
  */
 
+//TODO CR: Never implement the Retrofit interface. Please read the documentation carefully, you have misunderstood some important points. [Peter]
 public class ConnectionImpl implements IConnection {
 
     private static final String IPV4 = "192.168.1.105";
@@ -30,6 +31,7 @@ public class ConnectionImpl implements IConnection {
 
     @Override
     public Call<List<Position>> getPositions() {
+        //TODO CR: Creating the Retrofit client should only be done once throughout your app's lifecycle. This class needs to be rewritten. [Peter]
 
         System.out.println(BASEURL);
 
