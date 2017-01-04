@@ -99,6 +99,14 @@ table.list th {
 	cursor: default;
 }
 
+ul.pagination {
+  list-style-type: none;
+}
+
+ul.pagination li {
+	display: inline;
+}
+
 .wrong {
 	background-color: #f44336; /* Red */
     color: white;
