@@ -11,10 +11,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.halcyonmobile.model.Result;
-import com.halcyonmobile.model.User;
 import com.halcyonmobile.model.dto.ResultDTO;
 import com.halcyonmobile.persistence.Entitymanager;
 
+@Path("/result")
 public class ResultService {
 	
 	public List<Result> findAll() {
@@ -36,30 +36,6 @@ public class ResultService {
 	    @SuppressWarnings("unchecked")
 		List<Result> resultList = (List<Result>) query.getResultList();
 	    return resultList;
-	}
-	
-	@POST
-	@Path("/{id_user}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	
-	public int registerUser(User user) {
-		
-		System.out.println(user);
-		
-		EntityManager em = Entitymanager.getEntityManagerInstance();
-		
-		em.getTransaction().begin();
-		em.persist(user);
-		em.getTransaction().commit();
-		
-		em.getTransaction().begin();
-		Query query = em.createQuery("FROM User u WHERE u.email = :email");
-		query.setParameter("email", user.getEmail());		
-	    @SuppressWarnings("unchecked")
-		List<User> registeredUserList = (List<User>) query.getResultList();
-	    em.getTransaction().commit();
-	    
-	    return registeredUserList.get(0).getId();
 	}
 	
 	@POST

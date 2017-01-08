@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitSingleton {
 
-    private static final String IPV4 = "192.168.100.8";
+    private static final String IPV4 = "192.168.96.55";
     private static final String BASEURL = "http://" + IPV4 + ":8080/techinterview-backend/rest/";
     private static Retrofit retrofit;
 
