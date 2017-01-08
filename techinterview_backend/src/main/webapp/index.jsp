@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 	
 <%
+if (!request.getSession().isNew()) response.sendRedirect("success.jsp");
 Date createDate = new Date(session.getCreationTime());
 session.setAttribute("Date created", createDate);
 session.setMaxInactiveInterval(2 * 60 * 60);
