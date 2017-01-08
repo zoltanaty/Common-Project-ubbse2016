@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.halcyonmobile.techinterview.src.activities.QuestionareActivity">
+    tools:context="com.halcyonmobile.techinterview.src.activities.QuestionnaireActivity">
 
     <TextView
         android:id="@+id/unanswered_text"

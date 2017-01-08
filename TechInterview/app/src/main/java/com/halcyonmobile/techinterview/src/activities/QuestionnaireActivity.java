@@ -1,14 +1,15 @@
 package com.halcyonmobile.techinterview.src.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayout;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,32 +17,38 @@ import android.widget.TextView;
 import com.halcyonmobile.techinterview.R;
 import com.halcyonmobile.techinterview.src.networking.connection.ConnectionImpl;
 import com.halcyonmobile.techinterview.src.networking.model.Answer;
+import com.halcyonmobile.techinterview.src.networking.model.Result;
 import com.halcyonmobile.techinterview.src.networking.model.dto.QuestionCardDTO;
+import com.halcyonmobile.techinterview.src.networking.model.dto.ResultDTO;
 import com.halcyonmobile.techinterview.src.utils.FragmentAdapter;
+import com.halcyonmobile.techinterview.src.utils.MyPageChangeListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Timer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class QuestionareActivity extends FragmentActivity implements FragmentRadioboxes.ActivityCallbacks {
-
+public class QuestionnaireActivity extends FragmentActivity implements RadioBoxesFragment.ActivityCallbacks, CheckboxesFragment.ActivityCallbacks, TextSimpleFragment.ActivityCallbacks {
     private ViewPager mPager;
     private TextView timerEditText;
-    private TextView actualQuestionNumber;
+    private TextView actualQuestionNumberTextView;
     private Button doneButton;
-    private RecyclerView recyclerView;
-
-    //TODO CR: Integers default to 0, no need to specify this. [Peter]
-    private int actualQuestion = 0;
-    private int allQuestions = 0;
+    private Timer timer;
 
     private List<Button> unansweredButtonList;
-    private List<Boolean> isAnsweredList;
-    //TODO CR: Come up with a naming convention to separate Views from other variables, right now this is somewhat confusing. [Peter]
-    private int actualQuestionNr;
+    private List<Integer> elapsedTimeList;
+    private List<QuestionCardDTO> cardList;
+
+    private int actualTime;
+    private int actualQuestion;
+    private int allQuestions;
+
+    private static ResultDTO resultDTO;
+    private static int actualQuestionNr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,18 +61,32 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
 
         timerEditText = (TextView) findViewById(R.id.textViewTimer);
 
-        actualQuestionNumber = (TextView) findViewById(R.id.textViewQuestions);
+        actualQuestionNumberTextView = (TextView) findViewById(R.id.textViewQuestions);
         doneButton = (Button) findViewById(R.id.done);
 
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timer.cancel();
+                sendResult(resultDTO);
+
+            }
+        });
         unansweredButtonList = new ArrayList<>();
-        isAnsweredList = new ArrayList<>();
+        elapsedTimeList = new ArrayList<>();
+        timer = new Timer();
+        resultDTO = new ResultDTO();
+
+        for (int i = 0; i < 40; i++) {
+            elapsedTimeList.add(0);
+        }
 
         //TODO CR: Avoid dynamically creating Views whenever possible. In this case you should use a RecyclerView with a GridLayoutManager. [Peter]
         GridLayout layout = (GridLayout) findViewById(R.id.gridLayout);
-        LinearLayout.LayoutParams params =new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0,0,dpToPx(15),dpToPx(15));
-        params.width=dpToPx(42);
-        params.height=dpToPx(42);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, 0, dpToPx(15), dpToPx(15));
+        params.width = dpToPx(42);
+        params.height = dpToPx(42);
 
         for (int j = 1; j < 40; j++) {
             Button btn = new Button(getBaseContext());
@@ -81,9 +102,9 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
             unansweredButtonList.add(btn);
 
             Boolean currentvalue = false;
-            isAnsweredList.add(currentvalue);
+            resultDTO.getResultList().add(new Result());
         }
-        
+
         unansweredButtonList.get(0).setVisibility(Button.VISIBLE);
 
 
@@ -93,10 +114,14 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
                 int seconds = (int) ((millisUntilFinished / 1000) % 60);
                 int minutes = (int) ((millisUntilFinished / 1000) / 60);
                 timerEditText.setText(minutes + ":" + seconds);
+
+                actualTime = elapsedTimeList.get(actualQuestionNr);
+                elapsedTimeList.set((actualQuestionNr), actualTime + 1);
             }
 
             public void onFinish() {
                 timerEditText.setText("00:00");
+                sendResult(resultDTO);
             }
 
         }.start();
@@ -108,7 +133,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
 
             @Override
             public void onResponse(Call<List<QuestionCardDTO>> call, Response<List<QuestionCardDTO>> response) {
-                List<QuestionCardDTO> cardList = response.body();
+                cardList = response.body();
 
                 int orderNumber = 1;
                 for (QuestionCardDTO questionCardDTO : cardList) {
@@ -116,19 +141,18 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
                 }
 
                 List<Fragment> fragmentList = processQuestionCardDTO(cardList);
+                FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList);
 
                 mPager = (ViewPager) findViewById(R.id.viewpager);
                 mPager.setClipToPadding(false);
                 mPager.setPageMargin(36);
-                FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList);
                 mPager.setAdapter(fragmentAdapter);
 
-                //TODO CR: Consider writing a default implementation to avoid overriding unneeded methods. [Peter]
-                mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                mPager.addOnPageChangeListener(new MyPageChangeListener() {
 
                     @Override
                     public void onPageSelected(int i) {
-                        actualQuestionNumber.setText((i + 1) + "/" + allQuestions);
+                        actualQuestionNumberTextView.setText((i + 1) + "/" + allQuestions);
                         actualQuestionNr = i;
 
                         if ((i + 1) == allQuestions) {
@@ -137,24 +161,13 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
                             doneButton.setVisibility(Button.INVISIBLE);
                         }
 
-                        Button actualButton = unansweredButtonList.get(i);
+                        if(i<39){
+                            Button actualButton = unansweredButtonList.get(i);
 
-                        //TODO CR: Don't ignore Lint warnings. [Peter]
-                        if(isAnsweredList.get(i) == false){
-                            actualButton.setVisibility(Button.VISIBLE);
+                            if (resultDTO.getResultList().get(i).getAnswer() == null) {
+                                actualButton.setVisibility(Button.VISIBLE);
+                            }
                         }
-                    }
-
-                    @Override
-                    public void onPageScrolled(int arg0, float arg1, int arg2) {
-                        // TODO Auto-generated method stub
-
-                    }
-
-                    @Override
-                    public void onPageScrollStateChanged(int arg0) {
-                        // TODO Auto-generated method stub
-
                     }
                 });
             }
@@ -167,15 +180,39 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
         }, selectedPositionId);
     }
 
+    private void sendResult(ResultDTO resultDTO) {
+        int i = 0;
+        for (Result result : resultDTO.getResultList()) {
+            result.setThinkingTime(elapsedTimeList.get(i++));
+        }
+
+        final ConnectionImpl connection = new ConnectionImpl();
+        connection.sendUserResult(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                Boolean resp = response.body();
+                if (resp) {
+                    Intent intent = new Intent(QuestionnaireActivity.this, CongratulationsActivity.class);
+                    QuestionnaireActivity.this.startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+
+            }
+        }, resultDTO);
+    }
+
     private List<Fragment> processQuestionCardDTO(List<QuestionCardDTO> cardList) {
         List<Fragment> fragmentList = new ArrayList<Fragment>();
         allQuestions = cardList.size();
-        actualQuestionNumber.setText("1/" + allQuestions);
+        actualQuestionNumberTextView.setText("1/" + allQuestions);
 
         for (QuestionCardDTO card : cardList) {
             if (card.getQuestionType().getName().equals("checkbox")) {
                 actualQuestion++;
-                FragmentCheckboxes frag = new FragmentCheckboxes();
+                CheckboxesFragment frag = new CheckboxesFragment();
                 Bundle xBundle = new Bundle();
                 xBundle.putSerializable("data", card);
                 xBundle.putSerializable("orderNumber", actualQuestion);
@@ -183,7 +220,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
                 fragmentList.add(frag);
             } else if (card.getQuestionType().getName().equals("radiobutton")) {
                 actualQuestion++;
-                FragmentRadioboxes frag = new FragmentRadioboxes();
+                RadioBoxesFragment frag = new RadioBoxesFragment();
                 Bundle xBundle = new Bundle();
                 xBundle.putSerializable("data", card);
                 xBundle.putSerializable("orderNumber", actualQuestion);
@@ -191,7 +228,7 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
                 fragmentList.add(frag);
             } else if (card.getQuestionType().getName().equals("textfield")) {
                 actualQuestion++;
-                FragmentTextSimple frag = new FragmentTextSimple();
+                TextSimpleFragment frag = new TextSimpleFragment();
                 Bundle xBundle = new Bundle();
                 xBundle.putSerializable("data", card);
                 xBundle.putSerializable("orderNumber", actualQuestion);
@@ -199,16 +236,37 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
                 fragmentList.add(frag);
             }
         }
-
         return fragmentList;
     }
 
     @Override
     public void onQuestionAnswered(Answer answer) {
-        System.out.println(answer);
-
         unansweredButtonList.get(actualQuestionNr).setVisibility(Button.INVISIBLE);
-        isAnsweredList.set(actualQuestionNr,true);
+        resultDTO.getResultList().get(actualQuestionNr).setAnswer(answer.getAnswer());
+        resultDTO.getResultList().get(actualQuestionNr).setCorrect(answer.getCorrect());
+        resultDTO.getResultList().get(actualQuestionNr).setQuestion(cardList.get(actualQuestionNr).getQuestion().getQuestion());
+        resultDTO.getResultList().get(actualQuestionNr).setDate(Calendar.getInstance().get(Calendar.YEAR) + "." + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "." + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " - " + Calendar.getInstance().get(Calendar.HOUR) + ":" + Calendar.getInstance().get(Calendar.MINUTE) + ":" + Calendar.getInstance().get(Calendar.SECOND));
+        resultDTO.getResultList().get(actualQuestionNr).setIdUser(Integer.parseInt(getIntent().getStringExtra("userId")));
+    }
+
+    @Override
+    public void onQuestionCheckBoxAnswered(Answer answer) {
+        unansweredButtonList.get(actualQuestionNr).setVisibility(Button.INVISIBLE);
+        resultDTO.getResultList().get(actualQuestionNr).setAnswer(answer.getAnswer());
+        resultDTO.getResultList().get(actualQuestionNr).setCorrect(answer.getCorrect());
+        resultDTO.getResultList().get(actualQuestionNr).setQuestion(cardList.get(actualQuestionNr).getQuestion().getQuestion());
+        resultDTO.getResultList().get(actualQuestionNr).setDate(Calendar.getInstance().get(Calendar.YEAR) + "." + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "." + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " - " + Calendar.getInstance().get(Calendar.HOUR) + ":" + Calendar.getInstance().get(Calendar.MINUTE) + ":" + Calendar.getInstance().get(Calendar.SECOND));
+        resultDTO.getResultList().get(actualQuestionNr).setIdUser(Integer.parseInt(getIntent().getStringExtra("userId")));
+    }
+
+    @Override
+    public void onQuestionFreeTextAnswered(Answer answer) {
+        unansweredButtonList.get(actualQuestionNr).setVisibility(Button.INVISIBLE);
+        resultDTO.getResultList().get(actualQuestionNr).setAnswer(answer.getAnswer());
+        resultDTO.getResultList().get(actualQuestionNr).setCorrect(answer.getCorrect());
+        resultDTO.getResultList().get(actualQuestionNr).setQuestion(cardList.get(actualQuestionNr).getQuestion().getQuestion());
+        resultDTO.getResultList().get(actualQuestionNr).setDate(Calendar.getInstance().get(Calendar.YEAR) + "." + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "." + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " - " + Calendar.getInstance().get(Calendar.HOUR) + ":" + Calendar.getInstance().get(Calendar.MINUTE) + ":" + Calendar.getInstance().get(Calendar.SECOND));
+        resultDTO.getResultList().get(actualQuestionNr).setIdUser(Integer.parseInt(getIntent().getStringExtra("userId")));
     }
 
     private int pxToDp(int px) {
@@ -220,5 +278,4 @@ public class QuestionareActivity extends FragmentActivity implements FragmentRad
         DisplayMetrics displayMetrics = getBaseContext().getResources().getDisplayMetrics();
         return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
-
 }

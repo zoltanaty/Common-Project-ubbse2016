@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -50,5 +52,29 @@ public class UserService {
 	    @SuppressWarnings("unchecked")
 		List<User> userList = (List<User>) query.getResultList();
 	    return userList;
+	}
+	
+	@POST
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public int registerUser(User user) {
+		
+		System.out.println(user);
+		
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		
+		em.getTransaction().begin();
+		em.persist(user);
+		em.getTransaction().commit();
+		
+		em.getTransaction().begin();
+		Query query = em.createQuery("FROM User u WHERE u.email = :email");
+		query.setParameter("email", user.getEmail());		
+	    @SuppressWarnings("unchecked")
+		List<User> registeredUserList = (List<User>) query.getResultList();
+	    em.getTransaction().commit();
+	    
+	    return registeredUserList.get(0).getId();
 	}
 }

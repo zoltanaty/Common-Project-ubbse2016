@@ -19,6 +19,9 @@ public class Answer {
     @Column(name = "answer")
     private String answer;
     
+    @Column(name = "iscorrect")
+    private Boolean isCorrect;
+    
     public Answer() {
 		super();
 	}
@@ -46,5 +49,13 @@ public class Answer {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-    
+
+	public Boolean getIsCorrect() {
+		return isCorrect;
+	}
+
+	public void setIsCorrect(Boolean isCorrect) {
+		this.isCorrect = isCorrect;
+	}
+	  
 }

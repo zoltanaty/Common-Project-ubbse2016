@@ -2,6 +2,8 @@ package com.halcyonmobile.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,11 +13,12 @@ import javax.persistence.Table;
 public class Result {
 	
 	@Id
-    @Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@Column(name = "id", unique=true, nullable=false)
 	private int id;
 	
 	@Column(name = "id_user")
-	private int id_user;
+	private int idUser;
 	
 	@Column(name = "question")
 	private String question;
@@ -27,10 +30,10 @@ public class Result {
 	private String date;
 	
 	@Column(name = "thinking_time")
-	private int thinking_time;
+	private int thinkingTime;
 	
 	@Column(name = "is_correct")
-	private Boolean pertinence;
+	private Boolean isCorrect;
 	
 	public Result() {
 		super();
@@ -44,12 +47,12 @@ public class Result {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return id_user;
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setUserId(int id_user) {
-		this.id_user = id_user;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
 	public String getQuestion() {
@@ -77,18 +80,26 @@ public class Result {
 	}
 
 	public int getThinkingTime() {
-		return thinking_time;
+		return thinkingTime;
 	}
 
-	public void setThinkingTime(int thinking_time) {
-		this.thinking_time = thinking_time;
+	public void setThinkingTime(int thinkingTime) {
+		this.thinkingTime = thinkingTime;
 	}
+
+	public Boolean getIsCorrect() {
+		return isCorrect;
+	}
+
+	public void setIsCorrect(Boolean isCorrect) {
+		this.isCorrect = isCorrect;
+	}
+
+	@Override
+	public String toString() {
+		return "Result [id=" + id + ", idUser=" + idUser + ", question=" + question + ", answer=" + answer + ", date="
+				+ date + ", thinkingTime=" + thinkingTime + ", isCorrect=" + isCorrect + "]";
+	}
+
 	
-	public Boolean getPertinence() {
-		return pertinence;
-	}
-	
-	public void setPertinence(Boolean pertinence) {
-		this.pertinence = pertinence;
-	}
 }

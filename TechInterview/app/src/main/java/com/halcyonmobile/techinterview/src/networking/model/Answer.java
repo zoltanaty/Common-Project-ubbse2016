@@ -15,6 +15,8 @@ public class Answer implements Serializable {
     private int id_question;
     @SerializedName("answer")
     private String answer;
+    @SerializedName("isCorrect")
+    private Boolean isCorrect;
 
     public int getId() {
         return id;
@@ -40,12 +42,21 @@ public class Answer implements Serializable {
         this.answer = answer;
     }
 
+    public Boolean getCorrect() {
+        return isCorrect;
+    }
+
+    public void setCorrect(Boolean correct) {
+        isCorrect = correct;
+    }
+
     @Override
     public String toString() {
         return "Answer{" +
                 "id=" + id +
                 ", id_question=" + id_question +
                 ", answer='" + answer + '\'' +
+                ", isCorrect=" + isCorrect +
                 '}';
     }
 }

@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,35 +16,41 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.halcyonmobile.techinterview.R;
+import com.halcyonmobile.techinterview.src.networking.model.Answer;
 import com.halcyonmobile.techinterview.src.networking.model.dto.QuestionCardDTO;
+import com.halcyonmobile.techinterview.src.utils.MyTextWatcher;
 
 
-public class FragmentTextSimple extends Fragment {
-    //TODO CR: Remove unused variables. [Peter]
-    private FragmentActivity mContext;
+public class TextSimpleFragment extends Fragment {
     private TextView textViewTitle;
     private EditText editTextAnswer;
-    private TextView questionviewText;
+    private ActivityCallbacks activityCallbacks;
 
-
+    interface ActivityCallbacks {
+        void onQuestionFreeTextAnswered(Answer answer);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_fragment_text_simple,container,false);
-
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_fragment_text_simple, container, false);
         textViewTitle = (TextView) rootView.findViewById(R.id.textview_q_title);
-
+        editTextAnswer = (EditText) rootView.findViewById(R.id.editText_answer);
         return rootView;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        mContext = getActivity();
         QuestionCardDTO questionCard = (QuestionCardDTO) getArguments().getSerializable("data");
-    System.out.println(questionCard);
+        activityCallbacks = (ActivityCallbacks) getActivity();
         textViewTitle.setText(questionCard.getQuestion().getQuestion());
-
+        editTextAnswer.addTextChangedListener(new MyTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Answer answer = new Answer();
+                answer.setAnswer(editTextAnswer.getText().toString());
+                activityCallbacks.onQuestionFreeTextAnswered(answer);
+            }
+        });
     }
 }

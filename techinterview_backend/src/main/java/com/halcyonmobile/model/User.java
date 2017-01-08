@@ -2,6 +2,8 @@ package com.halcyonmobile.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,14 +11,12 @@ import javax.persistence.Table;
 @Table(name="user")
 public class User {
 	@Id
-	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@Column(name = "id", unique=true, nullable=false)
 	private int id;
 	
 	@Column(name = "name")
 	private String name;
-	
-	@Column(name = "phone")
-	private String phone;
 	
 	@Column(name = "email")
 	private String email;
@@ -44,14 +44,6 @@ public class User {
 		this.name = name;
 	}
 	
-	public String getPhone() {
-		return phone;
-	}
-	
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
 	public String getEmail() {
 		return email;
 	}
@@ -67,4 +59,10 @@ public class User {
 	public void setPositionId(int id_position) {
 		this.id_position = id_position;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", id_position=" + id_position + "]";
+	}
+	
 }

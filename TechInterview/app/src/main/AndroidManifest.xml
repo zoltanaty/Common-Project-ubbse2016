@@ -3,9 +3,11 @@
     package="com.halcyonmobile.techinterview">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <!-- TODO CR: When setting the app icon, use mipmaps instead of drawables. [Peter] -->
@@ -22,6 +24,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,12 +33,11 @@
         <activity
             android:name=".src.activities.CandidateInfoActivity"
             android:windowSoftInputMode="adjustResize" />
-
         <activity android:name=".src.activities.WelcomeActivity" />
-
         <activity
-            android:name=".src.activities.QuestionareActivity"
+            android:name=".src.activities.QuestionnaireActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".src.activities.CongratulationsActivity"></activity>
     </application>
 
 </manifest>

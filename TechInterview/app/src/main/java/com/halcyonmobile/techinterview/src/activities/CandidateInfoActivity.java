@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,7 +15,8 @@ import android.widget.Spinner;
 import com.halcyonmobile.techinterview.R;
 import com.halcyonmobile.techinterview.src.networking.connection.ConnectionImpl;
 import com.halcyonmobile.techinterview.src.networking.model.Position;
-import com.halcyonmobile.techinterview.src.utils.Validator;
+import com.halcyonmobile.techinterview.src.utils.MyTextWatcher;
+import com.halcyonmobile.techinterview.src.utils.ValidatorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,26 +34,10 @@ public class CandidateInfoActivity extends AppCompatActivity {
     private Spinner spinner;
     private Button btnDone;
 
-    public String errorMsgName;
-    public String errorMsgEmail;
-
-    // TODO CR: [Low] Remove unused methods [Gelli]
-    public EditText getFieldName() {
-        return fieldName;
-    }
-
-    public EditText getFieldEmail() {
-        return fieldEmail;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_candidate_info);
-
-        //TODO CR: I can't find where these variables are used, please double-check and make sure that you need them. [Peter]
-        errorMsgName = getString(R.string.candidate_info_activity_err_msg_name);
-        errorMsgEmail = getString(R.string.candidate_info_activity_err_msg_email);
 
         fieldName = (EditText) findViewById(R.id.input_name);
         fieldEmail = (EditText) findViewById(R.id.input_email);
@@ -83,8 +67,7 @@ public class CandidateInfoActivity extends AppCompatActivity {
                 intent.putExtra("candidateEmail", fieldEmail.getText().toString());
                 intent.putExtra("selectedPositionId", selectedPositionId);
 
-                //TODO CR: There is no need to specify the "CandidateInfoActivity.this." part.  [Peter]
-                CandidateInfoActivity.this.startActivity(intent);
+                startActivity(intent);
             }
         });
     }
@@ -101,9 +84,7 @@ public class CandidateInfoActivity extends AppCompatActivity {
                     positionList.add(new Position(position.getId(), position.getName()));
                 }
 
-                ArrayAdapter<Position> adapter;
-                //TODO CR: Pay attention to Lint warnings, there is no need to specify the type argument. [Peter]
-                adapter = new ArrayAdapter<Position>(CandidateInfoActivity.this, R.layout.spinner_row, positionList);
+                ArrayAdapter<Position> adapter = new ArrayAdapter<>(CandidateInfoActivity.this, R.layout.spinner_row, positionList);
                 spinner.setAdapter(adapter);
             }
 
@@ -116,22 +97,16 @@ public class CandidateInfoActivity extends AppCompatActivity {
     }
 
     private void setUpListeners() {
-        //TODO CR: You could create an abstract class that implements the TextWatcher interface, that way you could avoid having to override all three methods all the time. [Peter]
-        fieldName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+        fieldName.addTextChangedListener(new  MyTextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 //TODO CR: Instead of enabling and disabling the error, set it to null or the error string. Disabling the error functionality also hides the TextView where the error
                 //TODO CR: would have been displayed which causes the TextInputLayout to change its height. [Peter]
-                if (Validator.isValidName(charSequence.toString())) {
+                if (ValidatorUtils.isValidName(charSequence.toString())) {
                     nameLayout.setErrorEnabled(false);
                 } else {
-                    //TODO CR: Checking the length of the string should be part of the Validator. Also, as a general rule, use TextUtils.isEmpty() since it also performs a null-check. [Peter]
-                    if (charSequence.length() > 0) {
+                    if (!TextUtils.isEmpty(charSequence)) {
                         nameLayout.setError(getString(R.string.candidate_info_activity_candidate_name));
                     } else {
                         nameLayout.setErrorEnabled(false);
@@ -140,25 +115,15 @@ public class CandidateInfoActivity extends AppCompatActivity {
 
                 setEnabledOrDisabledDoneButton();
             }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
         });
 
-        fieldEmail.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
+        fieldEmail.addTextChangedListener(new MyTextWatcher() {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (Validator.isValidEmail(charSequence.toString())) {
+                if (ValidatorUtils.isValidEmail(charSequence.toString())) {
                     emailLayout.setErrorEnabled(false);
                 } else {
-                    if (charSequence.length() > 0) {
+                    if (!TextUtils.isEmpty(charSequence)) {
                         emailLayout.setError(getString(R.string.candidate_info_activity_candidate_email));
                     } else {
                         emailLayout.setErrorEnabled(false);
@@ -167,39 +132,11 @@ public class CandidateInfoActivity extends AppCompatActivity {
 
                 setEnabledOrDisabledDoneButton();
             }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        //TODO CR: There is no need for this functionality, displaying the hint has nothing to do with the focused state of the input field. [Peter]
-        fieldName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    fieldName.setHint("");
-                } else {
-                    fieldName.setHint("Candidate Name");
-                }
-            }
-        });
-
-        fieldEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (hasFocus) {
-                    fieldEmail.setHint("");
-                } else {
-                    fieldEmail.setHint("Candidate Email");
-                }
-            }
         });
     }
 
     private void setEnabledOrDisabledDoneButton() {
-        if (Validator.isValidName(fieldName.getText().toString()) && Validator.isValidEmail(fieldEmail.getText().toString())) {
+        if (ValidatorUtils.isValidName(fieldName.getText().toString()) && ValidatorUtils.isValidEmail(fieldEmail.getText().toString())) {
             btnDone.setEnabled(true);
         } else {
             btnDone.setEnabled(false);

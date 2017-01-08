@@ -21,18 +21,17 @@ import com.halcyonmobile.techinterview.R;
 import com.halcyonmobile.techinterview.src.networking.model.Answer;
 import com.halcyonmobile.techinterview.src.networking.model.dto.QuestionCardDTO;
 
-//TODO CR: Most of the TODO-s from the FragmentCheckboxes class applies here as well. You should consider creating a common parent for these Fragments to avoid code duplication.
+import java.util.ArrayList;
+
+//TODO CR: Most of the TODO-s from the CheckboxesFragment class applies here as well. You should consider creating a common parent for these Fragments to avoid code duplication.
 //TODO CR: The communication with the parent Activity for instance should be abstract enough for both classes to use it in the same way. [Peter]
-public class FragmentRadioboxes extends Fragment {
-    private FragmentActivity mContext;
+public class RadioBoxesFragment extends Fragment {
     private TextView textViewTitle;
     private RadioGroup radioGroup;
-    private View fragmentView;
     private ActivityCallbacks activityCallbacks;
 
     interface ActivityCallbacks {
         void onQuestionAnswered(Answer answer);
-        // void onFragmentTouch(int cardNumber);
     }
 
     @Override
@@ -41,7 +40,6 @@ public class FragmentRadioboxes extends Fragment {
 
         textViewTitle = (TextView) rootView.findViewById(R.id.textview_q_title);
         radioGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
-        fragmentView = rootView;
 
         return rootView;
     }
@@ -49,14 +47,13 @@ public class FragmentRadioboxes extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        mContext = getActivity();
         activityCallbacks = (ActivityCallbacks) getActivity();
-        final QuestionCardDTO questionCard = (QuestionCardDTO) getArguments().getSerializable("data");
 
+        final QuestionCardDTO questionCard = (QuestionCardDTO) getArguments().getSerializable("data");
         textViewTitle.setText(questionCard.getQuestion().getQuestion());
+
         for (Answer answer : questionCard.getAnswers()) {
-            RadioButton rb = new RadioButton(mContext);
+            RadioButton rb = new RadioButton(getActivity());
             rb.setText(answer.getAnswer());
             rb.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             rb.setTypeface(Typeface.SANS_SERIF);
@@ -66,14 +63,13 @@ public class FragmentRadioboxes extends Fragment {
             radioGroup.addView(rb);
         }
 
-        // Updating the activity on answer selected
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                //TODO CR: This definitely is an overcomplication. What's wrong with get(i-1)? [Peter]
-                if((i % 4) == 0){
+                //[zmate] to [Peter] - This is necessary. It can't be solved other way, because all of our radio buttons are in a single RadioGroup
+                if ((i % 4) == 0) {
                     activityCallbacks.onQuestionAnswered(questionCard.getAnswers().get(3));
-                }else{
+                } else {
                     activityCallbacks.onQuestionAnswered(questionCard.getAnswers().get((i % 4) - 1));
                 }
             }
