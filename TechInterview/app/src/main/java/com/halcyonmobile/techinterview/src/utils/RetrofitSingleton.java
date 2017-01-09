@@ -11,11 +11,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitSingleton {
-
     private static final String IPV4 = "192.168.100.8";
+
+    //TODO CR: Consider moving this class to the networking package. [Peter]
+    //TODO CR: We'd really like to test the app ever when you're not around, please move the server to a permanent online storage. [Peter]
     private static final String BASEURL = "http://" + IPV4 + ":8080/techinterview-backend/rest/";
     private static Retrofit retrofit;
-
+    //TODO CR: Good job removing the duplicated code, you're on the right track! However, some minor modifications could still improve your implementation, let's discuss this! [Peter]
     private RetrofitSingleton() {
         //do nothing
     }
@@ -24,14 +26,15 @@ public class RetrofitSingleton {
         if (retrofit != null) {
             return retrofit;
         } else {
-            return new Retrofit.Builder()
+            retrofit = new Retrofit.Builder()
                     .client(new OkHttpClient.Builder()
-
                             .connectTimeout(10, TimeUnit.SECONDS)
                             .readTimeout(30, TimeUnit.SECONDS).build())
                     .baseUrl(BASEURL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
+
+            return retrofit;
         }
     }
 

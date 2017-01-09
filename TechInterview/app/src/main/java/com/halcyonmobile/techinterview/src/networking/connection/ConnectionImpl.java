@@ -1,6 +1,5 @@
 package com.halcyonmobile.techinterview.src.networking.connection;
 
-import com.google.gson.Gson;
 import com.halcyonmobile.techinterview.src.networking.IConnection;
 import com.halcyonmobile.techinterview.src.networking.model.Position;
 import com.halcyonmobile.techinterview.src.networking.model.User;
@@ -10,13 +9,10 @@ import com.halcyonmobile.techinterview.src.networking.model.dto.UserDTO;
 import com.halcyonmobile.techinterview.src.utils.RetrofitSingleton;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
@@ -27,9 +23,9 @@ import retrofit2.http.Path;
 
 public class ConnectionImpl implements IConnection {
 
+    //TODO CR: You could merge some of these methods (getPositions() with getPositionsList(), getQuestionCards() with getQuestionCardList(), etc. [Peter]
     @Override
     public Call<List<Position>> getPositions() {
-
         Retrofit retrofit = RetrofitSingleton.getInstance();
         IConnection service = retrofit.create(IConnection.class);
         return service.getPositions();

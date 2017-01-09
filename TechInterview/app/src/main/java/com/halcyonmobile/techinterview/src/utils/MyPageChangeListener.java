@@ -5,7 +5,7 @@ import android.support.v4.view.ViewPager;
 /**
  * Created by zmate on 1/8/2017.
  */
-
+//TODO CR: You can delete this class and use ViewPager.SimpleOnPageChangeListener instead. [Peter]
 public abstract class MyPageChangeListener implements ViewPager.OnPageChangeListener{
 
     public MyPageChangeListener(){
