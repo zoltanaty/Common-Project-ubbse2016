@@ -76,6 +76,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
                         System.out.println("NEM OK");
+                        //TODO CR: Implement error handling. How can the user restart the request if it fails? [Peter]
                     }
                 }, userId);
             }

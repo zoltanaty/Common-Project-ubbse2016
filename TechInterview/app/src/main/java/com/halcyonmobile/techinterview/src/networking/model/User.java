@@ -38,6 +38,8 @@ public class User {
         this.name = name;
     }
 
+    //TODO CR: Remove unused methods (applies to all unused getters in your model classes). [Peter]
+
     public String getEmail() {
         return email;
     }
