@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- TODO CR: Don't set a background for the layout, set it from the theme instead. [Peter] -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_candidate_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:background="@color/colorPrimary"
     android:textAlignment="textStart">
 
     <!-- TODO CR [High] Consider using wrap_content with paddings for a more dynamic implementation. [PPeter]-->
@@ -20,7 +18,7 @@
         android:background="@android:color/white"
         android:gravity="center">
 
-        <!-- TODO CR [Medium] You can add an inner container layout and avoid setting all these margins. [PPeter]-->
+        <!-- TODO CR [Medium] You can add an inner container layout and avoid setting all these margins. [PPeter]&ndash;&gt;-->
 
         <TextView
             android:id="@+id/textView2"
@@ -28,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="24dp"
-            android:text="@string/candidate_info_activity.complete_profile"
+            android:text="@string/candidate_info_activity_complete_profile"
             android:textAlignment="textStart"
             android:textColor="@color/textColor"
             android:textSize="20sp"
@@ -41,8 +39,6 @@
             android:layout_marginTop="70dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
-
-            <!-- TODO CR: When working with icons, use a single vector drawable instead of 5 PNG files. [Peter] -->
 
             <EditText
                 android:id="@+id/input_name"
@@ -71,10 +67,8 @@
                 android:drawableLeft="@drawable/ic_mail"
                 android:drawablePadding="32dp"
                 android:inputType="textEmailAddress"
-                android:textAlignment="viewStart"
                 android:textColor="@color/textColor"
                 android:textSize="16sp" />
-
 
         </android.support.design.widget.TextInputLayout>
 
@@ -101,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="@string/candidate_info_activity.spinner"
+                android:text="@string/candidate_info_activity_spinner"
                 android:textAlignment="textStart"
                 android:textColor="@color/textColor"
                 android:textSize="16sp" />
@@ -117,10 +111,8 @@
             android:background="@android:color/white"
             android:clickable="false"
             android:enabled="false"
-            android:text="@string/candidate_info_activity.done"
+            android:text="@string/candidate_info_activity_done"
             android:textAlignment="textStart"
             android:textSize="@dimen/button_text_size" />
-
     </android.support.v7.widget.CardView>
-
 </RelativeLayout>

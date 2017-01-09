@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_no_connection"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.halcyonmobile.techinterview.src.activities.NoConnectionActivity">
+
+    <TextView
+        android:id="@+id/noConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:drawableTop="@drawable/group"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/button_text_size"
+        android:text="@string/connection_error"
+        android:textColor="@android:color/white"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/noConnection"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingTop="24dp"
+        android:text="@string/connection_error_message"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:text="@string/connection_error_message2"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+</RelativeLayout>

@@ -16,6 +16,7 @@
 
     <style name="buttonStyle">
         <item name="android:textColor">@color/text_color</item>
+
     </style>
 
     <style name="spinnerStyle" parent="">

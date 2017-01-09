@@ -90,8 +90,8 @@ public class CandidateInfoActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Position>> call, Throwable t) {
-                int onFailure = Log.e("Failed to load Position", t.toString());
-                // TODO CR: [Medium] Consider displaying the error on the UI using Snackbars. [PPeter]
+                Intent intent = new Intent(CandidateInfoActivity.this, NoConnectionActivity.class);
+                startActivity(intent);
             }
         });
     }

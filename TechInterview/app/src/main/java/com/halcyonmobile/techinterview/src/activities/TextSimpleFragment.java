@@ -7,12 +7,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.halcyonmobile.techinterview.R;
@@ -25,7 +27,6 @@ public class TextSimpleFragment extends Fragment {
     private TextView textViewTitle;
     private EditText editTextAnswer;
     private ActivityCallbacks activityCallbacks;
-
     interface ActivityCallbacks {
         void onQuestionFreeTextAnswered(Answer answer);
     }
@@ -48,7 +49,7 @@ public class TextSimpleFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 Answer answer = new Answer();
-                answer.setAnswer(editTextAnswer.getText().toString());
+                answer.setAnswer(editTextAnswer.getText()+" ");
                 activityCallbacks.onQuestionFreeTextAnswered(answer);
             }
         });
