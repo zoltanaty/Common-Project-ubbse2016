@@ -10,34 +10,28 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <!-- TODO CR: When setting the app icon, use mipmaps instead of drawables. [Peter] -->
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher_a_p_p"
+        android:icon="@mipmap/ic_launcher_a_p_p"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
-        <!-- TODO CR [Medium] Set the windowSoftInputMode attribute to better support the soft keyboard. [PPeter] -->
-
-        <activity
-            android:name=".src.activities.SplashActivity"
-            android:screenOrientation="portrait">
+        <activity android:name=".src.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- TODO CR [Medium] Remove the screenOrientation attribute, the app needs to work both in portrait and landscape modes. [PPeter] -->
         <activity
             android:name=".src.activities.CandidateInfoActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".src.activities.WelcomeActivity" />
         <activity
             android:name=".src.activities.QuestionnaireActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".src.activities.CongratulationsActivity"></activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".src.activities.CongratulationsActivity" />
+        <activity android:name=".src.activities.NoConnectionActivity"></activity>
     </application>
 
 </manifest>

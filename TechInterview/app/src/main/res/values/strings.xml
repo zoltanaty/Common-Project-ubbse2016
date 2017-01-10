@@ -1,21 +1,24 @@
 <resources>
-    <!-- TODO CR [Medium] Use underline for naming convention[Gelli] -->
     <string name="app_name">Tech Interview</string>
-    <string name="splash_activity.splash">Tech Interview Questionnaire</string>
-    <string name="candidate_info_activity.complete_profile">Complete Profile</string>
-    <string name="candidate_info_activity.candidate_name">Candidate Name</string>
-    <string name="candidate_info_activity.candidate_email">Candidate Email</string>
-    <string name="candidate_info_activity.spinner">Position</string>
-    <string name="candidate_info_activity.done">Done</string>
-    <string name="candidate_info_activity.err_msg_email">Email address is invalid!</string>
-    <string name="candidate_info_activity.err_msg_name">Name is invalid!</string>
-    <string name="welcome_activity.selfie">Take a selfie</string>
-    <string name="welcome_activity.start">Start questionnaire</string>
-    <string name="welcome_activity.welcome">Welcome, </string>
-    <string name="welcome_activity.text">Motivation can take you far, but it can take you even further if you first find your vision. Your vision will motivate and guide you on your journey to success and personal fullfillment.\n\nTo develop your vision, you must look inside yourself. Vision comes from within, from the spirit or subconscious, whatever you choose to call it.</string>
+    <string name="splash_activity_splash">Tech Interview Questionnaire</string>
+    <string name="candidate_info_activity_complete_profile">Complete Profile</string>
+    <string name="candidate_info_activity_candidate_name">Candidate Name</string>
+    <string name="candidate_info_activity_candidate_email">Candidate Email</string>
+    <string name="candidate_info_activity_spinner">Position</string>
+    <string name="candidate_info_activity_done">Done</string>
+    <string name="candidate_info_activity_err_msg_email">Email address is invalid!</string>
+    <string name="candidate_info_activity_err_msg_name">Name is invalid!</string>
+    <string name="welcome_activity_selfie">Take a selfie</string>
+    <string name="welcome_activity_start">Start questionnaire</string>
+    <string name="welcome_activity_welcome">Welcome, </string>
+    <string name="welcome_activity_text">Motivation can take you far, but it can take you even further if you first find your vision. Your vision will motivate and guide you on your journey to success and personal fullfillment.\n\nTo develop your vision, you must look inside yourself. Vision comes from within, from the spirit or subconscious, whatever you choose to call it.</string>
     <string name="title_template_step">Title</string>
-    <string name="Questionare_activity.teft_time">Time left</string>
-    <string name="Questionare_activity.question">Questions</string>
-    <string name="Questionare_activity.done">Done</string>
+    <string name="Questionare_activity_teft_time">Time left</string>
+    <string name="Questionare_activity_question">Questions</string>
+    <string name="Questionare_activity_done">Done</string>
     <string name="congratulation">Congratulations\nFor completing our questionnaire.</string>
+    <string name="unanswered">Unanswered</string>
+    <string name="connection_error">Whoops!</string>
+    <string name="connection_error_message">Slow or no internet connection.</string>
+    <string name="connection_error_message2">Please check your Wi-Fi and try again.</string>
 </resources>

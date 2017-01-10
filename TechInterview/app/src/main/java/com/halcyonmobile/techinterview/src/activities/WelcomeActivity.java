@@ -70,19 +70,21 @@ public class WelcomeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         registeredUser = response.body();
-                        System.out.println("MINDEN OK");
+
                     }
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-                        System.out.println("NEM OK");
+                        Intent intent = new Intent(WelcomeActivity.this, NoConnectionActivity.class);
+                        startActivity(intent);
                     }
                 }, userId);
             }
 
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
-
+                Intent intent = new Intent(WelcomeActivity.this, NoConnectionActivity.class);
+                startActivity(intent);
             }
         }, user);
     }

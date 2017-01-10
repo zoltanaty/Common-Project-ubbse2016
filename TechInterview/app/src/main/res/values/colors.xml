@@ -3,9 +3,8 @@
     <color name="colorPrimary">#339999</color>
     <color name="colorPrimaryDark">#267272</color>
     <color name="colorAccent">#212121</color>
-    <color name="textColor">#212121</color>
-    <!-- TODO CR [Medium] You can refer to colors as reference (<color name="hintColor">@color/colorPrimary</color>[Gelli] -->
-    <color name="hintColor">#339999</color>
+    <color name="textColor">@color/colorAccent</color>
+    <color name="hintColor">@color/colorPrimary</color>
     <color name="white">#ffffff</color>
     <color name="edittext">#E6E6E6</color>
     <color name="answerTextColor">#373737</color>

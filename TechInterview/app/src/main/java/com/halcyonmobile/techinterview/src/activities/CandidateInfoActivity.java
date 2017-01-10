@@ -25,6 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//TODO CR: Consider renaming the "activities' package to "ui" or something similar because it does (and should) not only contain Activity subclasses. [Peter]
 public class CandidateInfoActivity extends AppCompatActivity {
 
     private EditText fieldName;
@@ -57,6 +58,7 @@ public class CandidateInfoActivity extends AppCompatActivity {
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO CR: This line crashes the app if the network request fails. Always implement error handling. [Peter]
                 Position selectedPosition = (Position) spinner.getSelectedItem();
                 String selectedPositionId = selectedPosition.getId().toString();
 
@@ -90,8 +92,8 @@ public class CandidateInfoActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Position>> call, Throwable t) {
-                int onFailure = Log.e("Failed to load Position", t.toString());
-                // TODO CR: [Medium] Consider displaying the error on the UI using Snackbars. [PPeter]
+                Intent intent = new Intent(CandidateInfoActivity.this, NoConnectionActivity.class);
+                startActivity(intent);
             }
         });
     }

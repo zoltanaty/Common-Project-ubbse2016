@@ -6,6 +6,7 @@ import com.halcyonmobile.techinterview.src.networking.model.Question;
 import com.halcyonmobile.techinterview.src.networking.model.QuestionType;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,11 @@ public class QuestionCardDTO implements Serializable {
     private List<Answer> answers;
     @SerializedName("questionType")
     private QuestionType questionType;
+
+    public QuestionCardDTO(){
+        System.out.println("KOCSOG KONSTRUKTOR MEGHIVVA");
+        answers = new ArrayList<>();
+    }
 
     public Question getQuestion() {
         return question;

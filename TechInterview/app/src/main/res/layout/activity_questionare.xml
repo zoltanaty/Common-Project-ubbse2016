@@ -8,7 +8,6 @@
     android:id="@+id/activity_questionare"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     tools:context="com.halcyonmobile.techinterview.src.activities.QuestionnaireActivity">
 
     <TextView
@@ -18,20 +17,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:paddingLeft="20dp"
-        android:text="Unanswered"
+        android:text="@string/unanswered"
         android:textColor="@color/timerTextColor"
         android:textSize="20sp" />
-    <!--
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="match_parent"
-            android:layout_height="96dp"
-            android:layout_below="@id/unanswered_text"
-            android:layout_marginBottom="72dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            />-->
+
     <android.support.v7.widget.GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
@@ -44,20 +33,6 @@
         android:paddingLeft="20dp"
         app:columnCount="13">
 
-        <!-- <Button
-             android:id="@+id/button1"
-             android:layout_width="32dp"
-             android:layout_height="32dp"
-             android:layout_marginBottom="16dp"
-             android:layout_marginRight="20dp"
-             android:background="@drawable/button_done"
-             android:fontFamily="sans-serif-medium"
-             android:text="1"
-             android:textColor="@color/background"
-             android:textSize="16sp"
-            />-->
-
-
     </android.support.v7.widget.GridLayout>
 
     <FrameLayout
@@ -66,18 +41,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="32dp">
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/Questionare_activity.teft_time"
+                android:text="@string/Questionare_activity_teft_time"
                 android:textColor="@color/timerTextColor"
                 android:textSize="20sp" />
 
@@ -94,7 +67,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
+            android:layout_gravity="end"
             android:orientation="vertical">
 
             <TextView
@@ -102,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/Questionare_activity.question"
+                android:text="@string/Questionare_activity_question"
                 android:textColor="@color/timerTextColor"
                 android:textSize="20sp" />
 
@@ -118,12 +91,12 @@
 
         <Button
             android:id="@+id/done"
-            android:layout_width="144dp"
-            android:layout_height="144dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/button_done"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/Questionare_activity.done"
+            android:text="@string/Questionare_activity_done"
             android:textColor="@color/colorPrimary"
             android:textSize="36sp"
             android:visibility="invisible"
@@ -132,16 +105,14 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
+        android:minHeight="600dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/container"
         android:layout_below="@id/gridLayout"
-        android:elevation="@dimen/questionar_activity.card"
         android:paddingStart="46dp"
         android:visibility="visible"
         tools:background="@color/colorPrimaryDark">
-
-
     </android.support.v4.view.ViewPager>
 
 
