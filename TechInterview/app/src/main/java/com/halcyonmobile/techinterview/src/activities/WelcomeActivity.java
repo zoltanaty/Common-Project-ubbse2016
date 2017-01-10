@@ -53,7 +53,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(WelcomeActivity.this, QuestionnaireActivity.class);
                 intent.putExtra("selectedPositionId", getIntent().getStringExtra("selectedPositionId"));
                 intent.putExtra("userId", registeredUser.getId() + "");
-
                 startActivity(intent);
             }
         });

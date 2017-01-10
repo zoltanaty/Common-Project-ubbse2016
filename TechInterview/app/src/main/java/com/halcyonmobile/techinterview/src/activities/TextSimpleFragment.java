@@ -45,12 +45,15 @@ public class TextSimpleFragment extends Fragment {
         QuestionCardDTO questionCard = (QuestionCardDTO) getArguments().getSerializable("data");
         activityCallbacks = (ActivityCallbacks) getActivity();
         textViewTitle.setText(questionCard.getQuestion().getQuestion());
+
         editTextAnswer.addTextChangedListener(new MyTextWatcher() {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 Answer answer = new Answer();
-                answer.setAnswer(editTextAnswer.getText()+" ");
-                activityCallbacks.onQuestionFreeTextAnswered(answer);
+                if (!editTextAnswer.getText().toString().equals("")){
+                    answer.setAnswer(editTextAnswer.getText().toString());
+                    activityCallbacks.onQuestionFreeTextAnswered(answer);
+                }
             }
         });
     }

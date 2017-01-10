@@ -38,7 +38,7 @@ public class CheckboxesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_fragment_checkboxes, container, false);
-         //TODO CR: Consider moving these to the onViewCreated() method, onCreateView() should only be responsible for inflating the layout. [Peter]
+        //TODO CR: Consider moving these to the onViewCreated() method, onCreateView() should only be responsible for inflating the layout. [Peter]
         textViewTitle = (TextView) rootView.findViewById(R.id.textview_q_title);
         layoutCheckBoxes = (LinearLayout) rootView.findViewById(R.id.linearLayout_checkboxes);
 
@@ -81,3 +81,4 @@ public class CheckboxesFragment extends Fragment {
         }
     }
 }
+
