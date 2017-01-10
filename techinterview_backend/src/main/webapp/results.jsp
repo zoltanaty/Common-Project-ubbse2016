@@ -94,16 +94,19 @@
             <a class="close" href="#">&times;</a>
 
             <div class="content">
-                <table width="80%">
+                <table>
+                	<thead>
                     <tr>
                         <th>#</th>
                         <th>Question</th>
                         <th>Answer</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <%
                         for (int j = 0; j < res.size(); j++) {
                             String correct = "correct";
-                            if (!res.get(j).getPertinence())
+                            if (!res.get(j).getIsCorrect())
                                 correct = "wrong";
                     %>
                     <tr class="<%=correct%>">
@@ -117,6 +120,7 @@
                     <%
                         }
                     %>
+                    </tbody>
                 </table>
                 <div id="chartContainer<%=users.get(i).getId()%>" style="height: 300px; width: 100%;"></div>
             </div>

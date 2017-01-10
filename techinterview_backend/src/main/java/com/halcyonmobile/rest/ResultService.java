@@ -30,7 +30,7 @@ public class ResultService {
 	public List<Result> findByUserId(Integer id_user) {
 		
 		EntityManager em = Entitymanager.getEntityManagerInstance();
-		Query query = em.createQuery("FROM Result r WHERE r.id_user = :id_user");
+		Query query = em.createQuery("FROM Result r WHERE r.idUser = :id_user");
 		query.setParameter("id_user", id_user);
 		
 	    @SuppressWarnings("unchecked")

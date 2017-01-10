@@ -166,6 +166,12 @@ ul.pagination li {
   overflow: auto;
 }
 
+.content {
+	height: 400px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
 @media screen and (max-width: 85%){
   .box{
     width: 80%;
