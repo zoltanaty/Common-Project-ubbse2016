@@ -11,31 +11,27 @@ System.out.println("Session created on: " + session.getAttribute("Date created")
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<link rel="stylesheet" href="index.css" type="text/css"/>
+		<link rel="stylesheet" href="styles/style.css" type="text/css"/>
+		<script src="javascript/vaidator.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>WebAdmin</title>
 	</head>
 	
 	<body>
-		<div id="menu">
-			<ul class="topnav" id="myTopnav">	
-				<li><a href="contact.jsp">Contact</a></li>
-				<li><a href="about.jsp">About</a></li>
-				<li><a href="index.jsp">Home</a></li>
-			</ul>
-		</div>
 		<div id="login">
-			<h1>Halcyon Mobile</h1>
-			<h2>Technical Interview Questionnaire results page</h2>
-			<br>
-			<br>
+			<h1>Login to WebAdmin</h1>
 			<form method="POST" action="login.do">
-				<label for="Username">User name</label><br> 
-				<input type="text" name="user"><br> 
-				<label for="Password">Password</label><br> 
-				<input type="password" name="pass"> <br>
-				<br> 
-				<input type="submit" value="Log in">
+				<div class="input">
+					<div class="personIcon"></div>
+					<input onblur="checkUserName(true)" onkeyup="checkUserName(true)" id="userName" type="text" name="userName" placeholder="Username"/>
+					<p id="usrMSG" class="wrongUsername">Bad username</p>
+				</div>
+				<div class="input">
+					<div class="passwordIcon"></div>
+					<input onblur="checkPassword(true)" onkeyup="checkPassword(true)" id="passw" type="password" name="password" placeholder="Password"/>
+					<p id="pasMSG" class="wrongPassword">Bad password</p>
+				</div>
+				<div class="loginButton"><button id="done" disabled type="submit">DONE</button><div>
 			</form>
 		</div>
 	</body>
