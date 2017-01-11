@@ -15,19 +15,19 @@
 <div id="menu">
     <ul class="topnav" id="myTopnav">
         <li><a
-                href="http://localhost:8080/techinterview-backend/logout.do">Log
+                href="logout.do">Log
             out</a></li>
         <li><a
-                href="http://localhost:8080/techinterview-backend/contact.jsp">Contact</a></li>
+                href="contact.jsp">Contact</a></li>
         <li><a
-                href="http://localhost:8080/techinterview-backend/about.jsp">About</a></li>
+                href="about.jsp">About</a></li>
         <li><a
-                href="http://localhost:8080/techinterview-backend/index.jsp">Home</a></li>
+                href="index.jsp">Home</a></li>
     </ul>
 </div>
 <div id="main">
     <%
-        Integer nrPerPage = 10;
+        Integer nrPerPage = 25;
         Integer id = Integer.parseInt(request.getParameterValues("position")[0]);
         Integer p;
         try{
@@ -57,8 +57,8 @@
                 int duration = 0;
                 String date = "";
                 for (int j = 0; j < res.size(); j++) {
-                    duration += res.get(i).getThinkingTime();
-                    date = res.get(i).getDate();
+                    duration += res.get(j).getThinkingTime();
+                    date = res.get(j).getDate();
                 }
 
                 int minutes = 0, seconds = 0;
@@ -94,17 +94,22 @@
             <a class="close" href="#">&times;</a>
 
             <div class="content">
-                <table width="80%">
+                <table>
+                	<thead>
                     <tr>
                         <th>#</th>
                         <th>Question</th>
                         <th>Answer</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <%
                         for (int j = 0; j < res.size(); j++) {
-                            String correct = "correct";
-                            if (!res.get(j).getPertinence())
-                                correct = "wrong";
+                            String correct = "nincsvalasz";
+                            if (res.get(j).getIsCorrect() != null)
+                            	if(res.get(j).getIsCorrect())
+                            		correct = "correct";
+                                else correct = "wrong";
                     %>
                     <tr class="<%=correct%>">
                         <td><%=j + 1%>
@@ -117,6 +122,7 @@
                     <%
                         }
                     %>
+                    </tbody>
                 </table>
                 <div id="chartContainer<%=users.get(i).getId()%>" style="height: 300px; width: 100%;"></div>
             </div>
@@ -152,7 +158,9 @@
                                 ]
                             }]
                     });
-            chart<%=users.get(i).getId()%>.render();
+            chart<%=
+            users.get(i).getId()
+            %>.render();
             <%
                 }
             %>

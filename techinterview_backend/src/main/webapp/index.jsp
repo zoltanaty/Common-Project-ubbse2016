@@ -11,7 +11,7 @@ System.out.println("Session created on: " + session.getAttribute("Date created")
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<link rel="stylesheet" href="http://localhost:8080/techinterview-backend/index.css" type="text/css"/>
+		<link rel="stylesheet" href="index.css" type="text/css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>WebAdmin</title>
 	</head>
@@ -19,9 +19,9 @@ System.out.println("Session created on: " + session.getAttribute("Date created")
 	<body>
 		<div id="menu">
 			<ul class="topnav" id="myTopnav">	
-				<li><a href="http://localhost:8080/techinterview-backend/contact.jsp">Contact</a></li>
-				<li><a href="http://localhost:8080/techinterview-backend/about.jsp">About</a></li>
-				<li><a href="http://localhost:8080/techinterview-backend/index.jsp">Home</a></li>
+				<li><a href="contact.jsp">Contact</a></li>
+				<li><a href="about.jsp">About</a></li>
+				<li><a href="index.jsp">Home</a></li>
 			</ul>
 		</div>
 		<div id="login">
