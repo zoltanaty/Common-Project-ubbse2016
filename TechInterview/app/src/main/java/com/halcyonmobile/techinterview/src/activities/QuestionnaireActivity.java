@@ -1,6 +1,5 @@
 package com.halcyonmobile.techinterview.src.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayout;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -46,6 +44,7 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
     private List<Button> unansweredButtonList;
     private List<Integer> elapsedTimeList;
     private List<QuestionCardDTO> cardList;
+    private List<String> correctAnswer;
 
     private int actualTime;
     private int actualQuestion;
@@ -58,7 +57,9 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionare);
-
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        decorView.setSystemUiVisibility(uiOptions);
         String selectedPositionId = getIntent().getStringExtra("selectedPositionId");
         //TODO CR: The screen should not be displayed until all the data is downloaded. I see no reason why you shouldn't move this request to a previous activity. [Peter]
         getQuestionCardList(Integer.parseInt(selectedPositionId));
@@ -79,11 +80,14 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
 
         unansweredButtonList = new ArrayList<>();
         elapsedTimeList = new ArrayList<>();
+        correctAnswer = new ArrayList<>();
+
         timer = new Timer();
         resultDTO = new ResultDTO();
 
         for (int i = 0; i < 40; i++) {
             elapsedTimeList.add(0);
+            correctAnswer.add("");
         }
 
         //TODO CR: Avoid dynamically creating Views whenever possible. In this case you should use a RecyclerView with a GridLayoutManager. [Peter]
@@ -104,7 +108,7 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
         params.height = dpToPx(42);
 
         for (int j = 1; j < 40; j++) {
-            Button btn = new Button(getBaseContext());
+            final Button btn = new Button(getBaseContext());
             //TODO CR: There are nicer ways to convert integers to Strings. [Peter]
             btn.setText(j + "");
             btn.setId(j + 1);
@@ -114,12 +118,16 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
             btn.setTextColor(getResources().getColor(R.color.colorPrimary));
             layout.addView(btn);
             btn.setVisibility(Button.INVISIBLE);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mPager.setCurrentItem((btn.getId() - 2));
+                }
+            });
             unansweredButtonList.add(btn);
 
-            Boolean currentvalue = false;
             resultDTO.getResultList().add(new Result());
         }
-
         unansweredButtonList.get(0).setVisibility(Button.VISIBLE);
 
 
@@ -147,8 +155,8 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
         connection.getQuestionCardList(new Callback<List<QuestionCardDTO>>() {
 
             @Override
-            public void onResponse(Call<List<QuestionCardDTO>> call, Response<List<QuestionCardDTO>> response) {
-                cardList = (List<QuestionCardDTO>)response.body();
+            public void onResponse(Call<List<QuestionCardDTO>> call, final Response<List<QuestionCardDTO>> response) {
+                cardList = response.body();
 
                 int orderNumber = 1;
                 for (QuestionCardDTO questionCardDTO : cardList) {
@@ -167,10 +175,10 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
                     @Override
                     public boolean onTouch(View view, MotionEvent motionEvent) {
 
-                            if (view != null) {
-                                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                            }
+                        if (view != null) {
+                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                        }
 
                         return false;
                     }
@@ -184,8 +192,6 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
 
                         if ((i + 1) == allQuestions) {
                             doneButton.setVisibility(Button.VISIBLE);
-                        } else {
-                            doneButton.setVisibility(Button.INVISIBLE);
                         }
 
                         if (i < 39) {
@@ -194,6 +200,7 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
                             if (resultDTO.getResultList().get(i).getAnswer() == null) {
                                 actualButton.setVisibility(Button.VISIBLE);
                             }
+
                         }
                     }
                 });
@@ -233,39 +240,52 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
     }
 
     private List<Fragment> processQuestionCardDTO(List<QuestionCardDTO> cardList) {
-        List<Fragment> fragmentList = new ArrayList<Fragment>();
+        List<Fragment> fragmentList = new ArrayList<>();
         allQuestions = cardList.size();
         actualQuestionNumberTextView.setText("1/" + allQuestions);
 
         for (QuestionCardDTO card : cardList) {
-            if (card.getQuestionType().getName().equals("checkbox")) {
-                actualQuestion++;
-
-                CheckboxesFragment frag = new CheckboxesFragment();
-                Bundle xBundle = new Bundle();
-                xBundle.putSerializable("data", card);
-                xBundle.putSerializable("orderNumber", actualQuestion);
-                xBundle.putSerializable("allQuestionNumber", allQuestions);
-                frag.setArguments(xBundle);
-                fragmentList.add(frag);
-            } else if (card.getQuestionType().getName().equals("radiobutton")) {
-                actualQuestion++;
-                RadioBoxesFragment frag = new RadioBoxesFragment();
-                Bundle xBundle = new Bundle();
-                xBundle.putSerializable("data", card);
-                xBundle.putSerializable("orderNumber", actualQuestion);
-                xBundle.putSerializable("allQuestionNumber", allQuestions);
-                frag.setArguments(xBundle);
-                fragmentList.add(frag);
-            } else if (card.getQuestionType().getName().equals("textfield")) {
-                actualQuestion++;
-                TextSimpleFragment frag = new TextSimpleFragment();
-                Bundle xBundle = new Bundle();
-                xBundle.putSerializable("data", card);
-                xBundle.putSerializable("orderNumber", actualQuestion);
-                xBundle.putSerializable("allQuestionNumber", allQuestions);
-                frag.setArguments(xBundle);
-                fragmentList.add(frag);
+            switch (card.getQuestionType().getName()) {
+                case "checkbox": {
+                    actualQuestion++;
+                    String temp = "";
+                    for (int i = 0; i < card.getAnswers().size(); i++) {
+                        if (card.getAnswers().get(i).getCorrect()) {
+                            temp = temp + card.getAnswers().get(i).getAnswer() + " -/- ";
+                        }
+                    }
+                    correctAnswer.set(actualQuestion, temp);
+                    CheckboxesFragment frag = new CheckboxesFragment();
+                    Bundle xBundle = new Bundle();
+                    xBundle.putSerializable("data", card);
+                    xBundle.putSerializable("orderNumber", actualQuestion);
+                    xBundle.putSerializable("allQuestionNumber", allQuestions);
+                    frag.setArguments(xBundle);
+                    fragmentList.add(frag);
+                    break;
+                }
+                case "radiobutton": {
+                    actualQuestion++;
+                    RadioBoxesFragment frag = new RadioBoxesFragment();
+                    Bundle xBundle = new Bundle();
+                    xBundle.putSerializable("data", card);
+                    xBundle.putSerializable("orderNumber", actualQuestion);
+                    xBundle.putSerializable("allQuestionNumber", allQuestions);
+                    frag.setArguments(xBundle);
+                    fragmentList.add(frag);
+                    break;
+                }
+                case "textfield": {
+                    actualQuestion++;
+                    TextSimpleFragment frag = new TextSimpleFragment();
+                    Bundle xBundle = new Bundle();
+                    xBundle.putSerializable("data", card);
+                    xBundle.putSerializable("orderNumber", actualQuestion);
+                    xBundle.putSerializable("allQuestionNumber", allQuestions);
+                    frag.setArguments(xBundle);
+                    fragmentList.add(frag);
+                    break;
+                }
             }
         }
         return fragmentList;
@@ -273,7 +293,8 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
 
     @Override
     public void onQuestionAnswered(Answer answer) {
-        unansweredButtonList.get(actualQuestionNr).setVisibility(Button.INVISIBLE);
+        unansweredButtonList.get(actualQuestionNr).setBackgroundResource(R.drawable.answered_button);
+        unansweredButtonList.get(actualQuestionNr).setTextColor(getResources().getColor(R.color.white));
         resultDTO.getResultList().get(actualQuestionNr).setAnswer(answer.getAnswer());
         resultDTO.getResultList().get(actualQuestionNr).setCorrect(answer.getCorrect());
         resultDTO.getResultList().get(actualQuestionNr).setQuestion(cardList.get(actualQuestionNr).getQuestion().getQuestion());
@@ -283,9 +304,15 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
 
     @Override
     public void onQuestionCheckBoxAnswered(Answer answer) {
-        unansweredButtonList.get(actualQuestionNr).setVisibility(Button.INVISIBLE);
+        unansweredButtonList.get(actualQuestionNr).setBackgroundResource(R.drawable.answered_button);
+        unansweredButtonList.get(actualQuestionNr).setTextColor(getResources().getColor(R.color.white));
         resultDTO.getResultList().get(actualQuestionNr).setAnswer(answer.getAnswer());
         resultDTO.getResultList().get(actualQuestionNr).setCorrect(answer.getCorrect());
+        if ((answer.getAnswer()).equals(correctAnswer.get(actualQuestionNr + 1))) {
+            resultDTO.getResultList().get(actualQuestionNr).setCorrect(true);
+        } else {
+            resultDTO.getResultList().get(actualQuestionNr).setCorrect(false);
+        }
         resultDTO.getResultList().get(actualQuestionNr).setQuestion(cardList.get(actualQuestionNr).getQuestion().getQuestion());
         resultDTO.getResultList().get(actualQuestionNr).setDate(Calendar.getInstance().get(Calendar.YEAR) + "." + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "." + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " - " + Calendar.getInstance().get(Calendar.HOUR) + ":" + Calendar.getInstance().get(Calendar.MINUTE) + ":" + Calendar.getInstance().get(Calendar.SECOND));
         resultDTO.getResultList().get(actualQuestionNr).setIdUser(Integer.parseInt(getIntent().getStringExtra("userId")));
@@ -293,19 +320,13 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
 
     @Override
     public void onQuestionFreeTextAnswered(Answer answer) {
-        unansweredButtonList.get(actualQuestionNr).setVisibility(Button.INVISIBLE);
+        unansweredButtonList.get(actualQuestionNr).setBackgroundResource(R.drawable.answered_button);
+        unansweredButtonList.get(actualQuestionNr).setTextColor(getResources().getColor(R.color.white));
         resultDTO.getResultList().get(actualQuestionNr).setAnswer(answer.getAnswer());
         resultDTO.getResultList().get(actualQuestionNr).setCorrect(answer.getCorrect());
-        if(cardList!=null){
-            resultDTO.getResultList().get(actualQuestionNr).setQuestion(cardList.get(actualQuestionNr).getQuestion().getQuestion());
-        }
+        resultDTO.getResultList().get(actualQuestionNr).setQuestion(cardList.get(actualQuestionNr).getQuestion().getQuestion());
         resultDTO.getResultList().get(actualQuestionNr).setDate(Calendar.getInstance().get(Calendar.YEAR) + "." + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "." + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " - " + Calendar.getInstance().get(Calendar.HOUR) + ":" + Calendar.getInstance().get(Calendar.MINUTE) + ":" + Calendar.getInstance().get(Calendar.SECOND));
         resultDTO.getResultList().get(actualQuestionNr).setIdUser(Integer.parseInt(getIntent().getStringExtra("userId")));
-    }
-
-    private int pxToDp(int px) {
-        DisplayMetrics displayMetrics = getBaseContext().getResources().getDisplayMetrics();
-        return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 
     public int dpToPx(int dp) {

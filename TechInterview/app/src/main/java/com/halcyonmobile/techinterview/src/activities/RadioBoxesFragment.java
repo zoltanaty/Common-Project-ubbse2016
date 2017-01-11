@@ -68,12 +68,13 @@ public class RadioBoxesFragment extends Fragment {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                //[zmate] to [Peter] - This is necessary. It can't be solved other way, because all of our radio buttons are in a single RadioGroup
+                  //[zmate] to [Peter] - This is necessary. It can't be solved other way, because all of our radio buttons are in a single RadioGroup
                 if ((i % 4) == 0) {
                     activityCallbacks.onQuestionAnswered(questionCard.getAnswers().get(3));
                 } else {
                     activityCallbacks.onQuestionAnswered(questionCard.getAnswers().get((i % 4) - 1));
                 }
+
             }
         });
     }
