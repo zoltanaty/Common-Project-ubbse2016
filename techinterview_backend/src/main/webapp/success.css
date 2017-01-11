@@ -140,7 +140,7 @@ ul.pagination li {
   border-radius: 5px;
   width: 80%;
   position: relative;
-  transition: all 5s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .popup h2 {
@@ -152,7 +152,7 @@ ul.pagination li {
   position: absolute;
   top: 20px;
   right: 30px;
-  transition: all 200ms;
+  transition: all 50ms;
   font-size: 30px;
   font-weight: bold;
   text-decoration: none;
