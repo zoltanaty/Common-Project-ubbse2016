@@ -37,6 +37,31 @@
   		<servlet-class>com.halcyonmobile.webadmin.Logout</servlet-class>
   	</servlet>
   	
+  	<servlet>
+  		<servlet-name>DeleteAM</servlet-name>
+  		<servlet-class>com.halcyonmobile.webadmin.DeleteAM</servlet-class>
+  	</servlet>
+  	
+  	<servlet>
+  		<servlet-name>AddAM</servlet-name>
+  		<servlet-class>com.halcyonmobile.webadmin.AddAM</servlet-class>
+  	</servlet>
+  	
+  	<servlet>
+  		<servlet-name>DeleteInt</servlet-name>
+  		<servlet-class>com.halcyonmobile.webadmin.DeleteInt</servlet-class>
+  	</servlet>
+  	
+  	<servlet>
+  		<servlet-name>AddQuestion</servlet-name>
+  		<servlet-class>com.halcyonmobile.webadmin.AddQuestion</servlet-class>
+  	</servlet>
+  	
+  	<servlet>
+  		<servlet-name>DeleteQuestion</servlet-name>
+  		<servlet-class>com.halcyonmobile.webadmin.DeleteQuestion</servlet-class>
+  	</servlet>
+  	
   	<servlet-mapping>
   		<servlet-name>Login</servlet-name>
   		<url-pattern>/login.do</url-pattern>
@@ -60,6 +85,31 @@
   	<servlet-mapping>
   		<servlet-name>Manage</servlet-name>
   		<url-pattern>/manage.do</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet-mapping>
+  		<servlet-name>DeleteAM</servlet-name>
+  		<url-pattern>/deleteAM.do</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet-mapping>
+  		<servlet-name>AddAM</servlet-name>
+  		<url-pattern>/addAM.do</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet-mapping>
+  		<servlet-name>DeleteInt</servlet-name>
+  		<url-pattern>/deleteInt.do</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet-mapping>
+  		<servlet-name>AddQuestion</servlet-name>
+  		<url-pattern>/addQue.do</url-pattern>
+  	</servlet-mapping>
+  
+  	<servlet-mapping>
+  		<servlet-name>DeleteQuestion</servlet-name>
+  		<url-pattern>/delQue.do</url-pattern>
   	</servlet-mapping>
   
   	<servlet>

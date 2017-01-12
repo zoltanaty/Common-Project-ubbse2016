@@ -71,4 +71,18 @@ public class UserService {
 
 		return registeredUserList.get(0).getId();
 	}
+	
+	@POST
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void deleteUser(String name) {
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		
+		em.getTransaction().begin();
+		Query query = em.createQuery("DELETE FROM User WHERE name = :name");
+		query.setParameter("name", name);
+		
+		query.executeUpdate();
+		em.getTransaction().commit();
+	}
 }

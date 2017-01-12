@@ -18,7 +18,7 @@ ul.topnav li a {
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
-	trnsition: 0.3s;
+	transition: 2s;
 	font-size: 17px;
 }
 

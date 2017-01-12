@@ -12,9 +12,9 @@
 		<div id="menu">
 			<ul class="topnav" id="myTopnav">	
 				<li><a href="logout.do">Log out</a></li>
-				<li><a href="contact.jsp">Contact</a></li>
+				<li><a href="http://halcyonmobile.com/contact">Contact</a></li>
 				<li><a href="about.jsp">About</a></li>
-				<li><a href="index.jsp">Home</a></li>
+				<li><a href="login.do">Home</a></li>
 			</ul>
 		</div>
 	

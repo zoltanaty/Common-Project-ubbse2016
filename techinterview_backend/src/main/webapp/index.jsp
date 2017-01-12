@@ -1,13 +1,6 @@
-<%@ page import="java.io.*, java.util.*" language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
 	
-<%
-if (!request.getSession().isNew()) response.sendRedirect("success.jsp");
-Date createDate = new Date(session.getCreationTime());
-session.setAttribute("Date created", createDate);
-session.setMaxInactiveInterval(2 * 60 * 60);
-System.out.println("Session created on: " + session.getAttribute("Date created"));
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -19,23 +12,24 @@ System.out.println("Session created on: " + session.getAttribute("Date created")
 	<body>
 		<div id="menu">
 			<ul class="topnav" id="myTopnav">	
-				<li><a href="contact.jsp">Contact</a></li>
+				<li><a href="http://halcyonmobile.com/contact">Contact</a></li>
 				<li><a href="about.jsp">About</a></li>
 				<li><a href="index.jsp">Home</a></li>
 			</ul>
 		</div>
 		<div id="login">
-			<h1>Halcyon Mobile</h1>
-			<h2>Technical Interview Questionnaire results page</h2>
+			<h2 class="whiteText">Halcyon Mobile</h2>
+			<image src="images/rocket.png" alt="rocket.png" id="rocket">
+			<h3 class="whiteText">Technical Interview Questionnaire results page</h3>
 			<br>
 			<br>
 			<form method="POST" action="login.do">
-				<label for="Username">User name</label><br> 
+				<label class="whiteText" for="Username">User name</label><br> 
 				<input type="text" name="user"><br> 
-				<label for="Password">Password</label><br> 
+				<label class="whiteText" for="Password">Password</label><br> 
 				<input type="password" name="pass"> <br>
 				<br> 
-				<input type="submit" value="Log in">
+				<input id="button" type="submit" value="Log in">
 			</form>
 		</div>
 	</body>

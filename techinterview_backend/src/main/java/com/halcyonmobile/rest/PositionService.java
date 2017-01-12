@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -38,5 +39,13 @@ public class PositionService {
 		Position person = em.find(Position.class, id);
 
 		return person;
+	}
+	
+	public int findByName(String name) {
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		
+		TypedQuery<Position> query = em.createQuery("SELECT p FROM Position p WHERE p.name = :name", Position.class);
+		
+		return query.setParameter("name", name).getSingleResult().getId();
 	}
 }
