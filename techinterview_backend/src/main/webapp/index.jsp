@@ -20,14 +20,16 @@ System.out.println("Session created on: " + session.getAttribute("Date created")
 	<body>
 		<div id="login">
 			<h1>Login to WebAdmin</h1>
-			<form method="POST" action="login.do">
+			<form autocomplete="off" class="login-form" method="POST" action="login.do">
 				<div class="input">
 					<div class="personIcon"></div>
+					<input type="text" name="userName" style="display: none"/>
 					<input onblur="checkUserName(true)" onkeyup="checkUserName(true)" id="userName" type="text" name="userName" placeholder="Username"/>
 					<p id="usrMSG" class="wrongUsername">Bad username</p>
 				</div>
 				<div class="input">
 					<div class="passwordIcon"></div>
+					<input type="password" name="password" style="display: none"/>
 					<input onblur="checkPassword(true)" onkeyup="checkPassword(true)" id="passw" type="password" name="password" placeholder="Password"/>
 					<p id="pasMSG" class="wrongPassword">Bad password</p>
 				</div>

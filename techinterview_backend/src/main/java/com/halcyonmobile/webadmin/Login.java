@@ -29,8 +29,12 @@ public class Login extends HttpServlet implements HttpSessionListener{
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		String user = req.getParameter("userName");
-		String pass = req.getParameter("password");
+		String[] userName = req.getParameterValues("userName");
+		String[] passs = req.getParameterValues("password");
+		String user = userName[userName.length-1];
+		String pass = passs[passs.length-1];
+		System.out.println(user);
+		System.out.println(pass);
 		String privilege = "";
 		boolean ok = false;
 		HttpSession session = req.getSession(true);
