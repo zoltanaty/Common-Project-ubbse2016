@@ -48,4 +48,27 @@ public class PositionService {
 		
 		return query.setParameter("name", name).getSingleResult().getId();
 	}
+
+	public void addPosition(String pos, String nrQue) {
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		
+		Position p = new Position();
+		p.setName(pos);
+		p.setnrQue(nrQue);
+		
+		em.getTransaction().begin();
+		em.persist(p);
+		em.getTransaction().commit();
+	}
+	
+	public void deletePosition(String pos) {
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		
+		em.getTransaction().begin();
+		Query query = em.createQuery("DELETE FROM Position p WHERE p.name = :pos");
+		query.setParameter("pos", pos);
+		
+		query.executeUpdate();
+		em.getTransaction().commit();
+	}
 }

@@ -62,6 +62,16 @@
   		<servlet-class>com.halcyonmobile.webadmin.DeleteQuestion</servlet-class>
   	</servlet>
   	
+  	<servlet>
+  		<servlet-name>AddPosition</servlet-name>
+  		<servlet-class>com.halcyonmobile.webadmin.AddPosition</servlet-class>
+  	</servlet>
+  	
+  	<servlet>
+  		<servlet-name>DelPosition</servlet-name>
+  		<servlet-class>com.halcyonmobile.webadmin.DelPosition</servlet-class>
+  	</servlet>
+  	
   	<servlet-mapping>
   		<servlet-name>Login</servlet-name>
   		<url-pattern>/login.do</url-pattern>
@@ -110,6 +120,16 @@
   	<servlet-mapping>
   		<servlet-name>DeleteQuestion</servlet-name>
   		<url-pattern>/delQue.do</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet-mapping>
+  		<servlet-name>AddPosition</servlet-name>
+  		<url-pattern>/addPos.do</url-pattern>
+  	</servlet-mapping>
+  
+  	<servlet-mapping>
+  		<servlet-name>DelPosition</servlet-name>
+  		<url-pattern>/delPos.do</url-pattern>
   	</servlet-mapping>
   
   	<servlet>

@@ -15,7 +15,7 @@ public class Login extends HttpServlet implements HttpSessionListener{
 	private static final long serialVersionUID = 13L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(true);
 		
 		if(session.isNew()) {
 			RequestDispatcher view = req.getRequestDispatcher("index.jsp");
@@ -42,6 +42,7 @@ public class Login extends HttpServlet implements HttpSessionListener{
 		if (session.getAttribute("user") == null) {
 			System.out.println("New session created");			
 			session.setAttribute(visitCountKey, 0);
+			session.setMaxInactiveInterval(2 * 60);
 		} else {
 			if (null != session.getAttribute(visitCountKey)) {
 				visitCount = (Integer) session.getAttribute(visitCountKey);

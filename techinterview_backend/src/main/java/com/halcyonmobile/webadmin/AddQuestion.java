@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.halcyonmobile.rest.AnswerService;
 import com.halcyonmobile.rest.PositionService;
@@ -17,12 +18,32 @@ public class AddQuestion extends HttpServlet {
 	private static final long serialVersionUID = -6639661737670004210L;
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
-
-		view.forward(req, res);
+		HttpSession session = req.getSession();
+		
+		if(session.isNew()) {
+			RequestDispatcher view = req.getRequestDispatcher("index.jsp");
+			
+			view.forward(req, res);
+		} else {
+			RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
+			
+			view.forward(req, res);
+		}
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		
+		if(session.isNew()) {
+			RequestDispatcher view = req.getRequestDispatcher("index.jsp");
+			
+			view.forward(req, res);
+		} else {
+			RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
+			
+			view.forward(req, res);
+		}
+		
 		PositionService ps = new PositionService();
 		QuestionTypeService qts = new QuestionTypeService();
 		QuestionService q = new QuestionService();

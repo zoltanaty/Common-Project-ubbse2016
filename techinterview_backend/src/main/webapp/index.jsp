@@ -5,7 +5,7 @@
 if (!request.getSession().isNew()) response.sendRedirect("success.jsp");
 Date createDate = new Date(session.getCreationTime());
 session.setAttribute("Date created", createDate);
-session.setMaxInactiveInterval(2 * 60 * 60);
+session.setMaxInactiveInterval(1);
 System.out.println("Session created on: " + session.getAttribute("Date created"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

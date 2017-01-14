@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.halcyonmobile.rest.QuestionService;
+import com.halcyonmobile.rest.PositionService;
 
-public class DeleteQuestion extends HttpServlet {
-	private static final long serialVersionUID = 5624661518859972166L;
-
+public class DelPosition extends HttpServlet{
+	private static final long serialVersionUID = -4654145885240152936L;
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		
@@ -27,10 +27,10 @@ public class DeleteQuestion extends HttpServlet {
 			view.forward(req, res);
 		}
 		
-		String que = req.getParameter("que");
+		String pos = req.getParameter("posname");
 		
-		QuestionService sq = new QuestionService();
-		sq.deleteQuestion(que);
+		PositionService ps = new PositionService();
+		ps.deletePosition(pos);
 		
 		RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
 

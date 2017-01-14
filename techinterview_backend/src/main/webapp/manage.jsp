@@ -2,11 +2,13 @@
 	import="com.halcyonmobile.rest.OwnersService, com.halcyonmobile.model.Owners, com.halcyonmobile.rest.UserService, com.halcyonmobile.model.User, com.halcyonmobile.rest.PositionService, com.halcyonmobile.model.Position, com.halcyonmobile.rest.QuestionTypeService, com.halcyonmobile.model.QuestionType, com.halcyonmobile.rest.QuestionService, com.halcyonmobile.model.Question, java.util.List"
 	language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<link rel="stylesheet" href="manage.css">
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<script src="javascript/isFilled.js" type="text/javascript"></script>
 		<title>Admin</title>
 	</head>
 
@@ -28,6 +30,8 @@
 					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'delInt')">Delete Interviewee</a></li>
 					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'addQue')">Add Question</a></li>
 					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'delQue')">Delete Question</a></li>
+					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'addPos')">Add Position</a></li>
+					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'delPos')">Delete Position</a></li>
 				</ul>
 			</div>
 		
@@ -147,6 +151,42 @@
 							for(int i = 0; i < questionList.size(); i++) {
 						%>
 							<option value="<%=questionList.get(i).getQuestion() %>"><%=questionList.get(i).getQuestion() %></option>
+						<%
+							}
+						%>
+						</select>
+						<br><br>
+						<input class="button" type="submit" value="Delete">
+					</form>
+				</div>
+				
+				<div id="addPos" class="tabcont">
+					<h1 class="whiteText">Add Position</h1>
+					<form method="POST" action="addPos.do" name="addPos" onSubmit="return isFilled();">
+						<div>
+							<label class="whiteText rowlabel" for="Position">Position</label>
+							<input id="posText" class="rowinput1" type="text" name="posname">
+						</div>
+						<br>
+						<label class="whiteText rowlabel" for="PositonNr">Nr. of Questions</label>
+						<input id="nrQues" class="rowinput2" type="text" name="nrQue">
+						<br>
+						<input id="submit" name="submit" type="submit" value="Add" class="button">
+					</form>
+				</div>
+				
+				<div id="delPos" class="tabcont">
+					<h1 class="whiteText">Delete position</h1>
+					<form method="POST" action="delPos.do" name="delPos">
+						<label class="whiteText" for="Positions">Positions</label><br>
+						<select name="posname">
+						<%
+							PositionService p = new PositionService();
+							List<Position> posList = p.findAll();
+								
+							for(int i = 0; i < posList.size(); i++) {
+						%>
+							<option value="<%=posList.get(i).getName() %>"><%=posList.get(i).getName() %></option>
 						<%
 							}
 						%>

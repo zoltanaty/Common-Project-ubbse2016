@@ -92,3 +92,7 @@ ul.tab li a:focus, .active {
 	display: none;
 	padding: 6px 12px;
 }
+
+.rowinput1 {
+	margin-left: 53px;
+}
