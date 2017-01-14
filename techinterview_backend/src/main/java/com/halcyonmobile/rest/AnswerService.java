@@ -47,23 +47,25 @@ public class AnswerService {
 	@GET
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void insertAnswer(String[] answers, int qId, boolean isCorrect) {
+	public void insertAnswer(String[] answers, int qId, boolean[] isCorrect) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		Answer answer = new Answer();
-		
+
 		System.out.println(answers[0] + answers[1] + qId + isCorrect);
 		for(int i = 0; i < answers.length; i++) {
-			answer.setId_question(qId);
-			answer.setAnswer(answers[i]);
-			answer.setIsCorrect(isCorrect);
-			em.getTransaction().begin();
-			em.persist(answer);
-			
-			em.flush();
-			em.clear();
-			em.getTransaction().commit();
+			if(!answers[i].equals("")){
+				answer.setId_question(qId);
+				answer.setAnswer(answers[i]);
+				answer.setIsCorrect(isCorrect[i]);
+				em.getTransaction().begin();
+				em.persist(answer);
+
+				em.flush();
+				em.clear();
+				em.getTransaction().commit();
+			}
 		}
-		
-		
+
+
 	}
 }

@@ -6,6 +6,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="manage.css">
+		<script type="text/javascript" src="manage.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Admin</title>
 	</head>
@@ -108,7 +109,7 @@
 						</select>
 						<br>
 						<label class="whiteText" for="QuestionType">Question Type</label>
-						<select name="queType">
+						<select onchange="switchQuestionType()" id="queType" name="queType">
 						<%
 							QuestionTypeService qts = new QuestionTypeService();
 							List<QuestionType> queTypeList = qts.findAll();
@@ -124,13 +125,13 @@
 						<label class="whiteText" for="Question">Question</label>
 						<input type="text" name="Question"><br><br>
 						<label class="whiteText" for="Answer1">Answer1</label>
-						<input type="text" name="Answer"><br>
+						<input id="answer1" type="text" name="Answer"><input id="hidden1" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox1" type="checkbox" value="true" name="Correct"><br>
 						<label class="whiteText" for="Answer1">Answer2</label>
-						<input type="text" name="Answer"><br>
+						<input id="answer2" type="text" name="Answer"><input id="hidden2" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox2" type="checkbox" value="true" name="Correct"><br>
 						<label class="whiteText" for="Answer1">Answer3</label>
-						<input type="text" name="Answer"><br>
+						<input id="answer3" type="text" name="Answer"><input id="hidden3" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox3" type="checkbox" value="true" name="Correct"><br>
 						<label class="whiteText" for="Answer1">Answer4</label>
-						<input type="text" name="Answer"><br><br>
+						<input id="answer4" type="text" name="Answer"><input id="hidden4" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox4" type="checkbox" value="true" name="Correct"><br><br>
 						<input class="button" type="submit" value="Add">
 					</form>
 				</div>

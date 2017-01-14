@@ -33,22 +33,29 @@ public class AddQuestion extends HttpServlet {
 		String que = req.getParameter("Question");
 
 		String answers[] = req.getParameterValues("Answer");
+		
+		String correct[] = req.getParameterValues("Correct");
+		boolean isCorrect[] = {false, false, false, false};
 
 		int posId = ps.findByName(pos);
 		int qTypeId = qts.findByName(qType);
 
 		// onFail
-		if (!qType.equals("textfield") && (answers[0].equals("") && answers[1].equals(""))) {
+		if (!qType.equals("textfield") && (answers[0].equals("") || answers[1].equals(""))) {
 			RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
 
 			view.forward(req, res);
 
 			return;
 		}
+		
+		for(int i=0; i<correct.length; i++) {
+			isCorrect[i] = correct[i].equals("true");
+		}
 
 		int qId = q.insertQuestion(que, qTypeId, posId);
 		
-		as.insertAnswer(answers, qId, false);
+		as.insertAnswer(answers, qId, isCorrect);
 		
 		RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
 
