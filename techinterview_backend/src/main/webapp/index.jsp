@@ -2,11 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 	
 <%
-if (!request.getSession().isNew()) response.sendRedirect("success.jsp");
-Date createDate = new Date(session.getCreationTime());
-session.setAttribute("Date created", createDate);
-session.setMaxInactiveInterval(1);
-System.out.println("Session created on: " + session.getAttribute("Date created"));
+if ((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttribute("ok")) response.sendRedirect("success.jsp");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -33,7 +29,7 @@ System.out.println("Session created on: " + session.getAttribute("Date created")
 					<input onblur="checkPassword(true)" onkeyup="checkPassword(true)" id="passw" type="password" name="password" placeholder="Password"/>
 					<p id="pasMSG" class="wrongPassword">Bad password</p>
 				</div>
-				<div class="loginButton"><button id="done" disabled type="submit">DONE</button><div>
+				<div class="loginButton"><button id="done" disabled type="submit">DONE</button></div>
 			</form>
 		</div>
 	</body>
