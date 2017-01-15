@@ -72,9 +72,6 @@ public class UserService {
 		return registeredUserList.get(0).getId();
 	}
 	
-	@POST
-	@Path("/")
-	@Consumes(MediaType.APPLICATION_JSON)
 	public void deleteUser(String name) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		

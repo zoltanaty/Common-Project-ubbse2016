@@ -8,7 +8,7 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<link rel="stylesheet" href="manage.css">
+		<link rel="stylesheet" href="styles/style.css" type="text/css"/>
 		<script type="text/javascript" src="manage.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<script src="javascript/isFilled.js" type="text/javascript"></script>
@@ -16,51 +16,47 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
 	</head>
 
 	<body>
-		<div id="menu">
-			<ul class="topnav" id="myTopnav">	
-				<li><a href="logout.do">Log out</a></li>
-				<li><a href="http://halcyonmobile.com/contact">Contact</a></li>
-				<li><a href="about.jsp">About</a></li>
-				<li><a href="login.do">Home</a></li>
-			</ul>
-		</div>
 	
 		<div id="manage">
 			<div id="tabs">
 				<ul class="tab">
-					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'addAM')">Add Admin/Manager</a></li>
-					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'delAM')">Delete Admin/Manager</a></li>
-					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'delInt')">Delete Interviewee</a></li>
-					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'addQue')">Add Question</a></li>
-					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'delQue')">Delete Question</a></li>
-					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'addPos')">Add Position</a></li>
-					<li><a href="javascipt:void(0)" class="tablinks" onclick="disp(event, 'delPos')">Delete Position</a></li>
+					<li><a href="#" class="tablinks" onclick="disp(event, 'addAM')">Add Admin/Manager</a></li>
+					<li><a href="#" class="tablinks" onclick="disp(event, 'delAM')">Delete Admin/Manager</a></li>
+					<li><a href="#" class="tablinks" onclick="disp(event, 'delInt')">Delete Interviewee</a></li>
+					<li><a href="#" class="tablinks" onclick="disp(event, 'addQue')">Add Question</a></li>
+					<li><a href="#" class="tablinks" onclick="disp(event, 'delQue')">Delete Question</a></li>
+					<li><a href="#" class="tablinks" onclick="disp(event, 'addPos')">Add Position</a></li>
+					<li><a href="#" class="tablinks" onclick="disp(event, 'delPos')">Delete Position</a></li>
+					<li><a href="logout.do" class="tablinks">Logout</a></li>
 				</ul>
 			</div>
 		
 			<div id="mforms">
 				<div id="addAM" class="tabcont" style="display: block;">
-					<h1 class="whiteText">Add admin/manager</h1>
+					<h1>Add admin/manager</h1>
 					<form method="POST" action="addAM.do">
-						<label class="whiteText" for="Username">Username</label>
-						<input type="text" name="user">
+					<table align="center" border="0">
+					<tr><td>
+						<input type="text" name="user" placeholder="Username">
 						<br>
-						<label class="whiteText" for="Password">Password</label>
-						<input type="text" name="pass">
+						<input type="text" name="pass" placeholder="Password">
+						<br><br>
+						<input id="radio1" checked type="radio" value="Admin" name="radio"><label for="radio1"><span></span>Admin</label>
 						<br>
-						<input class="whiteText" checked type="radio" value="Admin" name="radio">Admin
-						<br>
-						<input class="whiteText" type="radio" value="Manager" name="radio">Manager
-						<br>
-						<input class="button" type="submit" value="Add">
+						<input id="radio2" type="radio" value="Manager" name="radio"><label for="radio2"><span></span>Manager</label>
+						<br><br>
+						<button type="submit" >ADD</button>
+						</td></tr></table>
 					</form>
 				</div>
 				
 				<div id="delAM" class="tabcont">
-					<h1 class="whiteText">Delete admin/manager</h1>
+					<h1>Delete admin/manager</h1>
 					<form method="POST" action="deleteAM.do" name="delAM">
-						<label class="whiteText" for="Username">Username</label>
+					<table align="center" border="0">
+					<tr><td>
 						<select name="AMList">
+						<option value="" disabled selected>Username</option>
 						<%
 							OwnersService os = new OwnersService();
 							List<Owners> ownersList = os.findAll();
@@ -72,16 +68,19 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
 						<%
 							}
 						%>
-						</select>
-						<input class="button" type="submit" value="Delete">
+						</select><br>
+						<button type="submit">DELETE</button>
+						</td></tr></table>
 					</form>
 				</div>
 				
 				<div id="delInt" class="tabcont">
-					<h1 class="whiteText">Delete interviewee</h1>
+					<h1>Delete interviewee</h1>
 					<form method="POST" action="deleteInt.do" name="delInt">
-						<label class="whiteText" for="Username">Username</label>
+					<table align="center" border="0">
+					<tr><td>
 						<select name="IntList">
+						<option value="" disabled selected>Username</option>
 						<%
 							UserService us = new UserService();
 							List<User> usersList = us.findAll();
@@ -92,16 +91,19 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
 						<%
 							}
 						%>
-						</select>	
-						<input class="button" type="submit" value="Delete">
+						</select><br>
+						<button type="submit">DELETE</button>
+						</td></tr></table>
 					</form>
 				</div>
 			
 				<div id="addQue" class="tabcont">
-					<h1 class="whiteText">Add question</h1>
+					<h1>Add question</h1>
 					<form method="POST" action="addQue.do" name="addQue">
-						<label class="whiteText" for="Positions">Positions</label>
+					<table align="center" border="0">
+					<tr><td>
 						<select name="posList">
+						<option value="" disabled selected>Positions</option>
 						<%
 							PositionService ps = new PositionService();
 							List<Position> positionList = ps.findAll();
@@ -114,8 +116,8 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
 						%>
 						</select>
 						<br>
-						<label class="whiteText" for="QuestionType">Question Type</label>
 						<select onchange="switchQuestionType()" id="queType" name="queType">
+						<option value="" disabled selected>Question Type</option>
 						<%
 							QuestionTypeService qts = new QuestionTypeService();
 							List<QuestionType> queTypeList = qts.findAll();
@@ -128,25 +130,23 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
 						%>
 						</select>
 						<br>
-						<label class="whiteText" for="Question">Question</label>
-						<input type="text" name="Question"><br><br>
-						<label class="whiteText" for="Answer1">Answer1</label>
-						<input id="answer1" type="text" name="Answer"><input id="hidden1" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox1" type="checkbox" value="true" name="Correct"><br>
-						<label class="whiteText" for="Answer1">Answer2</label>
-						<input id="answer2" type="text" name="Answer"><input id="hidden2" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox2" type="checkbox" value="true" name="Correct"><br>
-						<label class="whiteText" for="Answer1">Answer3</label>
-						<input id="answer3" type="text" name="Answer"><input id="hidden3" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox3" type="checkbox" value="true" name="Correct"><br>
-						<label class="whiteText" for="Answer1">Answer4</label>
-						<input id="answer4" type="text" name="Answer"><input id="hidden4" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox4" type="checkbox" value="true" name="Correct"><br><br>
-						<input class="button" type="submit" value="Add">
+						<input placeholder="Question" type="text" name="Question"><br><br>
+						<input placeholder="Answer1" id="answer1" type="text" name="Answer"><input id="hidden1" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox1" type="checkbox" value="true" name="Correct"><label for="checkbox1"><span></span></label><br>
+						<input placeholder="Answer2" id="answer2" type="text" name="Answer"><input id="hidden2" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox2" type="checkbox" value="true" name="Correct"><label for="checkbox2"><span></span></label><br>
+						<input placeholder="Answer3" id="answer3" type="text" name="Answer"><input id="hidden3" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox3" type="checkbox" value="true" name="Correct"><label for="checkbox3"><span></span></label><br>
+						<input placeholder="Answer4" id="answer4" type="text" name="Answer"><input id="hidden4" type="hidden" value="false" name="Correct"><input onclick="checkboxValidator()" id="checkbox4" type="checkbox" value="true" name="Correct"><label for="checkbox4"><span></span></label><br><br>
+						<button type="submit">ADD</button>
+						</td></tr></table>
 					</form>
 				</div>
 				
 				<div id="delQue" class="tabcont">
-					<h1 class="whiteText">Delete existing question</h1>
+					<h1>Delete existing question</h1>
 					<form method="POST" action="delQue.do" name="delQue">
-						<label class="whiteText" for="Questions">Questions</label><br>
+					<table align="center" border="0">
+					<tr><td>
 						<select name="que">
+						<option value="" disabled selected>Questions</option>
 						<%
 							QuestionService qs = new QuestionService();
 							List<Question> questionList = qs.findAll();
@@ -157,32 +157,33 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
 						<%
 							}
 						%>
-						</select>
-						<br><br>
-						<input class="button" type="submit" value="Delete">
+						</select><br>
+						<button type="submit">DELETE</button>
+						</td></tr></table>
 					</form>
 				</div>
 				
 				<div id="addPos" class="tabcont">
-					<h1 class="whiteText">Add Position</h1>
+					<h1>Add Position</h1>
 					<form method="POST" action="addPos.do" name="addPos" onSubmit="return isFilled();">
-						<div>
-							<label class="whiteText rowlabel" for="Position">Position</label>
-							<input id="posText" class="rowinput1" type="text" name="posname">
-						</div>
+					<table align="center" border="0">
+					<tr><td>
+						<input placeholder="Position" id="posText" class="rowinput1" type="text" name="posname">
 						<br>
-						<label class="whiteText rowlabel" for="PositonNr">Nr. of Questions</label>
-						<input id="nrQues" class="rowinput2" type="text" name="nrQue">
+						<input placeholder="Nr. of Questions" id="nrQues" class="rowinput2" type="text" name="nrQue">
 						<br>
-						<input id="submit" name="submit" type="submit" value="Add" class="button">
+						<button type="submit">ADD</button>
+						</td></tr></table>
 					</form>
 				</div>
 				
 				<div id="delPos" class="tabcont">
-					<h1 class="whiteText">Delete position</h1>
+					<h1>Delete position</h1>
 					<form method="POST" action="delPos.do" name="delPos">
-						<label class="whiteText" for="Positions">Positions</label><br>
+					<table align="center" border="0">
+					<tr><td>
 						<select name="posname">
+						<option value="" disabled selected>Positions</option>
 						<%
 							PositionService p = new PositionService();
 							List<Position> posList = p.findAll();
@@ -193,9 +194,9 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
 						<%
 							}
 						%>
-						</select>
-						<br><br>
-						<input class="button" type="submit" value="Delete">
+						</select><br>
+						<button type="submit">DELETE</button>
+						</td></tr></table>
 					</form>
 				</div>
 				

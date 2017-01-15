@@ -1,60 +1,12 @@
-body {
-	background-color: #339999;
-}
-
-#menu {
-	width: 100%;
-}
-
-ul.topnav {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
-
-ul.topnav li {
-	float: right;
-}
-
-ul.topnav li a {
-	display: inline-block;
-	color: #f2f2f2;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	transition: 2s;
-	font-size: 17px;
-}
 
 #manage {
-	padding-top: 1%;
-	padding-bottom: 30%;
-	margin-left: 5%;
-	margin-right: 5%;
-	
-	box-shadow: 10px 10px 100px lightblue;
-	align: center;
-}
-
-#mforms {
-	padding-right: 5%;
-}
-
-.whiteText {
-	color: white;
-}
-
-.button {
 	background-color: white;
-	color: #339999;
-	padding: 5px;
-	border: none;
-	border-radius: 100%;
-	font-size: 15px;
-	font-family: roboto-bold;
-	font-weight: bold;
+	padding-top: 0px;
+	padding-bottom: 24px;
+	margin-left: 15%;
+	margin-right: 15%;
+	color: #212121;
+	align: center;
 }
 
 ul.tab {
@@ -62,8 +14,7 @@ ul.tab {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #333;
-	box-shadow: 10px 10px 50px lightblue;
+	background-color: #267272;
 }
 
 ul.tab li {
@@ -81,18 +32,14 @@ ul.tab li a {
 }
 
 ul.tab li a:hover {
-	background-color: #ddd;
+	background-color: #339999;
 }
 
 ul.tab li a:focus, .active {
-	background-color: #ccc;
+	background-color: #339999;
 }
 
 .tabcont {
 	display: none;
 	padding: 6px 12px;
-}
-
-.rowinput1 {
-	margin-left: 53px;
 }

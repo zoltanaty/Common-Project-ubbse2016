@@ -22,7 +22,7 @@ public class Login extends HttpServlet implements HttpSessionListener{
 			
 			view.forward(req, res);
 		} else {
-			RequestDispatcher view = req.getRequestDispatcher("success.jsp");
+			RequestDispatcher view = req.getRequestDispatcher("results.jsp");
 			
 			view.forward(req, res);
 		}
@@ -46,7 +46,7 @@ public class Login extends HttpServlet implements HttpSessionListener{
 		if (session.getAttribute("user") == null) {
 			System.out.println("New session created");			
 			session.setAttribute(visitCountKey, 0);
-			session.setMaxInactiveInterval(2 * 60);
+			session.setMaxInactiveInterval(60 * 60);
 		} else {
 			if (null != session.getAttribute(visitCountKey)) {
 				visitCount = (Integer) session.getAttribute(visitCountKey);
@@ -85,7 +85,10 @@ public class Login extends HttpServlet implements HttpSessionListener{
 			session.setAttribute("ok", ok);
 		}
 
-		RequestDispatcher view = req.getRequestDispatcher("success.jsp");
+		RequestDispatcher view;
+		
+		if(privilege == "admin") view = req.getRequestDispatcher("manage.jsp");
+		else view = req.getRequestDispatcher("results.jsp");
 
 		view.forward(req, res);
 	}

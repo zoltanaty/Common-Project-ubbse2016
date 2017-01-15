@@ -1,5 +1,5 @@
 <%@ page
-        import="com.halcyonmobile.model.User,com.halcyonmobile.model.Result,com.halcyonmobile.rest.UserService,com.halcyonmobile.rest.ResultService,java.util.List"
+        import="com.halcyonmobile.model.User,com.halcyonmobile.model.Result,com.halcyonmobile.model.Position,com.halcyonmobile.rest.PositionService,com.halcyonmobile.rest.UserService,com.halcyonmobile.rest.ResultService,java.util.List"
         language="java" contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1" %>
 <%
@@ -8,40 +8,71 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" href="success.css">
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <script type="text/javascript" src="javascript/canvasjs.min.js"></script>
-    <title>Results</title>
-</head>
+		<link rel="stylesheet" href="styles/style.css" type="text/css"/>
+		<script type="text/javascript" src="manage.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<script type="text/javascript" src="javascript/canvasjs.min.js"></script>
+		<title>Admin</title>
+	</head>
 
-<body>
-<div id="menu">
-    <ul class="topnav" id="myTopnav">
-        <li><a
-                href="logout.do">Log
-            out</a></li>
-        <li><a
-                href="contact.jsp">Contact</a></li>
-        <li><a
-                href="about.jsp">About</a></li>
-        <li><a
-                href="index.jsp">Home</a></li>
-    </ul>
-</div>
-<div id="main">
+	<body>
+	
+		<div id="manager">
+			<div id="tabs">
+				<ul class="tab">
+	<%
+					PositionService ps = new PositionService();
+					List<Position> positions = ps.findAll();
+					for(int i=0; i<positions.size(); i++) {
+	%>
+						<li><a href="results.jsp?position=<%= positions.get(i).getId() %>" class="tablinks"><%= positions.get(i).getName() %></a></li>
+	<%
+					}
+	%>
+					<li><a href="logout.do" class="tablinks">Logout</a></li>
+				</ul>
+			</div>
     <%
         Integer nrPerPage = 25;
-        Integer id = Integer.parseInt(request.getParameterValues("position")[0]);
+        Integer id;
+        try {
+        	id = Integer.parseInt(request.getParameterValues("position")[0]);
+        } catch(Exception e) {
+        	id = -1;
+        }
         Integer p;
         try{
         	p = Integer.parseInt(request.getParameterValues("p")[0]);
         } catch(Exception e) {
         	p = 1;
         }
+        
+        if(id==-1) {
+	%>
+				<h1>Please select a position</h1>
+				<form class="buttons" method="GET" action="results.do">
+				
+				<table align="center" border="0">
+				<tr><td>
+				<select name="position">
+	<%
+				for(int i=0; i<positions.size(); i++) {
+	%>
+				<option value="<%= positions.get(i).getId() %>"><%= positions.get(i).getName() %></option>
+	<%
+				}
+	%>
+				</select>
+				<input type="submit" value="Show results">
+				</td></tr></table>
+				</form>
+        <%
+        } else {
         UserService userService = new UserService();
         List<User> users = userService.findByPosition(id);
+        
     %>
-
+	<h1><%= ps.findById(id).getName() %></h1>
     <table class="list">
         <tr>
             <th>ID</th>
@@ -181,6 +212,7 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
             }
         %>
     </ul>
+    <% } %>
 </div>
 </body>
 </html>
