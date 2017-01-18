@@ -12,6 +12,7 @@ import com.halcyonmobile.techinterview.R;
 import com.halcyonmobile.techinterview.src.networking.connection.ConnectionImpl;
 import com.halcyonmobile.techinterview.src.networking.model.User;
 import com.halcyonmobile.techinterview.src.networking.model.dto.UserDTO;
+import com.halcyonmobile.techinterview.src.utils.ConnectionError;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -74,16 +75,18 @@ public class WelcomeActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-                        Intent intent = new Intent(WelcomeActivity.this, NoConnectionActivity.class);
-                        startActivity(intent);
+                        View parentLayout = findViewById(R.id.activity_welcome);
+                        ConnectionError conectionError = new ConnectionError();
+                        conectionError.noConnection(parentLayout);
                     }
                 }, userId);
             }
 
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
-                Intent intent = new Intent(WelcomeActivity.this, NoConnectionActivity.class);
-                startActivity(intent);
+                View parentLayout = findViewById(R.id.activity_welcome);
+                ConnectionError conectionError = new ConnectionError();
+                conectionError.noConnection(parentLayout);
             }
         }, user);
     }

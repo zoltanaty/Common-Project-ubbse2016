@@ -4,26 +4,61 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ArrayAdapter;
 
 import com.halcyonmobile.techinterview.R;
+import com.halcyonmobile.techinterview.src.networking.connection.ConnectionImpl;
+import com.halcyonmobile.techinterview.src.networking.model.Position;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SplashActivity extends Activity {
 
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
+    public static  ArrayAdapter<Position> adapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        int SPLASH_DISPLAY_LENGTH = 1000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mainIntent = new Intent(SplashActivity.this, CandidateInfoActivity.class);
-                // TODO CR: [Medium] Set flags for the Intent using .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK) for the same effect. [PPeter]
-                SplashActivity.this.startActivity(mainIntent);
-                SplashActivity.this.finish();
+                fillSpinner();
             }
         }, SPLASH_DISPLAY_LENGTH);
+    }
+    private void fillSpinner() {
+        ConnectionImpl connection = new ConnectionImpl();
+        connection.getPositionList(new Callback<List<Position>>() {
+
+            @Override
+            public void onResponse(Call<List<Position>> call, Response<List<Position>> response) {
+                List<Position> positionList = new ArrayList<Position>();
+
+                for (Position position : response.body()) {
+                    positionList.add(new Position(position.getId(), position.getName()));
+                }
+                Intent mainIntent = new Intent(SplashActivity.this, CandidateInfoActivity.class);
+                // TODO CR: [Medium] Set flags for the Intent using .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK) for the same effect. [PPeter]
+                //mainIntent.putExtra("positionList", (ArrayList<Position>) positionList);
+                SplashActivity.this.startActivity(mainIntent);
+                SplashActivity.this.finish();
+                adapter = new ArrayAdapter<>(SplashActivity.this, R.layout.spinner_row, positionList);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Position>> call, Throwable t) {
+                Intent intent = new Intent(SplashActivity.this, NoConnectionActivity.class);
+               startActivity(intent);
+            }
+        });
     }
 }

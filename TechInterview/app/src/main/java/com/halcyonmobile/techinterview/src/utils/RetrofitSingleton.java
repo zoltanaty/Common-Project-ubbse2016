@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitSingleton {
-    private static final String IPV4 = "192.168.1.109";
+    private static final String IPV4 = "192.168.100.21";
 
     //TODO CR: Consider moving this class to the networking package. [Peter]
     //TODO CR: We'd really like to test the app ever when you're not around, please move the server to a permanent online storage. [Peter]

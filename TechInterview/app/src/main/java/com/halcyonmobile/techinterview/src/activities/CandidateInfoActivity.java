@@ -20,10 +20,13 @@ import com.halcyonmobile.techinterview.src.utils.ValidatorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.halcyonmobile.techinterview.src.activities.SplashActivity.adapter;
 
 //TODO CR: Consider renaming the "activities' package to "ui" or something similar because it does (and should) not only contain Activity subclasses. [Peter]
 public class CandidateInfoActivity extends AppCompatActivity {
@@ -52,7 +55,7 @@ public class CandidateInfoActivity extends AppCompatActivity {
         fieldName.setHint("Candidate Name");
         fieldEmail.setHint("Candidate Email");
 
-        fillSpinner();
+        spinner.setAdapter(adapter);
         setUpListeners();
 
         btnDone.setOnClickListener(new View.OnClickListener() {
@@ -69,30 +72,6 @@ public class CandidateInfoActivity extends AppCompatActivity {
                 intent.putExtra("candidateEmail", fieldEmail.getText().toString());
                 intent.putExtra("selectedPositionId", selectedPositionId);
 
-                startActivity(intent);
-            }
-        });
-    }
-
-    private void fillSpinner() {
-        ConnectionImpl connection = new ConnectionImpl();
-        connection.getPositionList(new Callback<List<Position>>() {
-
-            @Override
-            public void onResponse(Call<List<Position>> call, Response<List<Position>> response) {
-                List<Position> positionList = new ArrayList<Position>();
-
-                for (Position position : response.body()) {
-                    positionList.add(new Position(position.getId(), position.getName()));
-                }
-
-                ArrayAdapter<Position> adapter = new ArrayAdapter<>(CandidateInfoActivity.this, R.layout.spinner_row, positionList);
-                spinner.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<Position>> call, Throwable t) {
-                Intent intent = new Intent(CandidateInfoActivity.this, NoConnectionActivity.class);
                 startActivity(intent);
             }
         });

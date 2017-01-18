@@ -22,6 +22,7 @@ import com.halcyonmobile.techinterview.src.networking.model.Answer;
 import com.halcyonmobile.techinterview.src.networking.model.Result;
 import com.halcyonmobile.techinterview.src.networking.model.dto.QuestionCardDTO;
 import com.halcyonmobile.techinterview.src.networking.model.dto.ResultDTO;
+import com.halcyonmobile.techinterview.src.utils.ConnectionError;
 import com.halcyonmobile.techinterview.src.utils.FragmentAdapter;
 import com.halcyonmobile.techinterview.src.utils.MyPageChangeListener;
 
@@ -58,8 +59,7 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionare);
         View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-        decorView.setSystemUiVisibility(uiOptions);
+        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION );
         String selectedPositionId = getIntent().getStringExtra("selectedPositionId");
         //TODO CR: The screen should not be displayed until all the data is downloaded. I see no reason why you shouldn't move this request to a previous activity. [Peter]
         getQuestionCardList(Integer.parseInt(selectedPositionId));
@@ -208,8 +208,9 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
 
             @Override
             public void onFailure(Call<List<QuestionCardDTO>> call, Throwable t) {
-                Intent intent = new Intent(QuestionnaireActivity.this, NoConnectionActivity.class);
-                startActivity(intent);
+                View parentLayout = findViewById(R.id.activity_questionare);
+                ConnectionError conectionError = new ConnectionError();
+                conectionError.noConnection(parentLayout);
             }
         }, selectedPositionId);
     }
@@ -233,8 +234,9 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
 
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
-                Intent intent = new Intent(QuestionnaireActivity.this, NoConnectionActivity.class);
-                startActivity(intent);
+                View parentLayout = findViewById(R.id.activity_questionare);
+                ConnectionError conectionError = new ConnectionError();
+                conectionError.noConnection(parentLayout);
             }
         }, resultDTO);
     }
@@ -248,13 +250,13 @@ public class QuestionnaireActivity extends FragmentActivity implements RadioBoxe
             switch (card.getQuestionType().getName()) {
                 case "checkbox": {
                     actualQuestion++;
-                    String temp = "";
+                    String full_answer = "";
                     for (int i = 0; i < card.getAnswers().size(); i++) {
                         if (card.getAnswers().get(i).getCorrect()) {
-                            temp = temp + card.getAnswers().get(i).getAnswer() + " -/- ";
+                            full_answer = full_answer + card.getAnswers().get(i).getAnswer() + " -/- ";
                         }
                     }
-                    correctAnswer.set(actualQuestion, temp);
+                    correctAnswer.set(actualQuestion, full_answer);
                     CheckboxesFragment frag = new CheckboxesFragment();
                     Bundle xBundle = new Bundle();
                     xBundle.putSerializable("data", card);

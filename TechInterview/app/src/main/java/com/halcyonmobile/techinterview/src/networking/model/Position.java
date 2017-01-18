@@ -13,6 +13,8 @@ public class Position implements Serializable {
     private Integer id;
     @SerializedName("name")
     private String name;
+    @SerializedName("nrQe")
+    private String nrQe;
 
     public Integer getId() {
         return id;
@@ -28,6 +30,13 @@ public class Position implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public String getNrQe() {
+        return nrQe;
+    }
+
+    public void setNrQe(String nrQe) {
+        this.nrQe = nrQe;
     }
 
     public Position(Integer id, String name){
