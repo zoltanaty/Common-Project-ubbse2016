@@ -28,7 +28,7 @@ public class AddPosition extends HttpServlet{
 		}
 		
 		String pos = req.getParameter("posname");
-		String nrQue = req.getParameter("nrQue");
+		int nrQue = Integer.parseInt(req.getParameter("nrQue"));
 
 		PositionService ps = new PositionService();
 		ps.addPosition(pos, nrQue);

@@ -17,7 +17,7 @@ public class Position {
 	private String name;
 	
 	@Column(name = "nrQue")
-	private String nrQue;
+	private int nrQue;
 
 	public Position() {
 		super();
@@ -39,11 +39,11 @@ public class Position {
 		this.name = name;
 	}
 	
-	public String getnrQue() {
+	public int getnrQue() {
 		return nrQue;
 	}
 
-	public void setnrQue(String nrQue) {
+	public void setnrQue(int nrQue) {
 		this.nrQue = nrQue;
 	}
 

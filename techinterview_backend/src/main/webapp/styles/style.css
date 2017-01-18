@@ -377,3 +377,8 @@ ul.pagination li.active a {
   }
 }
 
+tr.noResult td {
+	background-color: #bfbfbf;
+	cursor: not-allowed;
+	color: white;
+}

@@ -49,7 +49,7 @@ public class PositionService {
 		return query.setParameter("name", name).getSingleResult().getId();
 	}
 
-	public void addPosition(String pos, String nrQue) {
+	public void addPosition(String pos, int nrQue) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		
 		Position p = new Position();

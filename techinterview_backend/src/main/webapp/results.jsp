@@ -121,12 +121,11 @@
 								minutes = duration / 60;
 								seconds = duration % 60;
 					%>
-					<tr
-						onclick="document.location='#popup<%=users.get(i).getId()%>';return false;">
+					<tr <%if (date!="") { %>onclick="document.location='#popup<%=users.get(i).getId()%>';return false;"<%} else { %>class="noResult"<%} %>>
 						<td><%=users.get(i).getId()%></td>
 						<td><%=users.get(i).getName()%></td>
-						<td><%=date%></td>
-						<td><%=minutes + " m " + seconds + " s"%></td>
+						<td><% if (date!="") { %> <%=date%> <% } else { %>The interview is not over<% } %></td>
+						<td><% if (date!="") { %> <%=minutes + " m " + seconds + " s"%> <% } else { %>-<% } %></td>
 					</tr>
 					<%
 						}
@@ -149,8 +148,8 @@
 							<table>
 								<thead>
 									<tr>
-										<th>#</th>
-										<th>Question</th>
+										<th width="16">#</th>
+										<th width="40%">Question</th>
 										<th>Answer</th>
 									</tr>
 								</thead>

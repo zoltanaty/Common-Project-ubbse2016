@@ -9,7 +9,7 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
 <html>
 	<head>
 		<link rel="stylesheet" href="styles/style.css" type="text/css"/>
-		<script type="text/javascript" src="manage.js"></script>
+		<script type="text/javascript" src="javascript/manage.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<script src="javascript/isFilled.js" type="text/javascript"></script>
 		<title>Admin</title>
