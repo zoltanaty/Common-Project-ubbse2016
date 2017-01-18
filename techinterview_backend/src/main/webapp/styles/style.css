@@ -278,10 +278,29 @@ table.list tr:hover {
 
 ul.pagination {
   list-style-type: none;
+  width: 60%;
+  margin: auto;
+  padding: 4px;
 }
 
-ul.pagination li {
+ul.pagination li a {
+	text-decoration: none;
 	display: inline;
+	width: 18px;
+	height: 18px;
+	margin: 4px 8px 4px 0px;
+	color: #339999;
+	background-color: white;
+	float: left;
+	cursor:pointer;
+	border: 1px solid #339999;
+	text-align: center;
+}
+
+ul.pagination li.active a {
+	display: inline;
+	color: #bfbfbf;
+	border: 1px solid #bfbfbf;
 }
 
 .wrong {
@@ -357,3 +376,4 @@ ul.pagination li {
     width: 80%;
   }
 }
+
