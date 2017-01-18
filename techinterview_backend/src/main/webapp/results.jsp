@@ -13,7 +13,8 @@
 	<script type="text/javascript" src="manage.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script type="text/javascript" src="javascript/canvasjs.min.js"></script>
-	<title>Admin</title>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>Manager Dashboard</title>
 	</head>
 	
 	<body>

@@ -13,7 +13,8 @@ if ((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttribu
 		<link rel="stylesheet" href="styles/style.css" type="text/css"/>
 		<script src="javascript/vaidator.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>WebAdmin</title>
+		<link rel="shortcut icon" href="favicon.ico" />
+		<title>WebAdmin - Login</title>
 	</head>
 	
 	<body>
