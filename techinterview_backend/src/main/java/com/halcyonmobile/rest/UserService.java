@@ -47,6 +47,18 @@ public class UserService {
 		List<User> userList = (List<User>) query.getResultList();
 		return userList;
 	}
+	
+	public List<User> findByPositionAndByKeyword(Integer id_position, String find) {
+
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		Query query = em.createQuery("FROM User u WHERE u.id_position = :id_position AND u.name LIKE :find");
+		query.setParameter("id_position", id_position);
+		query.setParameter("find", "%"+find+"%");
+
+		@SuppressWarnings("unchecked")
+		List<User> userList = (List<User>) query.getResultList();
+		return userList;
+	}
 
 	@POST
 	@Path("/")

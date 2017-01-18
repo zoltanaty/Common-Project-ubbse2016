@@ -1,7 +1,7 @@
 <%@ page 
 	import="com.halcyonmobile.rest.OwnersService, com.halcyonmobile.model.Owners, com.halcyonmobile.rest.UserService, com.halcyonmobile.model.User, com.halcyonmobile.rest.PositionService, com.halcyonmobile.model.Position, com.halcyonmobile.rest.QuestionTypeService, com.halcyonmobile.model.QuestionType, com.halcyonmobile.rest.QuestionService, com.halcyonmobile.model.Question, java.util.List"
-	language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttribute("ok"))) response.sendRedirect("index.jsp");
  %>
@@ -10,7 +10,7 @@ if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttri
 	<head>
 		<link rel="stylesheet" href="styles/style.css" type="text/css"/>
 		<script type="text/javascript" src="manage.js"></script>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<script src="javascript/isFilled.js" type="text/javascript"></script>
 		<title>Admin</title>
 	</head>

@@ -1,5 +1,5 @@
-<%@ page import="java.io.*, java.util.*" language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.io.*, java.util.*" language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	
 <%
 if ((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttribute("ok")){
@@ -12,7 +12,7 @@ if ((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttribu
 	<head>
 		<link rel="stylesheet" href="styles/style.css" type="text/css"/>
 		<script src="javascript/vaidator.js"></script>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>WebAdmin</title>
 	</head>
 	
