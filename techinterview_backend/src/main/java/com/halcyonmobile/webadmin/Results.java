@@ -10,7 +10,7 @@ public class Results extends HttpServlet{
 	private static final long serialVersionUID = 11L;
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		HttpSession session = req.getSession();
+HttpSession session = req.getSession();
 		
 		if(session.isNew()) {
 			RequestDispatcher view = req.getRequestDispatcher("index.jsp");

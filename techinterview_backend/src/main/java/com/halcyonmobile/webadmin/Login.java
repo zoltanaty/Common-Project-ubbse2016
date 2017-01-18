@@ -15,22 +15,26 @@ public class Login extends HttpServlet implements HttpSessionListener{
 	private static final long serialVersionUID = 13L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(true);
 		
 		if(session.isNew()) {
 			RequestDispatcher view = req.getRequestDispatcher("index.jsp");
 			
 			view.forward(req, res);
 		} else {
-			RequestDispatcher view = req.getRequestDispatcher("success.jsp");
+			RequestDispatcher view = req.getRequestDispatcher("results.jsp");
 			
 			view.forward(req, res);
 		}
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		String user = req.getParameter("user");
-		String pass = req.getParameter("pass");
+		String[] userName = req.getParameterValues("userName");
+		String[] passs = req.getParameterValues("password");
+		String user = userName[userName.length-1];
+		String pass = passs[passs.length-1];
+		System.out.println(user);
+		System.out.println(pass);
 		String privilege = "";
 		boolean ok = false;
 		HttpSession session = req.getSession(true);
@@ -42,6 +46,7 @@ public class Login extends HttpServlet implements HttpSessionListener{
 		if (session.getAttribute("user") == null) {
 			System.out.println("New session created");			
 			session.setAttribute(visitCountKey, 0);
+			session.setMaxInactiveInterval(60 * 60);
 		} else {
 			if (null != session.getAttribute(visitCountKey)) {
 				visitCount = (Integer) session.getAttribute(visitCountKey);
@@ -80,7 +85,10 @@ public class Login extends HttpServlet implements HttpSessionListener{
 			session.setAttribute("ok", ok);
 		}
 
-		RequestDispatcher view = req.getRequestDispatcher("success.jsp");
+		RequestDispatcher view;
+		
+		if(privilege == "admin") view = req.getRequestDispatcher("manage.jsp");
+		else view = req.getRequestDispatcher("results.jsp");
 
 		view.forward(req, res);
 	}

@@ -15,6 +15,9 @@ public class Position {
 	
 	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "nrQue")
+	private int nrQue;
 
 	public Position() {
 		super();
@@ -35,9 +38,17 @@ public class Position {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public int getnrQue() {
+		return nrQue;
+	}
+
+	public void setnrQue(int nrQue) {
+		this.nrQue = nrQue;
+	}
 
 	@Override
 	public String toString() {
-		return "Position [id=" + id + ", name=" + name + "]";
+		return "Position [id=" + id + ", name=" + name + "]" + ", nrQue=" + nrQue + "]";
 	}
 }

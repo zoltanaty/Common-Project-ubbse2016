@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.halcyonmobile.model.Answer;
+import com.halcyonmobile.model.Position;
 import com.halcyonmobile.model.Question;
 import com.halcyonmobile.model.QuestionType;
 import com.halcyonmobile.model.dto.QuestionCardDTO;
@@ -34,11 +35,11 @@ public class QuestionCardService {
 		long seed = System.nanoTime();
 		Collections.shuffle(questionList, new Random(seed));
 		
-		int imax;
-	    if(questionList.size()<40){
+		PositionService positionService = new PositionService();
+		Position position = positionService.findById(idPosition);
+		int imax = position.getnrQue();
+	    if(questionList.size()<imax){
 	    	imax = questionList.size();
-	    }else{
-	    	imax = 40;
 	    }
 	    
 	    for(int i = 0; i< imax;i++){

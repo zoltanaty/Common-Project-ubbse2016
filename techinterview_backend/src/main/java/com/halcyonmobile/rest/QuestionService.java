@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -43,4 +44,41 @@ public class QuestionService {
 	    return questionList;
 	}
 
+	public int insertQuestion(String name, int type, int pos) {
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		int id = 0;
+		
+		Question q = new Question();
+		
+		q.setQuestion(name);
+		q.setId_questiontype(type);
+		q.setId_position(pos);
+		
+		em.getTransaction().begin();
+		em.persist(q);
+		
+		id = findIdByQuestion(name);
+		em.getTransaction().commit();
+		
+		return id;
+	}
+	
+	public int findIdByQuestion(String question) {
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		
+		TypedQuery<Question> query = em.createQuery("SELECT q FROM Question q WHERE q.question = :question", Question.class);
+		
+		return query.setParameter("question", question).getSingleResult().getId();
+	}
+	
+	public void deleteQuestion(String question) {
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		
+		em.getTransaction().begin();
+		Query query = em.createQuery("DELETE FROM Question WHERE question = :question");
+		query.setParameter("question", question);
+		
+		query.executeUpdate();
+		em.getTransaction().commit();
+	}
 }

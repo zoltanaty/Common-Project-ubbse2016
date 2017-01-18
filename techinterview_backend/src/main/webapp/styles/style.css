@@ -1,0 +1,384 @@
+body {
+	font-family: 'Roboto';
+	color: white;
+	background-color: #339999;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+#login {
+	width: 360px;
+	position: relative;
+	margin: auto;
+	margin-top: calc(15%);
+	background-color: white;
+	color: #212121;
+	padding-top: 24px;
+}
+
+h1 {
+	margin-top: 0px;
+	margin-left: 16px;
+	font-size: 20px;
+	text-align: left;
+}
+
+#login form {
+	margin-top: 24px;
+}
+
+input[type="checkbox"] {
+    display:none;
+}
+
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:24px;
+    height:24px;
+    vertical-align:middle;
+    margin: 5px;
+    background:url("images/empty_checkbox.png") left top no-repeat;
+    cursor:pointer;
+}
+
+input[type="checkbox"]:checked + label span {
+    background:url("images/filled_checkbox.png") left top no-repeat;
+}
+
+input[type="radio"] {
+    display:none;
+}
+
+input[type="radio"] + label span {
+    display:inline-block;
+    width:24px;
+    height:24px;
+    vertical-align:middle;
+    margin: 5px;
+    background:url("images/empty_radio.png") left top no-repeat;
+    cursor:pointer;
+}
+
+input[type="radio"]:checked + label span {
+    background:url("images/filled_radio.png") left top no-repeat;
+}
+
+input[type="text"] {
+	width: 272px;
+	color: #212121;
+	background-color: white;
+	border: 0px;
+	border-bottom: 1px solid #c7c7c7;
+	margin: auto auto auto 20px;
+	font-size: 16px;
+	margin-top: 14px;
+}
+
+input[type="password"] {
+	width: 272px;
+	color: #212121;
+	background-color: white;
+	border: 0px;
+	border-bottom: 1px solid #c7c7c7;
+	margin: auto auto auto 20px;
+	font-size: 16px;
+	margin-top: 14px;
+}
+
+input[type="text"]:focus {
+	border: 0px;
+	border-bottom: 1px solid #339999;
+	outline: none;
+} 
+
+input[type="password"]:focus {
+	border: 0px;
+	border-bottom: 1px solid #339999;
+	outline: none;
+}
+
+select {
+	margin-top: 14px;
+	width: 272px;
+	margin: auto auto auto 20px;
+	background-color:white;
+	border: 0px;
+	color: #212121;
+	font-size: 16px;
+	border-bottom: 1px solid #c7c7c7;
+}
+
+select:focus {
+	border: 0px;
+	outline: none;
+	border-bottom: 1px solid #339999;
+}
+
+button:focus {
+	outline: none;
+}
+
+button:disabled {
+	color: #bfbfbf;
+}
+
+button {
+	width: 75px;
+	height: 35px;
+	margin: 26px 16px 16px 269px;
+	color: #339999;
+	background-color: white;
+	float: left;
+	border: 0px;
+	cursor:pointer;
+}
+
+.input {
+	height: 48px;
+	margin-left: 4px;
+}
+
+.personIcon {
+	width: 24px;
+	height: 24px;
+	background-image: url("images/ic_person.png");
+	margin: 12px 12px 12px 12px;
+	float: left;
+}
+
+.passwordIcon {
+	width: 24px;
+	height: 24px;
+	background-image: url("images/ic_password.png");
+	margin: 12px 12px 12px 12px;
+	float: left;
+}
+
+.clear {
+	clear: both;
+}
+
+.wrongUsername {
+	margin-left: 70px;
+	margin-top: 4px;
+	color: #fb5250;
+	font-size: 12px;
+	display: none;
+}
+
+.wrongPassword {
+	margin-left: 70px;
+	margin-top: 4px;
+	color: #fb5250;
+	font-size: 12px;
+	display: none;
+}
+
+
+#manage {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 24px;
+	margin-left: 15%;
+	margin-right: 15%;
+	color: #212121;
+	min-height: 600px;
+	width: 70%;
+}
+
+#manager {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 24px;
+	margin-left: 15%;
+	margin-right: 15%;
+	color: #212121;
+	min-height: 600px;
+	width: 70%;
+}
+
+ul.tab {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #267272;
+}
+
+ul.tab li {
+	float: left;
+}
+
+ul.tab li a {
+	display: inline-block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	transition: 2s;
+	font-size: 17px;
+}
+
+ul.tab li a:hover {
+	background-color: #339999;
+}
+
+ul.tab li a:focus, .active {
+	background-color: #339999;
+}
+
+.tabcont {
+	display: none;
+	padding: 6px 12px;
+}
+
+.popup table {
+	width: 80%;
+	margin: 10px auto 20px auto;
+}
+
+.popup table th {
+	background-color: #267272;
+	color: #ffffff;
+	cursor: default;
+}
+
+table.list {
+	width: 80%;
+	margin: 10px auto 20px auto;
+}
+
+table.list th {
+	background-color: #267272;
+	color: #ffffff;
+	cursor: default;
+}
+
+table.list {
+	width: 60%;
+	margin: auto;
+}
+
+table.list tr:nth-child(even) {
+	background-color: #339999;
+	color: white;
+}
+
+table.list tr:nth-child(odd) {
+	background-color: #267272;
+	color: white;
+}
+
+table.list tr:hover {
+	background-color: white;
+	color: #212121;
+	cursor: pointer;
+}
+
+ul.pagination {
+  list-style-type: none;
+  width: 60%;
+  margin: auto;
+  padding: 4px;
+}
+
+ul.pagination li a {
+	text-decoration: none;
+	display: inline;
+	width: 18px;
+	height: 18px;
+	margin: 4px 8px 4px 0px;
+	color: #339999;
+	background-color: white;
+	float: left;
+	cursor:pointer;
+	border: 1px solid #339999;
+	text-align: center;
+}
+
+ul.pagination li.active a {
+	display: inline;
+	color: #bfbfbf;
+	border: 1px solid #bfbfbf;
+}
+
+.wrong {
+	background-color: #f44336; /* Red */
+    color: white;
+}
+
+.correct {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 80%;
+  position: relative;
+  transition: all 1s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 50ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #339999;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+.content {
+	height: 400px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+@media screen and (max-width: 85%){
+  .box{
+    width: 80%;
+  }
+  .popup{
+    width: 80%;
+  }
+}
+
+tr.noResult td {
+	background-color: #bfbfbf;
+	cursor: not-allowed;
+	color: white;
+}
