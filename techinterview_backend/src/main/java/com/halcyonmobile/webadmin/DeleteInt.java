@@ -21,10 +21,8 @@ public class DeleteInt extends HttpServlet{
 			RequestDispatcher view = req.getRequestDispatcher("index.jsp");
 			
 			view.forward(req, res);
-		} else {
-			RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
-			
-			view.forward(req, res);
+		
+			return;
 		}
 		
 		String name = req.getParameter("IntList");

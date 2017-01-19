@@ -22,10 +22,8 @@ public class DeleteAM extends HttpServlet {
 			RequestDispatcher view = req.getRequestDispatcher("index.jsp");
 			
 			view.forward(req, res);
-		} else {
-			RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
-			
-			view.forward(req, res);
+		
+			return;
 		}
 		
 		String username = req.getParameter("AMList");
