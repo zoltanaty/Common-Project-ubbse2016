@@ -2,8 +2,6 @@ package com.halcyonmobile.techinterview.src.networking.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.UUID;
-
 /**
  * Created by zmate on 1/7/2017.
  */
@@ -37,8 +35,6 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-
-    //TODO CR: Remove unused methods (applies to all unused getters in your model classes). [Peter]
 
     public String getEmail() {
         return email;

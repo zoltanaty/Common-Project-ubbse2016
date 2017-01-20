@@ -9,11 +9,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:drawableTop="@drawable/placeholder_congratulations"
-        android:text="@string/congratulation"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/button_text_size"
-        />
+        android:text="@string/congratulation"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
 
 </FrameLayout>

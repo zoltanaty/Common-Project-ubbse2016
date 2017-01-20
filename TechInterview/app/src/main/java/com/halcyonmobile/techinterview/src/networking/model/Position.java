@@ -31,6 +31,7 @@ public class Position implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getNrQe() {
         return nrQe;
     }
@@ -39,13 +40,13 @@ public class Position implements Serializable {
         this.nrQe = nrQe;
     }
 
-    public Position(Integer id, String name){
+    public Position(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.name;
     }
 }

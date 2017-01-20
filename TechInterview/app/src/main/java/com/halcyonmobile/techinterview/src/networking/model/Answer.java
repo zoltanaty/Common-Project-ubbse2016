@@ -11,7 +11,6 @@ import java.io.Serializable;
 public class Answer implements Serializable {
     @SerializedName("id")
     private int id;
-    //TODO CR: Don't mix up naming conventions - if you decided to use camelCase for variables, be consistent (applies to all model classes). [Peter]
     @SerializedName("id_question")
     private int id_question;
     @SerializedName("answer")

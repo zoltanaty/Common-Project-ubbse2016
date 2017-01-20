@@ -22,65 +22,63 @@ import retrofit2.http.Path;
  */
 
 public class ConnectionImpl implements IConnection {
-
-    //TODO CR: You could merge some of these methods (getPositions() with getPositionsList(), getQuestionCards() with getQuestionCardList(), etc. [Peter]
     @Override
     public Call<List<Position>> getPositions() {
         Retrofit retrofit = RetrofitSingleton.getInstance();
-        IConnection service = retrofit.create(IConnection.class);
+        IConnection service = retrofit.create( IConnection.class );
         return service.getPositions();
     }
 
     public void getPositionList(Callback<List<Position>> callback) {
         Call<List<Position>> call = getPositions();
-        call.enqueue(callback);
+        call.enqueue( callback );
     }
 
     @Override
     public Call<List<QuestionCardDTO>> getQuestionCards(@Path("id_position") Integer idPosition) {
         Retrofit retrofit = RetrofitSingleton.getInstance();
-        IConnection service = retrofit.create(IConnection.class);
-        return service.getQuestionCards(idPosition);
+        IConnection service = retrofit.create( IConnection.class );
+        return service.getQuestionCards( idPosition );
     }
 
     public void getQuestionCardList(Callback<List<QuestionCardDTO>> callback, Integer idposition) {
-        Call<List<QuestionCardDTO>> call = getQuestionCards(idposition);
-        call.enqueue(callback);
+        Call<List<QuestionCardDTO>> call = getQuestionCards( idposition );
+        call.enqueue( callback );
     }
 
     @Override
     public Call<Integer> register(@Header("Content-Type") String content_type, @Body UserDTO user) {
         Retrofit retrofit = RetrofitSingleton.getInstance();
-        IConnection service = retrofit.create(IConnection.class);
-        return service.register(content_type, user);
+        IConnection service = retrofit.create( IConnection.class );
+        return service.register( content_type, user );
     }
 
     public void registerUser(Callback<Integer> callback, UserDTO user) {
-        Call<Integer> call = register("application/json", user);
-        call.enqueue(callback);
+        Call<Integer> call = register( "application/json", user );
+        call.enqueue( callback );
     }
 
     @Override
     public Call<User> getUser(@Path("id") Integer id) {
         Retrofit retrofit = RetrofitSingleton.getInstance();
-        IConnection service = retrofit.create(IConnection.class);
-        return service.getUser(id);
+        IConnection service = retrofit.create( IConnection.class );
+        return service.getUser( id );
     }
 
     public void getRegisteredUser(Callback<User> callback, Integer id) {
-        Call<User> call = getUser(id);
-        call.enqueue(callback);
+        Call<User> call = getUser( id );
+        call.enqueue( callback );
     }
 
     @Override
     public Call<Boolean> sendResult(@Header("Content-Type") String content_type, @Body ResultDTO resultDTO) {
         Retrofit retrofit = RetrofitSingleton.getInstance();
-        IConnection service = retrofit.create(IConnection.class);
-        return service.sendResult(content_type, resultDTO);
+        IConnection service = retrofit.create( IConnection.class );
+        return service.sendResult( content_type, resultDTO );
     }
 
     public void sendUserResult(Callback<Boolean> callback, ResultDTO resultDTO) {
-        Call<Boolean> call = sendResult("application/json", resultDTO);
-        call.enqueue(callback);
+        Call<Boolean> call = sendResult( "application/json", resultDTO );
+        call.enqueue( callback );
     }
 }
