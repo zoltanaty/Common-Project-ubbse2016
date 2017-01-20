@@ -5,6 +5,7 @@
 <%
     if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttribute("ok")))
         response.sendRedirect("index.jsp");
+    else if(session.getAttribute("privilege").equals("admin")) response.sendRedirect("manage.jsp");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

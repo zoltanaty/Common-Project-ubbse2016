@@ -71,14 +71,17 @@ public class QuestionService {
 		return query.setParameter("question", question).getSingleResult().getId();
 	}
 	
-	public void deleteQuestion(String question) {
+	public Question findById(Integer id) {
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		Question question = em.find(Question.class, id);
+		return question;
+	}
+	
+	public void deleteQuestion(Question question) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		
 		em.getTransaction().begin();
-		Query query = em.createQuery("DELETE FROM Question WHERE question = :question");
-		query.setParameter("question", question);
-		
-		query.executeUpdate();
+		em.remove(question);
 		em.getTransaction().commit();
 	}
 }

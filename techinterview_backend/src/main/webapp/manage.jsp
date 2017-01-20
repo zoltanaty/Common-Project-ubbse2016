@@ -5,6 +5,7 @@
 <%
     if (!((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttribute("ok")))
         response.sendRedirect("index.jsp");
+    else if(session.getAttribute("privilege").equals("manager")) response.sendRedirect("results.jsp");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -102,7 +103,7 @@
 
                                     for (int i = 0; i < usersList.size(); i++) {
                                 %>
-                                <option value="<%=usersList.get(i).getName() %>"><%=usersList.get(i).getName() %>
+                                <option value="<%= usersList.get(i).getId() %>"><%=usersList.get(i).getName() %>
                                 </option>
                                 <%
                                     }
@@ -199,7 +200,7 @@
 
                                     for (int i = 0; i < questionList.size(); i++) {
                                 %>
-                                <option value="<%=questionList.get(i).getQuestion() %>"><%=questionList.get(i).getQuestion() %>
+                                <option value="<%=questionList.get(i).getId() %>"><%=questionList.get(i).getQuestion() %>
                                 </option>
                                 <%
                                     }
@@ -246,7 +247,7 @@
 
                                     for (int i = 0; i < posList.size(); i++) {
                                 %>
-                                <option value="<%=posList.get(i).getName() %>"><%=posList.get(i).getName() %>
+                                <option value="<%=posList.get(i).getId() %>"><%=posList.get(i).getName() %>
                                 </option>
                                 <%
                                     }

@@ -36,9 +36,9 @@ public class PositionService {
 	public Position findById(@PathParam("id") Integer id) {
 		
 		EntityManager em = Entitymanager.getEntityManagerInstance();
-		Position person = em.find(Position.class, id);
+		Position position = em.find(Position.class, id);
 
-		return person;
+		return position;
 	}
 	
 	public int findByName(String name) {
@@ -61,14 +61,11 @@ public class PositionService {
 		em.getTransaction().commit();
 	}
 	
-	public void deletePosition(String pos) {
+	public void deletePosition(Position position) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		
 		em.getTransaction().begin();
-		Query query = em.createQuery("DELETE FROM Position p WHERE p.name = :pos");
-		query.setParameter("pos", pos);
-		
-		query.executeUpdate();
+		em.remove(position);
 		em.getTransaction().commit();
 	}
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.halcyonmobile.model.User;
 import com.halcyonmobile.rest.UserService;
 
 public class DeleteInt extends HttpServlet{
@@ -25,10 +26,11 @@ public class DeleteInt extends HttpServlet{
 			return;
 		}
 		
-		String name = req.getParameter("IntList");
+		int id = Integer.parseInt(req.getParameter("IntList"));
 		
 		UserService us = new UserService();
-		us.deleteUser(name);
+		User user = us.findById(id);
+		us.deleteUser(user);
 		
 		RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
 

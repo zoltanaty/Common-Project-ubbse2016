@@ -84,14 +84,10 @@ public class UserService {
 		return registeredUserList.get(0).getId();
 	}
 	
-	public void deleteUser(String name) {
+	public void deleteUser(User user) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
-		
 		em.getTransaction().begin();
-		Query query = em.createQuery("DELETE FROM User WHERE name = :name");
-		query.setParameter("name", name);
-		
-		query.executeUpdate();
+		em.remove(user);
 		em.getTransaction().commit();
 	}
 }

@@ -24,15 +24,16 @@ public class OwnersService {
 		return (ArrayList<Owners>) ownersList;
 	}
 	
-
-	public void deleteOwner(String username) {
+	public Owners findById(String username) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
-		
+		Owners owner = em.find(Owners.class, username);
+		return owner;
+	}
+
+	public void deleteOwner(Owners owner) {
+		EntityManager em = Entitymanager.getEntityManagerInstance();
 		em.getTransaction().begin();
-		Query query = em.createQuery("DELETE FROM Owners WHERE username = :username");
-		query.setParameter("username", username);
-		
-		query.executeUpdate();
+		em.remove(owner);
 		em.getTransaction().commit();
 	}
 	

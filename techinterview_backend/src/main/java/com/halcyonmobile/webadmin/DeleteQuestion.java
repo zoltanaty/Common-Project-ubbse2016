@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.halcyonmobile.model.Question;
 import com.halcyonmobile.rest.QuestionService;
 
 public class DeleteQuestion extends HttpServlet {
@@ -25,10 +26,11 @@ public class DeleteQuestion extends HttpServlet {
 			return;
 		}
 		
-		String que = req.getParameter("que");
+		int que = Integer.parseInt(req.getParameter("que"));
 		
 		QuestionService sq = new QuestionService();
-		sq.deleteQuestion(que);
+		Question question = sq.findById(que);
+		sq.deleteQuestion(question);
 		
 		RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
 

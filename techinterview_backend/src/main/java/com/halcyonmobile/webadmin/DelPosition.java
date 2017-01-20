@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.halcyonmobile.model.Position;
 import com.halcyonmobile.rest.PositionService;
 
 public class DelPosition extends HttpServlet{
@@ -25,10 +26,11 @@ public class DelPosition extends HttpServlet{
 			return;
 		}
 		
-		String pos = req.getParameter("posname");
+		int pos = Integer.parseInt(req.getParameter("posname"));
 		
 		PositionService ps = new PositionService();
-		ps.deletePosition(pos);
+		Position position = ps.findById(pos);
+		ps.deletePosition(position);
 		
 		RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
 

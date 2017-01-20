@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%
 if ((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttribute("ok")){
-	if(session.getAttribute("privilege") == "admin") response.sendRedirect("manage.jsp");
+	if(session.getAttribute("privilege").equals("admin")) response.sendRedirect("manage.jsp");
 	else response.sendRedirect("results.jsp");
 }
 %>

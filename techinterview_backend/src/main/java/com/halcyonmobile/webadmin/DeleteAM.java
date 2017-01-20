@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.halcyonmobile.model.Owners;
 import com.halcyonmobile.rest.OwnersService;
 
 public class DeleteAM extends HttpServlet {
@@ -29,7 +30,8 @@ public class DeleteAM extends HttpServlet {
 		String username = req.getParameter("AMList");
 		
 		OwnersService os = new OwnersService();
-		os.deleteOwner(username);
+		Owners owner = os.findById(username);
+		os.deleteOwner(owner);
 		
 		RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
 
