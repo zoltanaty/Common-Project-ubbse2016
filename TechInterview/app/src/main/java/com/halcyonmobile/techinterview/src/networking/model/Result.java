@@ -2,9 +2,6 @@ package com.halcyonmobile.techinterview.src.networking.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Calendar;
-import java.util.Date;
-
 /**
  * Created by zmate on 1/7/2017.
  */
@@ -26,9 +23,10 @@ public class Result {
     @SerializedName("isCorrect")
     private Boolean isCorrect;
 
-    public void Result(){
+    public void Result() {
         //do nothing
     }
+
     public int getId() {
         return id;
     }

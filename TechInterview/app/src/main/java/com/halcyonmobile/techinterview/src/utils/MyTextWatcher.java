@@ -7,11 +7,9 @@ import android.text.TextWatcher;
  * Created by zmate on 1/8/2017.
  */
 
-//TODO CR: A more meaningful name would be a good idea, like SimpleTextWatcher or DefaultTextWatcher. [Peter]
-public abstract class MyTextWatcher implements TextWatcher{
+public abstract class MyTextWatcher implements TextWatcher {
 
-    public MyTextWatcher(){
-        //TODO CR: Useless constructor (no need to override something that only calls super()). [Peter]
+    public MyTextWatcher() {
         super();
     }
 

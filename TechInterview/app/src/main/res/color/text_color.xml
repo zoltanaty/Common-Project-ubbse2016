@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- TODO CR: Selectors are drawables, not colors. [Peter] -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- disabled state -->
-    <item android:state_enabled="false" android:color="#bfbfbf" />
-    <item android:state_enabled="true" android:color="#339999" />
+    <item android:color="#bfbfbf" android:state_enabled="false" />
+    <item android:color="#339999" android:state_enabled="true" />
 </selector>

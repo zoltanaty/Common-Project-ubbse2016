@@ -1,10 +1,8 @@
 package com.halcyonmobile.techinterview.src.activities;
 
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -21,49 +19,46 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.halcyonmobile.techinterview.src.activities.SplashActivity.adapter;
 
 public class NoConnectionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_no_connection);
-        TextView textView = (TextView) findViewById(R.id.noConnection);
-        textView.setOnClickListener(new View.OnClickListener() {
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_no_connection );
+        TextView textView = (TextView) findViewById( R.id.noConnection );
+        textView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Intent intent = new Intent(NoConnectionActivity.this, CandidateInfoActivity.class);
-                //startActivity(intent);
                 fillSpinner();
             }
-        });
+        } );
     }
+
     private void fillSpinner() {
         ConnectionImpl connection = new ConnectionImpl();
-        connection.getPositionList(new Callback<List<Position>>() {
+        connection.getPositionList( new Callback<List<Position>>() {
 
             @Override
             public void onResponse(Call<List<Position>> call, Response<List<Position>> response) {
                 List<Position> positionList = new ArrayList<Position>();
 
                 for (Position position : response.body()) {
-                    positionList.add(new Position(position.getId(), position.getName()));
+                    positionList.add( new Position( position.getId(), position.getName() ) );
                 }
-                Intent mainIntent = new Intent(NoConnectionActivity.this, CandidateInfoActivity.class);
-                // TODO CR: [Medium] Set flags for the Intent using .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK) for the same effect. [PPeter]
-                NoConnectionActivity.this.startActivity(mainIntent);
+                Intent mainIntent = new Intent( NoConnectionActivity.this, CandidateInfoActivity.class );
+                NoConnectionActivity.this.startActivity( mainIntent );
                 NoConnectionActivity.this.finish();
-                adapter = new ArrayAdapter<>(NoConnectionActivity.this, R.layout.spinner_row, positionList);
+                SplashActivity.setAdapter( new ArrayAdapter<>( NoConnectionActivity.this, R.layout.spinner_row, positionList ) );
 
             }
 
             @Override
             public void onFailure(Call<List<Position>> call, Throwable t) {
-                View parentLayout = findViewById(R.id.activity_no_connection);
+                View parentLayout = findViewById( R.id.activity_no_connection );
                 ConnectionError conectionError = new ConnectionError();
-                conectionError.noConnection(parentLayout);
+                conectionError.noConnection( parentLayout );
             }
-        });
+        } );
     }
 }

@@ -42,7 +42,6 @@
                 android:id="@+id/editText_answer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="350dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
                 android:layout_marginTop="104dp"
@@ -50,10 +49,10 @@
                 android:fontFamily="sans-serif"
                 android:gravity="top|left"
                 android:inputType="textCapSentences|textMultiLine"
+                android:minHeight="350dp"
                 android:scrollbars="vertical"
                 android:textColor="@color/answerTextColor"
-                android:textSize="20sp"
-                >
+                android:textSize="20sp">
 
             </EditText>
 

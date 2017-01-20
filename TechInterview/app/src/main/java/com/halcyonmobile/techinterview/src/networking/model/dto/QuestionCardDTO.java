@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Created by zmate on 12/12/2016.
  */
-// TODO CR: [Medium] For serialization on Android implement the parcelable interface, it has better performance [Gelli]
 public class QuestionCardDTO implements Serializable {
 
     @SerializedName("question")
@@ -22,8 +21,7 @@ public class QuestionCardDTO implements Serializable {
     @SerializedName("questionType")
     private QuestionType questionType;
 
-    public QuestionCardDTO(){
-        System.out.println("KOCSOG KONSTRUKTOR MEGHIVVA");
+    public QuestionCardDTO() {
         answers = new ArrayList<>();
     }
 

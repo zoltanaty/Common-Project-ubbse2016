@@ -15,7 +15,7 @@ public class ResultDTO {
     @SerializedName("resultList")
     private List<Result> resultList;
 
-    public ResultDTO(){
+    public ResultDTO() {
         resultList = new ArrayList<>();
     }
 
