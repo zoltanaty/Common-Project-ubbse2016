@@ -1,6 +1,5 @@
 <%@ page import="java.io.*, java.util.*" language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
 <%
 if ((Boolean) session.getAttribute("ok") != null && (Boolean) session.getAttribute("ok")){
 	if(session.getAttribute("privilege") == "admin") response.sendRedirect("manage.jsp");

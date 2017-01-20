@@ -72,6 +72,11 @@
   		<servlet-class>com.halcyonmobile.webadmin.DelPosition</servlet-class>
   	</servlet>
   	
+  	<servlet>
+  		<servlet-name>ValidateResult</servlet-name>
+  		<servlet-class>com.halcyonmobile.webadmin.ValidateResult</servlet-class>
+  	</servlet>
+  	
   	<servlet-mapping>
   		<servlet-name>Login</servlet-name>
   		<url-pattern>/login.do</url-pattern>
@@ -130,6 +135,11 @@
   	<servlet-mapping>
   		<servlet-name>DelPosition</servlet-name>
   		<url-pattern>/delPos.do</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet-mapping>
+  		<servlet-name>ValidateResult</servlet-name>
+  		<url-pattern>/validateResult.do</url-pattern>
   	</servlet-mapping>
   
   	<servlet>

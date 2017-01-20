@@ -27,6 +27,12 @@ public class ResultService {
 	    return resultList;
 	}
 	
+	public Result findById(int id) {
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		Result result = em.find(Result.class, id);
+		return result;
+	}
+	
 	public List<Result> findByUserId(Integer id_user) {
 		
 		EntityManager em = Entitymanager.getEntityManagerInstance();
@@ -66,5 +72,12 @@ public class ResultService {
 				
 	    
 	    return true;
+	}
+	
+	public void setIsCorrect(Result newResultRow) {
+		EntityManager em = Entitymanager.getEntityManagerInstance();
+		em.getTransaction().begin();
+		em.merge(newResultRow);
+		em.getTransaction().commit();
 	}
 }
