@@ -4116,10 +4116,10 @@ CREATE TABLE `owners` (
 --
 
 INSERT INTO `owners` (`username`, `password`, `privilege`) VALUES
-('admin1', 'apass1', 1),
-('admin2', 'apass2', 1),
-('manager1', 'apass3', 2),
-('manager2', 'apass4', 2);
+('admin1', '392a0c34becd6ead08fa2e60402a9459', 1),
+('admin2', '7169aed8552009e3a0030e8b19358b3c', 1),
+('manager1', '8e8f1ea9826a0847f6d231b1ae912391', 2),
+('manager2', 'b8c73761418e94746ec4133346630ceb', 2);
 
 -- --------------------------------------------------------
 
@@ -4139,11 +4139,11 @@ CREATE TABLE `position` (
 --
 
 INSERT INTO `position` (`id`, `name`, `nrQue`) VALUES
-(1, 'Junior Android Developer', 0),
-(2, 'Senior Android Developer', 0),
-(3, 'Junior iOS Developer', 0),
-(4, 'Senior iOS Developer', 0),
-(5, 'Általános műveltség', 0);
+(1, 'Junior Android Developer', 30),
+(2, 'Senior Android Developer', 30),
+(3, 'Junior iOS Developer', 30),
+(4, 'Senior iOS Developer', 30),
+(5, 'Általános műveltség', 30);
 
 -- --------------------------------------------------------
 

@@ -382,3 +382,39 @@ tr.noResult td {
 	cursor: not-allowed;
 	color: white;
 }
+
+.correctButton {
+	height: 24px;
+	background-image: url("images/correct.png");
+	background-color: white;
+	background-position: left top;
+	background-repeat: no-repeat;
+	padding-left: 22px;
+	border: 1px solid #41AD49;
+	color: #41AD49;
+	margin: 5px;
+	float: right;
+}
+
+.incorrectButton {
+	height: 24px;
+	background-image: url("images/incorrect.png");
+	background-color: white;
+	background-position: left top;
+	background-repeat: no-repeat;
+	padding-left: 22px;
+	border: 1px solid #E44061;
+	color: #E44061;
+	margin: 5px;
+	float: right;
+}
+
+.correctButton:hover {
+	background-color: #DDDDDD;
+	cursor: pointer;
+}
+
+.incorrectButton:hover {
+	background-color: #DDDDDD;
+	cursor: pointer;
+}

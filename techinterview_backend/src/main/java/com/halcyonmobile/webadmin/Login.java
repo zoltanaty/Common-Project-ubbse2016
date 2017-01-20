@@ -1,6 +1,9 @@
 package com.halcyonmobile.webadmin;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,6 +16,26 @@ import com.halcyonmobile.rest.OwnersService;
 
 public class Login extends HttpServlet implements HttpSessionListener{
 	private static final long serialVersionUID = 13L;
+	
+	public static String hashPassword(String password) throws UnsupportedEncodingException {
+		String genPass = null;
+		String salt = "tomcat";
+		
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(salt.getBytes("UTF-8"));
+			byte[] bytes = md.digest(password.getBytes("UTF-8"));
+			StringBuilder sb = new StringBuilder();
+			for(int i = 0; i < bytes.length; i++) {
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			genPass = sb.toString();
+		} catch(NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return genPass;
+	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		HttpSession session = req.getSession(true);
@@ -32,9 +55,7 @@ public class Login extends HttpServlet implements HttpSessionListener{
 		String[] userName = req.getParameterValues("userName");
 		String[] passs = req.getParameterValues("password");
 		String user = userName[userName.length-1];
-		String pass = passs[passs.length-1];
-		System.out.println(user);
-		System.out.println(pass);
+		String pass = hashPassword(passs[passs.length-1]);
 		String privilege = "";
 		boolean ok = false;
 		HttpSession session = req.getSession(true);
@@ -62,7 +83,7 @@ public class Login extends HttpServlet implements HttpSessionListener{
 		OwnersService os = new OwnersService();
 		ArrayList<Owners> ownersList = os.findAll();
 
-		for (Owners o : ownersList) {
+		for (Owners o : ownersList) {		
 			if (o.getUsername().equals(user) && o.getPassword().equals(pass)) {
 				ok = true;
 				privilege = o.getPrivilege();
