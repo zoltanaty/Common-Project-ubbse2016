@@ -7,8 +7,9 @@ import javax.persistence.Persistence;
 public class Entitymanager {
 	
 	private static EntityManager em = null;
+	private static Object lock;
 	
-	public static EntityManager getEntityManagerInstance(){
+	public synchronized static EntityManager getEntityManagerInstance(){
 		if(em == null){
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("TechInterViewPersistence");
 	        em = emf.createEntityManager();
