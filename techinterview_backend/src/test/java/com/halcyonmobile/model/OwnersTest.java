@@ -15,22 +15,29 @@ public class OwnersTest {
 	
 	@Test
 	public void OwnersPojoTest() {
-		Owners owners = new Owners();
-		owners.setUsername(USERNAME);
-		owners.setPassword(PASSWORD);
-		owners.setPrivilege(PRIVILEGE);
+		Owners owner = new Owners();
+		owner.setUsername(USERNAME);
+		owner.setPassword(PASSWORD);
+		owner.setPrivilege(PRIVILEGE);
 		
-		assertNotNull(owners.getUsername());
-		assertNotNull(owners.getPassword());
-		assertNotNull(owners.getPrivilege());
+		assertNotNull(owner.getUsername());
+		assertNotNull(owner.getPassword());
+		assertNotNull(owner.getPrivilege());
 		
-		assertNotNull(owners.toString());
+		assertNotNull(owner.toString());
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		em.getTransaction().begin();
-		em.persist(owners);
+		em.persist(owner);
 		em.flush();
 		em.getTransaction().commit();
 		
-		assertNotNull(owners.getUsername());
+		assertNotNull(owner.getUsername());
+		
+		em.getTransaction().begin();
+		em.remove(owner);
+		em.flush();
+		em.getTransaction().commit();
 	}
+	
+	
 }

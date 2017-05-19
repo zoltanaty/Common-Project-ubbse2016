@@ -46,7 +46,7 @@ public class PositionService {
 		
 		TypedQuery<Position> query = em.createQuery("SELECT p FROM Position p WHERE p.name = :name", Position.class);
 		
-		return query.setParameter("name", name).getSingleResult().getId();
+		return query.setParameter("name", name).getResultList().get(0).getId();
 	}
 
 	public void addPosition(String pos, int nrQue) {

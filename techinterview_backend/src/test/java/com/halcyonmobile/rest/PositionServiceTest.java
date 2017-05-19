@@ -28,6 +28,6 @@ public class PositionServiceTest {
 		
 		int positionId = positionService.findByName(POSITION);
 		
-		assertNotNull("" + positionId);
+		assertNotNull(positionId);
 	}
 }
