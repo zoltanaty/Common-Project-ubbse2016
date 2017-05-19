@@ -8,12 +8,11 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.halcyonmobile.model.User;
 import com.halcyonmobile.rest.UserService;
 
 
 public class InMemoryRestTest {
-
-
 
     public static UserService userService = new UserService();
     public static InMemoryRestServer server;
@@ -32,6 +31,8 @@ public class InMemoryRestTest {
     public void postSimpleBody() throws Exception {
 
         Response response = server.newRequest("/user/1").request().buildGet().invoke();
+        
+        User user = response.readEntity(User.class);
         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
     }
 }

@@ -30,7 +30,7 @@ public class UserService {
 
 	@GET
  	@Path("/{id}")
- 	@Produces(MediaType.APPLICATION_JSON)
+ 	@Produces(MediaType.APPLICATION_XML)
  	public User findById(@PathParam("id") Integer id) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		User user = em.find(User.class, id);
