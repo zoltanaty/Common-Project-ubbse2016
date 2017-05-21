@@ -4,7 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 @Table(name = "answer")
 public class Answer {
@@ -56,6 +58,11 @@ public class Answer {
 
 	public void setIsCorrect(Boolean isCorrect) {
 		this.isCorrect = isCorrect;
+	}
+	
+	@Override
+	public String toString() {
+		return "Answer [id=" + id + ", id_question=" + id_question + ", answer=" + answer + ", is_correct=" + isCorrect + "]";
 	}
 	  
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -63,8 +64,8 @@ public class UserService {
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public int registerUser(User user) {
+	@Produces(MediaType.APPLICATION_XML)
+	public User registerUser(User user) {
 
 		System.out.println(user);
 
@@ -81,13 +82,17 @@ public class UserService {
 		List<User> registeredUserList = (List<User>) query.getResultList();
 		em.getTransaction().commit();
 
-		return registeredUserList.get(0).getId();
+		return registeredUserList.get(0);
 	}
 	
-	public void deleteUser(User user) {
+	@DELETE
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
+	public void deleteUser(@PathParam("id") int id) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		em.getTransaction().begin();
-		em.remove(user);
+		em.remove(em.find(User.class, id));
 		em.getTransaction().commit();
 	}
 }
