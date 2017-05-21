@@ -19,7 +19,7 @@ public class PositionService {
 	
 	@GET
 	@Path("/")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public List<Position> findAll() {
 		
 		EntityManager em = Entitymanager.getEntityManagerInstance();
@@ -32,7 +32,7 @@ public class PositionService {
 
 	@GET
 	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public Position findById(@PathParam("id") Integer id) {
 		
 		EntityManager em = Entitymanager.getEntityManagerInstance();
@@ -40,8 +40,11 @@ public class PositionService {
 
 		return position;
 	}
-	
-	public int findByName(String name) {
+
+	@GET
+	@Path("/name/{name}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public int findByName(@PathParam("name") String name) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		
 		TypedQuery<Position> query = em.createQuery("SELECT p FROM Position p WHERE p.name = :name", Position.class);

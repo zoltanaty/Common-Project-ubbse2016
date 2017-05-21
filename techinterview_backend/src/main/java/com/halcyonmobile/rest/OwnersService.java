@@ -8,12 +8,21 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import com.halcyonmobile.model.Owners;
 import com.halcyonmobile.persistence.Entitymanager;
 
+@Path("/owner")
 public class OwnersService {
-	
+
+	@GET
+	@Path("/")
+	@Produces(MediaType.APPLICATION_XML)
 	public ArrayList<Owners> findAll() {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		Query query = em.createQuery("FROM Owners");
@@ -23,8 +32,11 @@ public class OwnersService {
 		
 		return (ArrayList<Owners>) ownersList;
 	}
-	
-	public Owners findById(String username) {
+
+	@GET
+	@Path("/{username}")
+	@Produces(MediaType.APPLICATION_XML)
+	public Owners findById(@PathParam("username") String username) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		Owners owner = em.find(Owners.class, username);
 		return owner;

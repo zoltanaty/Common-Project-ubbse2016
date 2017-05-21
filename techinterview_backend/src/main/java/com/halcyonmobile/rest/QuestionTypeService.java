@@ -19,7 +19,7 @@ public class QuestionTypeService {
 
 	@GET
 	@Path("/")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public List<QuestionType> findAll() {
 		
 		EntityManager em = Entitymanager.getEntityManagerInstance();
@@ -32,7 +32,7 @@ public class QuestionTypeService {
 	
 	@GET
 	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public QuestionType findById(@PathParam("id") Integer id) {
 		
 		EntityManager em = Entitymanager.getEntityManagerInstance();

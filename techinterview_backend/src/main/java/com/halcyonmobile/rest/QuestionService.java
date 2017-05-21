@@ -19,7 +19,7 @@ public class QuestionService {
 	
 	@GET
 	@Path("/")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public List<Question> findAll() {
 		
 		EntityManager em = Entitymanager.getEntityManagerInstance();
@@ -32,7 +32,7 @@ public class QuestionService {
 	
 	@GET
 	@Path("/{id_position}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public List<Question> findByPosition(@PathParam("id_position") Integer idPosition) {
 		
 		EntityManager em = Entitymanager.getEntityManagerInstance();
@@ -62,16 +62,22 @@ public class QuestionService {
 		
 		return id;
 	}
-	
-	public int findIdByQuestion(String question) {
+
+	@GET
+	@Path("/question/{question}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public int findIdByQuestion(@PathParam("question") String question) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		
 		TypedQuery<Question> query = em.createQuery("SELECT q FROM Question q WHERE q.question = :question", Question.class);
 		
 		return query.setParameter("question", question).getSingleResult().getId();
 	}
-	
-	public Question findById(Integer id) {
+
+	@GET
+	@Path("/id/{id}")
+	@Produces(MediaType.APPLICATION_XML)
+	public Question findById(@PathParam("id") Integer id) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		Question question = em.find(Question.class, id);
 		return question;
