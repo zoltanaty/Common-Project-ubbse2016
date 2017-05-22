@@ -36,7 +36,7 @@ public class OwnersService {
 	@GET
 	@Path("/{username}")
 	@Produces(MediaType.APPLICATION_XML)
-	public Owners findById(@PathParam("username") String username) {
+	public Owners findByUsername(@PathParam("username") String username) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		Owners owner = em.find(Owners.class, username);
 		return owner;

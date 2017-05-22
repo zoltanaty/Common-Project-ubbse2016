@@ -30,7 +30,7 @@ public class DeleteAM extends HttpServlet {
 		String username = req.getParameter("AMList");
 		
 		OwnersService os = new OwnersService();
-		Owners owner = os.findById(username);
+		Owners owner = os.findByUsername(username);
 		os.deleteOwner(owner);
 		
 		RequestDispatcher view = req.getRequestDispatcher("manage.jsp");

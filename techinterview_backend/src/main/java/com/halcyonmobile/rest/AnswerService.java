@@ -19,7 +19,7 @@ public class AnswerService {
 
 	@GET
 	@Path("/")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public List<Answer> findAll() {
 
 		EntityManager em = Entitymanager.getEntityManagerInstance();
@@ -32,7 +32,7 @@ public class AnswerService {
 
 	@GET
 	@Path("/{id_question}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public List<Answer> findByQuestion(@PathParam("id_question") Integer idQuestion) {
 
 		EntityManager em = Entitymanager.getEntityManagerInstance();
@@ -46,7 +46,7 @@ public class AnswerService {
 
 	@GET
 	@Path("/")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_XML)
 	public void insertAnswer(String[] answers, int qId, boolean[] isCorrect) {
 		EntityManager em = Entitymanager.getEntityManagerInstance();
 		Answer answer = new Answer();

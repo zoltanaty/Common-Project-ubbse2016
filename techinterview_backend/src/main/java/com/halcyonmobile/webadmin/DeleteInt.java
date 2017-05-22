@@ -30,7 +30,7 @@ public class DeleteInt extends HttpServlet{
 		
 		UserService us = new UserService();
 		User user = us.findById(id);
-		us.deleteUser(user);
+		us.deleteUser(user.getId());
 		
 		RequestDispatcher view = req.getRequestDispatcher("manage.jsp");
 

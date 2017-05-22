@@ -6,6 +6,9 @@ import com.halcyonmobile.model.Answer;
 import com.halcyonmobile.model.Question;
 import com.halcyonmobile.model.QuestionType;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class QuestionCardDTO {
 	
 	private Question question;

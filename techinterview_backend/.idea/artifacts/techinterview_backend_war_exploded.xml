@@ -1,0 +1,52 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="techinterview-backend:war exploded">
+    <output-path>$PROJECT_DIR$/target/techinterview-backend-0.0.1-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="techinterview-backend" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.0.0" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:4.2.8.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.1.0.GA" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:4.2.8.Final" />
+          <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />
+          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: org.javassist:javassist:3.18.1-GA" />
+          <element id="library" level="project" name="Maven: org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.1.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:4.0.2.Final" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.27" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.0.1" />
+          <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-spring:3.0.10.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-jaxrs:3.0.10.Final" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.2.6" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.2.5" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.1.1" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.6" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.1" />
+          <element id="library" level="project" name="Maven: net.jcip:jcip-annotations:1.0" />
+          <element id="library" level="project" name="Maven: org.jboss.resteasy:jaxrs-api:3.0.10.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-jettison-provider:3.0.10.Final" />
+          <element id="library" level="project" name="Maven: org.codehaus.jettison:jettison:1.3.2" />
+          <element id="library" level="project" name="Maven: org.jboss.spec.javax.annotation:jboss-annotations-api_1.1_spec:1.0.1.Final" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-client:3.0.10.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-jaxb-provider:3.0.10.Final" />
+          <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.7" />
+          <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-core:2.2.7" />
+          <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.2.7" />
+          <element id="library" level="project" name="Maven: com.sun.istack:istack-commons-runtime:2.16" />
+          <element id="library" level="project" name="Maven: com.sun.xml.fastinfoset:FastInfoset:1.2.12" />
+          <element id="library" level="project" name="Maven: javax.xml.bind:jsr173_api:1.0" />
+          <element id="library" level="project" name="Maven: org.jboss.spec.javax.servlet:jboss-servlet-api_3.1_spec:1.0.0.Final" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/techinterview-backend-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="techinterview-backend/web/Web" />
+    </root>
+  </artifact>
+</component>

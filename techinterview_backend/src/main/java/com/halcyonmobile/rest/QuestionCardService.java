@@ -22,7 +22,7 @@ public class QuestionCardService {
 	
 	@GET
 	@Path("/{id_position}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public List<QuestionCardDTO> findByPosition(@PathParam("id_position") Integer idPosition) {
 				
 		QuestionService questionService = new QuestionService();

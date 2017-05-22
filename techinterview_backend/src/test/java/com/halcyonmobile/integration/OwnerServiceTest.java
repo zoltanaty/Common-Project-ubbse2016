@@ -48,7 +48,7 @@ public class OwnerServiceTest {
         Owners owner = response.readEntity(Owners.class);
 
         assertNotNull(owner);
-        assertEquals(ownersService.findById("admin1").toString(), owner.toString());
+        assertEquals(ownersService.findByUsername("admin1").toString(), owner.toString());
         response.close();
     }
 

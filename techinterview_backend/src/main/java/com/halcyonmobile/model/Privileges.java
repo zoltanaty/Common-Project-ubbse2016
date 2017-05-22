@@ -1,7 +1,9 @@
 package com.halcyonmobile.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 @Table(name = "privileges")
 public class Privileges {
